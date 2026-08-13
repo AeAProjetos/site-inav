@@ -1,0 +1,43 @@
+:root {
+  --color-primary: #1b8a53;
+  --color-text: #333333;
+  --color-bg: #FFFFFF;
+  --font-main: system-ui, -apple-system, sans-serif;
+}
+
+body {
+  font-family: var(--font-main);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  border-bottom: 1px solid #eee;
+}
+
+nav a {
+  margin-left: 1rem;
+  text-decoration: none;
+  color: var(--color-text);
+}
+
+.hero {
+  text-align: center;
+  padding: 4rem 2rem;
+  background-color: #f0f7f4;
+}
+
+button {
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+}
