@@ -5,65 +5,83 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Fundo Aconchegante (Creme / Baunilha Suave) */
+    --background: 38 44% 98%;
+    --foreground: 222 47% 11%;
 
+    /* Superfícies de Cartão com calor */
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 222 47% 11%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 222 47% 11%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Azul Real Oficial INAV */
+    --primary: 207 100% 33%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Laranja Calor & Afeto Oficial INAV */
+    --brand-orange: 27 92% 54%;
+    --brand-orange-foreground: 0 0% 100%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Verde Esperança & Vida Oficial INAV */
+    --brand-green: 109 61% 43%;
+    --brand-green-foreground: 0 0% 100%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Tons secundários suaves e areia */
+    --secondary: 38 30% 94%;
+    --secondary-foreground: 222 47% 11%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --muted: 38 20% 92%;
+    --muted-foreground: 215 16% 47%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --accent: 27 92% 96%;
+    --accent-foreground: 27 92% 40%;
 
-    --radius: 0.5rem;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 38 20% 88%;
+    --input: 38 20% 88%;
+    --ring: 207 100% 33%;
+
+    --radius: 1rem;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    --background: 222 47% 11%;
+    --foreground: 38 44% 98%;
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    --card: 222 47% 14%;
+    --card-foreground: 38 44% 98%;
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 222 47% 14%;
+    --popover-foreground: 38 44% 98%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: 207 90% 54%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --brand-orange: 27 92% 54%;
+    --brand-orange-foreground: 0 0% 100%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --brand-green: 109 61% 48%;
+    --brand-green-foreground: 0 0% 100%;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --secondary: 222 30% 18%;
+    --secondary-foreground: 38 44% 98%;
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --muted: 222 30% 18%;
+    --muted-foreground: 215 20% 65%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
+    --accent: 27 92% 20%;
+    --accent-foreground: 27 92% 80%;
+
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 222 30% 22%;
+    --input: 222 30% 22%;
+    --ring: 207 90% 54%;
   }
 }
 
@@ -71,10 +89,103 @@
   * {
     border-color: hsl(var(--border));
   }
+
   body {
     @apply bg-background text-foreground font-sans;
   }
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-display text-balance;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-display;
+    letter-spacing: -0.025em;
+  }
+}
+
+/* Utilitários táteis e 3D */
+@layer utilities {
+  .shadow-layered {
+    box-shadow:
+      0 1px 2px rgba(15, 23, 42, 0.04),
+      0 4px 12px rgba(15, 23, 42, 0.05),
+      0 16px 32px rgba(15, 23, 42, 0.04);
+  }
+
+  .shadow-layered-hover {
+    box-shadow:
+      0 2px 4px rgba(15, 23, 42, 0.04),
+      0 8px 24px rgba(15, 23, 42, 0.08),
+      0 24px 48px -8px rgba(15, 23, 42, 0.08);
+  }
+
+  .glass-card {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+  }
+
+  .btn-tactile {
+    transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateY(0);
+  }
+
+  .btn-tactile:hover {
+    transform: translateY(-2px);
+  }
+
+  .btn-tactile:active {
+    transform: translateY(1px);
+  }
+}
+
+/* Header Navigation Links — estilo Figma */
+.header-nav-link {
+  position: relative;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  transition: color 0.2s ease;
+  padding: 4px 0;
+}
+
+.header-nav-active {
+  color: #1e293b; /* slate-800 */
+}
+
+.header-nav-active::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 25%;
+  right: 25%;
+  height: 2.5px;
+  background: #1e293b;
+  border-radius: 9999px;
+}
+
+.header-nav-inactive {
+  color: #94a3b8; /* slate-400 */
+}
+
+.header-nav-inactive:hover {
+  color: #475569; /* slate-600 */
+}
+
+/* Hero section responsive grid */
+@media (max-width: 768px) {
+  .hero-grid {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+  }
+  .como-funciona-grid {
+    grid-template-columns: 1fr !important;
+    gap: 40px !important;
+  }
+  .como-funciona-connector {
+    display: none !important;
   }
 }
