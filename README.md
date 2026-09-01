@@ -1,34 +1,36 @@
 # Site Institucional — INAV
 
-Redesign do site institucional do Instituto Nair Valadares (inav.org.br).
+Site institucional e plataforma de captação do Instituto Nair Valadares (INAV), OSC sem fins lucrativos dedicada à educação infantil integral e ao fortalecimento comunitário no Riacho Fundo II (Brasília/DF).
 
 ## Stack
 
-- **Build:** Vite
-- **Frontend:** HTML5, Vanilla CSS, JavaScript ES6+
-- **Hospedagem:** Vercel ou Firebase Hosting
+- **Framework:** TanStack Start (SSR) + TanStack Router (rotas por arquivo em `src/routes/`)
+- **UI:** React 19, Tailwind CSS v4, Radix UI / shadcn, Framer Motion
+- **Build:** Vite + Nitro (preset `vercel`)
+- **Gerenciador de pacotes:** bun
+
+## Desenvolvimento
+
+```sh
+bun install
+bun run dev
+```
+
+Outros scripts: `bun run build`, `bun run lint`, `bun run format`.
 
 ## Estrutura
 
-```
-site-inav/
-├── public/img/         # Imagens e assets estáticos
-├── src/
-│   ├── assets/css/     # Estilos (design system)
-│   ├── js/components/  # Web Components reutilizáveis
-│   ├── content/        # Conteúdo em Markdown
-│   └── index.html      # Página principal
-├── .gitignore
-├── package.json
-├── vite.config.js
-└── README.md
+```text
+src/
+├── routes/           # Páginas (roteamento por arquivo)
+├── components/        # Componentes de seção e layout
+│   └── ui/             # Componentes de UI (shadcn)
+├── lib/
+│   └── site-config.ts  # Dados institucionais, navegação, chave PIX etc.
+└── styles.css          # Tokens de design (cores, tipografia, raios)
+public/img/             # Fotos e logo oficiais
 ```
 
-## Comandos
+## Conteúdo pendente
 
-```bash
-npm install        # Instalar dependências
-npm run dev        # Dev server (localhost)
-npm run build      # Build para produção
-npm run preview    # Preview do build
-```
+Textos e dados de contato (telefone, endereço, chave PIX, Instagram) em `src/lib/site-config.ts` e nas páginas ainda são placeholders — aguardando confirmação oficial junto à instituição antes da publicação.
