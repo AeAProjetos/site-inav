@@ -1,13 +1,62 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { createServerFn } from "@tanstack/react-start";
 import { motion } from "motion/react";
-import { FileText, ShieldCheck, PieChart, Scale, Download } from "lucide-react";
+import Papa from "papaparse";
+import { FileText, ShieldCheck, PieChart, Scale, Download, ExternalLink } from "lucide-react";
 
 import { PageHero } from "@/components/PageHero";
 import { SectionHeading } from "@/components/SectionHeading";
 import { FeatureCard } from "@/components/FeatureCard";
 import { fadeUp, revealOnScroll, stagger } from "@/lib/motion-presets";
+import { integrations } from "@/lib/site-config";
+
+type TransparencyDocument = { label: string; note: string; url?: string | undefined };
+
+const fallbackDocuments: TransparencyDocument[] = [
+  { label: "Relatório anual de atividades", note: "Publicação anual" },
+  { label: "Demonstrações financeiras", note: "Balanço patrimonial e DRE" },
+  { label: "Estatuto social", note: "Documento constitutivo" },
+  { label: "Certidões e registros", note: "Documentação regular" },
+];
+
+/**
+ * Busca a lista de documentos de uma planilha Google publicada como CSV
+ * (ver `integrations.transparencySheetCsvUrl` em site-config.ts). Roda só
+ * no servidor — evita depender do CORS do Google Sheets no navegador e
+ * mantém a busca fora do bundle do cliente.
+ */
+const fetchTransparencyDocuments = createServerFn({ method: "GET" }).handler(
+  async (): Promise<TransparencyDocument[]> => {
+    const csvUrl = integrations.transparencySheetCsvUrl;
+    if (!csvUrl) return fallbackDocuments;
+
+    try {
+      const response = await fetch(csvUrl);
+      if (!response.ok) return fallbackDocuments;
+
+      const csv = await response.text();
+      const { data } = Papa.parse<Record<string, string>>(csv, {
+        header: true,
+        skipEmptyLines: true,
+      });
+
+      const docs = data
+        .map((row) => ({
+          label: (row["titulo"] ?? "").trim(),
+          note: (row["nota"] ?? "").trim(),
+          url: (row["link"] ?? "").trim() || undefined,
+        }))
+        .filter((doc) => doc.label.length > 0);
+
+      return docs.length > 0 ? docs : fallbackDocuments;
+    } catch {
+      return fallbackDocuments;
+    }
+  },
+);
 
 export const Route = createFileRoute("/transparencia")({
+  loader: () => fetchTransparencyDocuments(),
   head: () => ({
     meta: [
       { title: "Transparência — Instituto Nair Valadares" },
@@ -51,14 +100,9 @@ const commitments = [
   },
 ];
 
-const documents = [
-  { label: "Relatório anual de atividades", note: "Publicação anual" },
-  { label: "Demonstrações financeiras", note: "Balanço patrimonial e DRE" },
-  { label: "Estatuto social", note: "Documento constitutivo" },
-  { label: "Certidões e registros", note: "Documentação regular" },
-];
-
 function TransparenciaPage() {
+  const documents = Route.useLoaderData();
+
   return (
     <>
       <PageHero
@@ -94,7 +138,7 @@ function TransparenciaPage() {
             eyebrow="Documentos"
             title="Prestação de contas"
             highlight="pública"
-            description="Os documentos abaixo podem ser solicitados a qualquer momento pelo nosso canal de contato enquanto a área de downloads é publicada."
+            description="Baixe diretamente os documentos disponíveis ou solicite pelo nosso canal de contato."
           />
 
           <motion.ul variants={stagger} {...revealOnScroll} className="mt-12 space-y-4">
@@ -113,13 +157,25 @@ function TransparenciaPage() {
                     <p className="text-sm text-muted-foreground">{doc.note}</p>
                   </div>
                 </div>
-                <a
-                  href="/contato"
-                  className="inline-flex items-center gap-2 rounded-full border border-brand-blue/30 px-5 py-2.5 text-xs font-bold uppercase tracking-wide text-brand-blue-deep transition-colors duration-200 hover:bg-brand-blue hover:text-white"
-                >
-                  <Download className="size-4" aria-hidden="true" />
-                  Solicitar
-                </a>
+                {doc.url ? (
+                  <a
+                    href={doc.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-full border border-brand-green/30 px-5 py-2.5 text-xs font-bold uppercase tracking-wide text-brand-green transition-colors duration-200 hover:bg-brand-green hover:text-white"
+                  >
+                    <ExternalLink className="size-4" aria-hidden="true" />
+                    Baixar
+                  </a>
+                ) : (
+                  <a
+                    href="/contato"
+                    className="inline-flex items-center gap-2 rounded-full border border-brand-blue/30 px-5 py-2.5 text-xs font-bold uppercase tracking-wide text-brand-blue-deep transition-colors duration-200 hover:bg-brand-blue hover:text-white"
+                  >
+                    <Download className="size-4" aria-hidden="true" />
+                    Solicitar
+                  </a>
+                )}
               </motion.li>
             ))}
           </motion.ul>

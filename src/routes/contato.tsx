@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "motion/react";
 import { MapPin, Phone, Mail, Clock, MessageCircle } from "lucide-react";
 
+import { ContactForm } from "@/components/ContactForm";
 import { PageHero } from "@/components/PageHero";
 import { SectionHeading } from "@/components/SectionHeading";
 import { fadeUp, revealOnScroll, stagger } from "@/lib/motion-presets";
@@ -75,54 +76,56 @@ function ContatoPage() {
             align="center"
           />
 
-          <motion.div
-            variants={stagger}
-            {...revealOnScroll}
-            className="mt-14 grid gap-5 sm:grid-cols-2"
-          >
-            {channels.map(({ icon: Icon, label, value, href }) => (
-              <motion.a
-                key={label}
+          <div className="mt-14 grid gap-10 lg:grid-cols-[1fr_1.1fr] lg:items-start">
+            <div>
+              <motion.div variants={stagger} {...revealOnScroll} className="grid gap-5 sm:grid-cols-2 lg:grid-cols-1">
+                {channels.map(({ icon: Icon, label, value, href }) => (
+                  <motion.a
+                    key={label}
+                    variants={fadeUp}
+                    href={href}
+                    target={href.startsWith("http") ? "_blank" : undefined}
+                    rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+                    whileHover={{ y: -5 }}
+                    transition={{ type: "spring", stiffness: 260, damping: 22 }}
+                    className="flex items-start gap-4 rounded-2xl border border-border bg-card p-7 shadow-soft transition-shadow duration-300 hover:shadow-lift"
+                  >
+                    <span className="inline-flex size-12 shrink-0 items-center justify-center rounded-xl bg-brand-blue-soft text-brand-blue-deep">
+                      <Icon className="size-5" aria-hidden="true" />
+                    </span>
+                    <span>
+                      <span className="block text-xs font-bold uppercase tracking-[0.18em] text-brand-orange">
+                        {label}
+                      </span>
+                      <span className="mt-1.5 block leading-relaxed text-foreground/85">
+                        {value}
+                      </span>
+                    </span>
+                  </motion.a>
+                ))}
+              </motion.div>
+
+              <motion.div
                 variants={fadeUp}
-                href={href}
-                target={href.startsWith("http") ? "_blank" : undefined}
-                rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
-                whileHover={{ y: -5 }}
-                transition={{ type: "spring", stiffness: 260, damping: 22 }}
-                className="flex items-start gap-4 rounded-2xl border border-border bg-card p-7 shadow-soft transition-shadow duration-300 hover:shadow-lift"
+                {...revealOnScroll}
+                className="mt-5 flex items-start gap-4 rounded-2xl border border-border bg-surface-tint p-7"
               >
-                <span className="inline-flex size-12 shrink-0 items-center justify-center rounded-xl bg-brand-blue-soft text-brand-blue-deep">
-                  <Icon className="size-5" aria-hidden="true" />
+                <span className="inline-flex size-12 shrink-0 items-center justify-center rounded-xl bg-brand-green/12 text-brand-green">
+                  <Clock className="size-5" aria-hidden="true" />
                 </span>
                 <span>
                   <span className="block text-xs font-bold uppercase tracking-[0.18em] text-brand-orange">
-                    {label}
+                    Horário de atendimento
                   </span>
                   <span className="mt-1.5 block leading-relaxed text-foreground/85">
-                    {value}
+                    {site.hours}
                   </span>
                 </span>
-              </motion.a>
-            ))}
-          </motion.div>
+              </motion.div>
+            </div>
 
-          <motion.div
-            variants={fadeUp}
-            {...revealOnScroll}
-            className="mt-6 flex items-start gap-4 rounded-2xl border border-border bg-surface-tint p-7"
-          >
-            <span className="inline-flex size-12 shrink-0 items-center justify-center rounded-xl bg-brand-green/12 text-brand-green">
-              <Clock className="size-5" aria-hidden="true" />
-            </span>
-            <span>
-              <span className="block text-xs font-bold uppercase tracking-[0.18em] text-brand-orange">
-                Horário de atendimento
-              </span>
-              <span className="mt-1.5 block leading-relaxed text-foreground/85">
-                {site.hours}
-              </span>
-            </span>
-          </motion.div>
+            <ContactForm />
+          </div>
         </div>
       </section>
 

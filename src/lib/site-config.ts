@@ -46,3 +46,24 @@ export const navigation = [
 export const whatsappLink = `https://wa.me/${site.whatsapp}?text=${encodeURIComponent(
   "Olá! Gostaria de saber mais sobre o Instituto Nair Valadares.",
 )}`;
+
+/**
+ * Integrações externas — preencher quando as contas estiverem criadas.
+ */
+export const integrations = {
+  /**
+   * PLACEHOLDER — crie um formulário em https://formspree.io, copie a URL do
+   * endpoint (formato "https://formspree.io/f/xxxxxxxx") e cole aqui.
+   * Enquanto vazio, o formulário de contato fica desabilitado com um aviso.
+   */
+  formspreeEndpoint: "",
+  /**
+   * PLACEHOLDER — planilha Google com os documentos de transparência.
+   * Colunas esperadas na primeira linha: titulo | nota | link
+   * (link = URL pública do PDF, ex. um link de compartilhamento do Drive).
+   * Publique a planilha em Arquivo → Compartilhar → Publicar na web,
+   * escolhendo o formato CSV, e cole aqui a URL gerada.
+   * Enquanto vazio, a página usa a lista estática de fallback.
+   */
+  transparencySheetCsvUrl: "",
+} as const;
