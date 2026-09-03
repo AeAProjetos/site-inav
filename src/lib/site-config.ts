@@ -56,7 +56,7 @@ export const integrations = {
    * endpoint (formato "https://formspree.io/f/xxxxxxxx") e cole aqui.
    * Enquanto vazio, o formulário de contato fica desabilitado com um aviso.
    */
-  formspreeEndpoint: "",
+  formspreeEndpoint: "https://formspree.io/f/xdeozbay",
   /**
    * PLACEHOLDER — planilha Google com os documentos de transparência.
    * Colunas esperadas na primeira linha: titulo | nota | link
@@ -65,5 +65,5 @@ export const integrations = {
    * escolhendo o formato CSV, e cole aqui a URL gerada.
    * Enquanto vazio, a página usa a lista estática de fallback.
    */
-  transparencySheetCsvUrl: "",
+  transparencySheetCsvUrl: "https://docs.google.com/spreadsheets/d/e/2PACX-1vRHj6uy8AjqIbQw2yr8THXnIoRJHyxRrFkeBsq1sP5Ad5g5MwBODmztaF22v8ZQ0mAK2A-E44-4Pw5i/pub?output=csv",
 } as const;
