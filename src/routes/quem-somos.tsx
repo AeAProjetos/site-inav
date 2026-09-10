@@ -27,6 +27,21 @@ export const Route = createFileRoute("/quem-somos")({
   component: QuemSomosPage,
 });
 
+const timelineImages = [
+  {
+    src: "/img/hero_criancas.jpg",
+    alt: "Crianças brincando com blocos coloridos em sala de aula do INAV",
+  },
+  {
+    src: "/img/refeicao_rotina.jpg",
+    alt: "Educadora acompanhando crianças durante a refeição no instituto",
+  },
+  {
+    src: "/img/atelie_sabor.jpg",
+    alt: "Mães em oficina do Ateliê do Sabor, preparando pães na padaria comunitária",
+  },
+];
+
 const timeline = [
   {
     year: "Fundação",
@@ -87,36 +102,60 @@ function QuemSomosPage() {
       {/* Linha do tempo */}
       <section className="bg-background py-20 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <SectionHeading
-            eyebrow="Linha do tempo"
-            title="Mais de duas décadas de"
-            highlight="dedicação"
-            description="Cada etapa do instituto foi construída junto com a comunidade, no ritmo das necessidades reais das famílias atendidas."
-          />
+          <div className="grid gap-12 lg:grid-cols-2 lg:items-start">
+            <div>
+              <SectionHeading
+                eyebrow="Linha do tempo"
+                title="Mais de duas décadas de"
+                highlight="dedicação"
+                description="Cada etapa do instituto foi construída junto com a comunidade, no ritmo das necessidades reais das famílias atendidas."
+              />
 
-          <motion.ol
-            variants={stagger}
-            {...revealOnScroll}
-            className="relative mt-14 space-y-8 border-l-2 border-brand-blue-soft pl-8 sm:pl-10"
-          >
-            {timeline.map((item) => (
-              <motion.li key={item.year} variants={fadeUp} className="relative">
-                <span
-                  className="absolute -left-[2.6rem] top-1 size-4 rounded-full border-4 border-background bg-brand-green sm:-left-[3.1rem]"
-                  aria-hidden="true"
-                />
-                <p className="text-sm font-bold uppercase tracking-[0.18em] text-brand-orange">
-                  {item.year}
-                </p>
-                <h3 className="mt-2 text-xl font-extrabold text-brand-blue-deep">
-                  {item.title}
-                </h3>
-                <p className="mt-2 max-w-2xl leading-relaxed text-muted-foreground">
-                  {item.text}
-                </p>
-              </motion.li>
-            ))}
-          </motion.ol>
+              <motion.ol
+                variants={stagger}
+                {...revealOnScroll}
+                className="relative mt-14 space-y-8 border-l-2 border-brand-blue-soft pl-8 sm:pl-10"
+              >
+                {timeline.map((item) => (
+                  <motion.li key={item.year} variants={fadeUp} className="relative">
+                    <span
+                      className="absolute -left-[2.6rem] top-1 size-4 rounded-full border-4 border-background bg-brand-green sm:-left-[3.1rem]"
+                      aria-hidden="true"
+                    />
+                    <p className="text-sm font-bold uppercase tracking-[0.18em] text-brand-orange">
+                      {item.year}
+                    </p>
+                    <h3 className="mt-2 text-xl font-extrabold text-brand-blue-deep">
+                      {item.title}
+                    </h3>
+                    <p className="mt-2 max-w-2xl leading-relaxed text-muted-foreground">
+                      {item.text}
+                    </p>
+                  </motion.li>
+                ))}
+              </motion.ol>
+            </div>
+
+            <motion.div
+              variants={stagger}
+              {...revealOnScroll}
+              className="grid gap-4"
+            >
+              {timelineImages.map((image) => (
+                <motion.div
+                  key={image.src}
+                  variants={fadeUp}
+                  className="overflow-hidden rounded-2xl border border-border shadow-soft"
+                >
+                  <img
+                    src={image.src}
+                    alt={image.alt}
+                    className="aspect-[16/10] size-full object-cover"
+                  />
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
         </div>
       </section>
 

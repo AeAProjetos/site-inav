@@ -3,14 +3,8 @@ import { motion } from "motion/react";
 import { AlertCircle, CheckCircle2, Loader2, Send } from "lucide-react";
 
 import { integrations, whatsappLink } from "@/lib/site-config";
+import { motivoLabel, motivoOptions } from "@/lib/contact-motivos";
 import { fadeUp, revealOnScroll, stagger } from "@/lib/motion-presets";
-
-const motivos = [
-  "Quero doar",
-  "Quero ser voluntário(a)",
-  "Quero ser parceiro(a) empresarial",
-  "Outro assunto",
-] as const;
 
 type Status = "idle" | "submitting" | "success" | "error";
 
@@ -18,9 +12,15 @@ const fieldClasses =
   "mt-2 w-full rounded-xl border border-input bg-background px-4 py-3 text-sm text-foreground outline-none transition-colors focus-visible:border-brand-blue";
 const labelClasses = "text-xs font-bold uppercase tracking-wide text-foreground/80";
 
-export function ContactForm() {
+type ContactFormProps = {
+  /** Slug de `motivoOptions` (ex. "parceria") pra pré-selecionar o campo. */
+  defaultMotivo?: string | undefined;
+};
+
+export function ContactForm({ defaultMotivo }: ContactFormProps) {
   const [status, setStatus] = useState<Status>("idle");
   const configured = integrations.formspreeEndpoint.length > 0;
+  const defaultMotivoLabel = motivoLabel(defaultMotivo);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -91,13 +91,19 @@ export function ContactForm() {
         <label htmlFor="motivo" className={labelClasses}>
           Motivo do contato
         </label>
-        <select id="motivo" name="motivo" required defaultValue="" className={fieldClasses}>
+        <select
+          id="motivo"
+          name="motivo"
+          required
+          defaultValue={defaultMotivoLabel}
+          className={fieldClasses}
+        >
           <option value="" disabled>
             Selecione uma opção
           </option>
-          {motivos.map((motivo) => (
-            <option key={motivo} value={motivo}>
-              {motivo}
+          {motivoOptions.map(({ slug, label }) => (
+            <option key={slug} value={label}>
+              {label}
             </option>
           ))}
         </select>

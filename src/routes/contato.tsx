@@ -8,7 +8,12 @@ import { SectionHeading } from "@/components/SectionHeading";
 import { fadeUp, revealOnScroll, stagger } from "@/lib/motion-presets";
 import { site, whatsappLink } from "@/lib/site-config";
 
+type ContatoSearch = { motivo?: string | undefined };
+
 export const Route = createFileRoute("/contato")({
+  validateSearch: (search: Record<string, unknown>): ContatoSearch => ({
+    motivo: typeof search["motivo"] === "string" ? search["motivo"] : undefined,
+  }),
   head: () => ({
     meta: [
       { title: "Contato — Instituto Nair Valadares" },
@@ -58,13 +63,15 @@ const channels = [
 ];
 
 function ContatoPage() {
+  const { motivo } = Route.useSearch();
+
   return (
     <>
       <PageHero
         eyebrow="Contato"
         title="A porta está sempre"
         highlight="aberta"
-        description="Quer doar, propor uma parceria, ser voluntário ou conhecer o instituto de perto? Escolha o canal que preferir — respondemos a todos."
+        description="Quer doar, propor uma parceria ou conhecer o instituto de perto? Escolha o canal que preferir — respondemos a todos."
       />
 
       <section className="bg-background py-20 sm:py-24">
@@ -124,7 +131,7 @@ function ContatoPage() {
               </motion.div>
             </div>
 
-            <ContactForm />
+            <ContactForm defaultMotivo={motivo} />
           </div>
         </div>
       </section>
@@ -135,7 +142,7 @@ function ContatoPage() {
             eyebrow="Visite o instituto"
             title="Ver de perto muda a"
             highlight="percepção"
-            description="Agendamos visitas para doadores, empresas parceiras e voluntários interessados. Basta enviar uma mensagem e combinamos o melhor dia."
+            description="Agendamos visitas para doadores e empresas parceiras interessadas. Basta enviar uma mensagem e combinamos o melhor dia."
             align="center"
           />
           <a

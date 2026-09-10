@@ -67,7 +67,7 @@ const projects = [
     icon: Handshake,
     title: "Comunidade parceira",
     description:
-      "Ações conjuntas com escolas, empresas e voluntários do bairro, ampliando o alcance do trabalho do instituto.",
+      "Ações conjuntas com escolas, empresas e parceiros do bairro, ampliando o alcance do trabalho do instituto.",
     accent: "orange" as const,
   },
 ];

@@ -27,7 +27,7 @@ export const Route = createFileRoute("/")({
       {
         property: "og:description",
         content:
-          "Educação infantil, nutrição e acolhimento gratuitos para centenas de crianças e famílias. Doe, apadrinhe ou seja voluntário.",
+          "Educação infantil, nutrição e acolhimento gratuitos para centenas de crianças e famílias. Doe ou apadrinhe.",
       },
     ],
   }),
@@ -39,10 +39,10 @@ function HomePage() {
     <>
       <HomeHero />
       <ImpactStats />
-      <WaveDivider variant="down" className="-mt-px bg-brand-blue-deep text-background" />
+      <WaveDivider variant="down" height="sm" className="-mt-px bg-brand-blue-deep text-background" />
 
       {/* Jornada em 3 etapas */}
-      <section className="bg-background py-20 sm:py-28">
+      <section className="bg-background py-20 sm:py-36">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeading
             eyebrow="Nossa jornada"

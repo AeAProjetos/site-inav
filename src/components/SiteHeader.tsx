@@ -46,7 +46,7 @@ export function SiteHeader() {
             alt={`Logotipo do ${site.name}`}
             className={cn(
               "w-auto transition-all duration-300",
-              transparent ? "h-14 brightness-0 invert" : "h-12",
+              transparent ? "h-13 brightness-0 invert" : "h-14",
             )}
           />
         </Link>
@@ -77,10 +77,11 @@ export function SiteHeader() {
         <div className="flex items-center gap-2">
           <Link
             to="/quer-ajudar"
+            hash="envolvimento"
             className="warm-gradient hidden items-center gap-2 rounded-full px-5 py-2.5 text-sm font-bold uppercase tracking-wide text-white shadow-cta transition-transform duration-200 hover:scale-[1.04] md:inline-flex"
           >
             <Heart className="size-4" aria-hidden="true" />
-            Doar
+            Seja um parceiro
           </Link>
 
           <button

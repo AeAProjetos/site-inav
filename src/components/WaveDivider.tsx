@@ -9,7 +9,7 @@ type WaveDividerProps = {
 };
 
 const heights = {
-  sm: "h-10 md:h-14",
+  sm: "h-5 md:h-10",
   md: "h-16 md:h-24",
   lg: "h-24 md:h-36",
 };

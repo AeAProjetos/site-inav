@@ -10,13 +10,17 @@ const steps = [
     title: "Acolher",
     description:
       "A criança e a família chegam ao instituto e são recebidas por uma equipe que escuta, avalia e entende cada realidade antes de qualquer coisa.",
+    image: "/img/hero_criancas.jpg",
+    imageAlt: "Crianças brincando com blocos coloridos em sala de aula do INAV",
   },
   {
     icon: Sprout,
     step: "02",
     title: "Nutrir",
     description:
-      "Quatro refeições diárias balanceadas, acompanhamento nutricional e cuidado multidisciplinar para que o corpo e a mente tenham base para crescer.",
+      "Cinco refeições diárias balanceadas, acompanhamento nutricional e cuidado multidisciplinar para que o corpo e a mente tenham base para crescer.",
+    image: "/img/refeicao_rotina.jpg",
+    imageAlt: "Educadora acompanhando crianças durante a refeição no instituto",
   },
   {
     icon: GraduationCap,
@@ -24,6 +28,8 @@ const steps = [
     title: "Transformar",
     description:
       "Educação infantil gratuita e de qualidade, oficinas culturais e apoio às famílias — construindo autonomia que dura a vida toda.",
+    image: "/img/atelie_sabor.jpg",
+    imageAlt: "Mães em oficina do Ateliê do Sabor, preparando pães na padaria comunitária",
   },
 ];
 
@@ -34,29 +40,37 @@ export function JourneySteps() {
       {...revealOnScroll}
       className="grid gap-6 md:grid-cols-3"
     >
-      {steps.map(({ icon: Icon, step, title, description }) => (
+      {steps.map(({ icon: Icon, step, title, description, image, imageAlt }) => (
         <motion.li
           key={step}
           variants={fadeUp}
           whileHover={{ y: -6 }}
           transition={{ type: "spring", stiffness: 260, damping: 22 }}
-          className="relative overflow-hidden rounded-2xl border border-border bg-card p-8 shadow-soft transition-shadow duration-300 hover:shadow-lift"
+          className="group overflow-hidden rounded-2xl border border-border bg-[rgba(188, 218, 255, 1)] shadow-soft transition-shadow duration-300 hover:shadow-lift"
         >
-          <span
-            className="pointer-events-none absolute -right-3 -top-5 font-display text-8xl font-extrabold text-brand-blue-soft"
-            aria-hidden="true"
-          >
-            {step}
-          </span>
-          <span className="relative inline-flex size-12 items-center justify-center rounded-xl bg-brand-green/12 text-brand-green">
-            <Icon className="size-6" aria-hidden="true" />
-          </span>
-          <h3 className="relative mt-5 text-xl font-extrabold uppercase text-brand-blue-deep">
-            {title}
-          </h3>
-          <p className="relative mt-3 text-sm leading-relaxed text-muted-foreground">
-            {description}
-          </p>
+          <div className="relative aspect-[4/3] overflow-hidden">
+            <img
+              src={image}
+              alt={imageAlt}
+              className="size-full object-cover transition-transform duration-500 group-hover:scale-105"
+            />
+            <span className="absolute left-4 top-4 inline-flex size-12 items-center justify-center rounded-xl bg-brand-green text-white shadow-lift">
+              <Icon className="size-6" aria-hidden="true" />
+            </span>
+          </div>
+          <div className="p-8">
+            <div className="flex flex-wrap items-center gap-3">
+              <h3 className="text-xl font-extrabold uppercase text-brand-blue-deep">
+                {title}
+              </h3>
+              <span className="inline-flex items-center rounded-full bg-brand-orange px-3 py-1 text-xs font-bold uppercase tracking-wide text-white">
+                Passo {step}
+              </span>
+            </div>
+            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+              {description}
+            </p>
+          </div>
         </motion.li>
       ))}
     </motion.ol>
