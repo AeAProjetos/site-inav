@@ -86,3 +86,61 @@ Se você já tiver frames específicos do Figma, pode enviar screenshots como re
 ## Resultado esperado
 
 Site navegável, visualmente alinhado à identidade INAV, com animações consistentes e estrutura pronta para você substituir placeholders por conteúdo real em poucos minutos.
+
+---
+
+## Blog institucional — plano de implementação
+
+*Definido em 2026-09-10, a partir de uma sessão de ideação antes da implementação.*
+
+### Objetivo
+
+Criar uma página de Blog que funcione como mural de atualizações do instituto — avisos, posts curados do Instagram e outras histórias — sem exigir que alguém mexa em código pra publicar conteúdo novo.
+
+### Estrutura de conteúdo
+
+- Uma **linha do tempo única** em `/blog`, sem abas separadas por tipo.
+- Cada item tem um campo **tipo**, exibido como selo colorido no card (mesmo padrão visual dos badges já usados no site, ex. "Passo 01/02/03" do Nossa Jornada):
+  - Aviso
+  - Instagram
+  - História de transformação
+  - Marco institucional
+  - Campanha/convite sazonal
+  - Parceiro em destaque
+
+### Fonte de conteúdo: Notion
+
+- O INAV mantém uma base no Notion em visualização **Galeria** (cards com foto de capa — mais intuitivo que planilha pra quem não é técnico).
+- Publicar um post novo = criar uma página no Notion, arrastar a foto, escrever o texto, marcar o tipo. Sem coluna/linha de planilha.
+- No código, a leitura segue **o mesmo padrão já usado na Transparência** (busca no servidor via `createServerFn`, sem expor a chamada ao cliente) — só troca a fonte de CSV pelo SDK do Notion. Não exige reescrever a arquitetura do projeto.
+- **Dependência nova**: `@notionhq/client` (SDK oficial, leve) — a única biblioteca nova prevista em todo esse pacote.
+
+### Instagram
+
+- **Curadoria manual** dentro da própria base do Notion (colar link, legenda e foto do post).
+- Descartada a integração com a API oficial do Instagram nesta fase: exigiria conta Business/Creator, App Review no Facebook Developers e renovação periódica de token — manutenção desproporcional ao porte da equipe.
+
+### Páginas
+
+- **`/blog`** — listagem: filtro por tipo (pills, client-side), grid de cards reaproveitando o layout visual dos cards de "Nossa Jornada" (foto no topo, selo de categoria flutuante, título, resumo), botão "carregar mais" sem paginação complexa.
+- **`/blog/$slug`** — post individual: `PageHero` com o tipo como eyebrow, corpo do texto, compartilhamento (WhatsApp + copiar link, via Web Share API nativa — sem dependência nova), posts relacionados (filtro simples por tipo, sem lib de busca).
+
+### Newsletter
+
+- **Fase 1 (entra neste pacote)**: captura de e-mail reaproveitando a integração do Formspree já configurada no site — sem dependência nova.
+- **Fase 2 (backlog, não decidido)**: disparo automático de campanha a cada post novo — exige escolher uma ferramenta de e-mail marketing dedicada (Mailchimp, Brevo, etc.). Não bloqueia o lançamento do blog.
+
+### Funcionalidades já cobertas com o que está instalado (sem dependência nova)
+
+- Tempo de leitura (cálculo por contagem de palavras).
+- Datas formatadas — `date-fns`, já no projeto.
+- Compartilhamento social — Web Share API + links diretos.
+- Feedback de "link copiado" — `sonner`, já no projeto.
+- Posts relacionados — filtro simples no array já carregado.
+
+### Decisões fechadas nesta rodada
+
+1. Linha do tempo única, não separada por tipo.
+2. Notion como fonte de conteúdo (não Google Sheets, não MDX no repositório).
+3. Instagram por curadoria manual, não API oficial.
+4. Newsletter entra no escopo, mas só a captura de e-mail por enquanto.

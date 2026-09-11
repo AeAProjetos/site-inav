@@ -45,12 +45,10 @@ export function PixDonationCard() {
             variants={fadeUp}
             className="mt-3 text-3xl font-extrabold uppercase leading-tight text-balance-pretty sm:text-4xl"
           >
-            Sua doação vira prato de comida, livro e acolhimento
+            AJUDE A FAZER ESSE CUIDADO CONTINUAR
           </motion.h2>
           <motion.p variants={fadeUp} className="mt-4 max-w-lg text-white/85">
-            Qualquer valor faz diferença. Com o PIX, sua contribuição chega ao instituto
-            em segundos e vai direto para a alimentação, o material pedagógico e o
-            cuidado diário das crianças.
+            Cada contribuição ajuda o INAV a fortalecer suas atividades e dar continuidade ao atendimento oferecido às crianças e famílias.
           </motion.p>
         </div>
 

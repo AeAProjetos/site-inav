@@ -10,28 +10,29 @@ const previews = [
     icon: Users,
     title: "Quem Somos",
     description:
-      "Mais de duas décadas construindo uma rede de cuidado no coração da comunidade.",
+      "Conheça a história, o propósito e os princípios que orientam a atuação do INAV a mais de duas décadas."
   },
   {
     to: "/educacao-infantil" as const,
     icon: BookOpen,
     title: "Educação Infantil",
     description:
-      "Creche e pré-escola gratuitas, com rotina pedagógica e nutrição acompanhada.",
+      "Educação gratuita em período integral, com cuidado, alimentação e acompanhamento do desenvolvimento."
+
   },
   {
     to: "/projetos" as const,
     icon: Sparkles,
     title: "Projetos",
     description:
-      "Horta comunitária, ateliê do saber e oficinas que envolvem crianças e famílias.",
+      "Iniciativas que ampliam oportunidades para crianças, famílias e comunidade.",
   },
   {
     to: "/transparencia" as const,
     icon: FileText,
     title: "Transparência",
     description:
-      "Relatórios, balanços e prestações de contas abertos a quem confia no instituto.",
+      "Acesse documentos, prestações de contas e informações sobre a gestão do Instituto",
   },
 ];
 

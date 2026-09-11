@@ -64,7 +64,7 @@ export function SectionHeading({
         <motion.p
           variants={fadeUp}
           className={cn(
-            "mt-5 text-base leading-relaxed sm:text-lg",
+            "mt-5 whitespace-pre-line text-base leading-relaxed sm:text-lg",
             tone === "light" ? "text-white/80" : "text-muted-foreground",
           )}
         >

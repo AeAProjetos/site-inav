@@ -7,27 +7,27 @@ const steps = [
   {
     icon: HandHeart,
     step: "01",
-    title: "Acolher",
+    title: "Escuta e acompanhamento",
     description:
-      "A criança e a família chegam ao instituto e são recebidas por uma equipe que escuta, avalia e entende cada realidade antes de qualquer coisa.",
+      "Cada criança é recebida com atenção às suas necessidades, em um ambiente seguro, acolhedor e preparado para o seu desenvolvimento.",
     image: "/img/hero_criancas.jpg",
     imageAlt: "Crianças brincando com blocos coloridos em sala de aula do INAV",
   },
   {
     icon: Sprout,
     step: "02",
-    title: "Nutrir",
+    title: "Alimentação e cuidado",
     description:
-      "Cinco refeições diárias balanceadas, acompanhamento nutricional e cuidado multidisciplinar para que o corpo e a mente tenham base para crescer.",
+      "Cinco refeições diárias e acompanhamento nutricional contribuem para uma rotina saudável e para o desenvolvimento integral das crianças.",
     image: "/img/refeicao_rotina.jpg",
     imageAlt: "Educadora acompanhando crianças durante a refeição no instituto",
   },
   {
     icon: GraduationCap,
     step: "03",
-    title: "Transformar",
+    title: "Aprendizagem e desenvolvimento",
     description:
-      "Educação infantil gratuita e de qualidade, oficinas culturais e apoio às famílias — construindo autonomia que dura a vida toda.",
+      "A educação infantil em período integral une experiências pedagógicas, convivência e cuidado para favorecer o desenvolvimento nos primeiros anos de vida.",
     image: "/img/atelie_sabor.jpg",
     imageAlt: "Mães em oficina do Ateliê do Sabor, preparando pães na padaria comunitária",
   },
@@ -38,7 +38,7 @@ export function JourneySteps() {
     <motion.ol
       variants={stagger}
       {...revealOnScroll}
-      className="grid gap-6 md:grid-cols-3"
+      className="grid gap-10 md:grid-cols-3"
     >
       {steps.map(({ icon: Icon, step, title, description, image, imageAlt }) => (
         <motion.li
@@ -46,7 +46,7 @@ export function JourneySteps() {
           variants={fadeUp}
           whileHover={{ y: -6 }}
           transition={{ type: "spring", stiffness: 260, damping: 22 }}
-          className="group overflow-hidden rounded-2xl border border-border bg-[rgba(188, 218, 255, 1)] shadow-soft transition-shadow duration-300 hover:shadow-lift"
+          className="group overflow-hidden rounded-2xl border border-border bg-[rgba(107, 173, 253, 1)] shadow-soft transition-shadow duration-300 hover:shadow-lift"
         >
           <div className="relative aspect-[4/3] overflow-hidden">
             <img
@@ -58,16 +58,11 @@ export function JourneySteps() {
               <Icon className="size-6" aria-hidden="true" />
             </span>
           </div>
-          <div className="p-8">
-            <div className="flex flex-wrap items-center gap-3">
-              <h3 className="text-xl font-extrabold uppercase text-brand-blue-deep">
-                {title}
-              </h3>
-              <span className="inline-flex items-center rounded-full bg-brand-orange px-3 py-1 text-xs font-bold uppercase tracking-wide text-white">
-                Passo {step}
-              </span>
-            </div>
-            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+          <div className="p-5">
+            <h3 className="text-lx font-extrabold uppercase text-brand-blue-deep text-center">
+              {title}
+            </h3>
+            <p className="mt-5 text-base leading-relaxed text-muted-foreground text-center">
               {description}
             </p>
           </div>

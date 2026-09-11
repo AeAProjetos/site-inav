@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "motion/react";
-import { ArrowRight, Quote } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 import { HomeHero } from "@/components/HomeHero";
 import { ImpactStats } from "@/components/ImpactStats";
@@ -9,7 +9,7 @@ import { PixDonationCard } from "@/components/PixDonationCard";
 import { SectionHeading } from "@/components/SectionHeading";
 import { SectionPreviewGrid } from "@/components/SectionPreviewGrid";
 import { WaveDivider } from "@/components/WaveDivider";
-import { fadeUp, revealOnScroll, stagger } from "@/lib/motion-presets";
+import { fadeUp, revealOnScroll } from "@/lib/motion-presets";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -42,16 +42,16 @@ function HomePage() {
       <WaveDivider variant="down" height="sm" className="-mt-px bg-brand-blue-deep text-background" />
 
       {/* Jornada em 3 etapas */}
-      <section className="bg-background py-20 sm:py-36">
+      <section className="bg-background py-30 sm:py-10">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeading
-            eyebrow="Nossa jornada"
-            title="Três passos que mudam"
-            highlight="uma história"
-            description="Do primeiro acolhimento à transformação real, cada etapa é pensada para atender a criança por inteiro — e a família junto com ela."
+            eyebrow="NOSSA JORNADA"
+            title="UM CUIDADO QUE ACOMPANHA"
+            highlight="CADA ETAPA DO DESENVOLVIMENTO"
+            description="Educação, alimentação e acolhimento fazem parte de uma atuação integrada, pensada para o desenvolvimento das crianças e o fortalecimento de suas famílias."
             align="center"
           />
-          <div className="mt-14">
+          <div className="mt-10">
             <JourneySteps />
           </div>
         </div>
@@ -60,29 +60,16 @@ function HomePage() {
       {/* Bloco institucional */}
       <section className="bg-surface-tint py-20 sm:py-28">
         <div className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:items-center lg:px-8">
-          <SectionHeading
-            eyebrow="Instituto Nair Valadares"
-            title="Uma casa aberta para quem mais"
-            highlight="precisa"
-            description="Somos uma Organização da Sociedade Civil sem fins lucrativos. Há mais de 25 anos oferecemos educação infantil gratuita, alimentação balanceada e acompanhamento multidisciplinar para crianças e famílias em situação de vulnerabilidade social."
-          />
+          <div>
+            <SectionHeading
+              eyebrow="Instituto Nair Valadares"
+              title="Uma casa aberta para quem mais"
+              highlight="precisa"
+              description="O INAV é uma organização sem fins lucrativos dedicada à educação e ao cuidado de crianças, com uma atuação que também fortalece famílias e comunidades.
+Educação infantil, alimentação, acolhimento e desenvolvimento fazem parte de um trabalho construído para oferecer novas possibilidades desde os primeiros anos de vida."
+            />
 
-          <motion.div variants={stagger} {...revealOnScroll} className="space-y-5">
-            <motion.blockquote
-              variants={fadeUp}
-              className="relative rounded-2xl border border-border bg-card p-8 shadow-soft"
-            >
-              <Quote className="size-8 text-brand-orange/30" aria-hidden="true" />
-              <p className="mt-4 text-lg leading-relaxed text-foreground/85">
-                Aqui a criança não recebe só uma vaga. Ela recebe comida quente, colo,
-                escuta e um lugar onde alguém sabe o nome dela.
-              </p>
-              <footer className="mt-5 text-sm font-bold uppercase tracking-wide text-brand-blue-deep">
-                Equipe pedagógica do INAV
-              </footer>
-            </motion.blockquote>
-
-            <motion.div variants={fadeUp}>
+            <motion.div variants={fadeUp} {...revealOnScroll} className="mt-8">
               <Link
                 to="/quem-somos"
                 className="group inline-flex items-center gap-2 rounded-full bg-brand-blue px-7 py-3.5 text-sm font-bold uppercase tracking-wide text-white shadow-soft transition-colors duration-200 hover:bg-brand-blue-deep"
@@ -94,20 +81,38 @@ function HomePage() {
                 />
               </Link>
             </motion.div>
+          </div>
+
+          <motion.div
+            variants={fadeUp}
+            {...revealOnScroll}
+            className="relative overflow-hidden rounded-2xl border border-border shadow-soft"
+          >
+            <img
+              src="/img/Colaboradora_01.jpeg"
+              alt="Educadora auxiliando crianças em atividade pedagógica em sala de aula do INAV"
+              className="aspect-[4/5] size-full object-cover"
+            />
+            <div className="absolute inset-x-5 bottom-5 rounded-xl bg-brand-orange p-5 shadow-lift">
+              <p className="text-sm font-semibold leading-relaxed text-white sm:text-base">
+                Cada criança é acolhida em sua individualidade, em um ambiente onde
+                educação, cuidado e atenção fazem parte da mesma rotina.
+              </p>
+            </div>
           </motion.div>
         </div>
       </section>
 
       {/* Seções internas */}
       <section className="bg-background py-20 sm:py-28">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-1">
           <SectionHeading
             eyebrow="Explore o instituto"
-            title="O que acontece"
-            highlight="por aqui"
+            title="CONHEÇA MAIS SOBRE O"
+            highlight="inav"
             align="center"
           />
-          <div className="mt-14">
+          <div className="mt-10">
             <SectionPreviewGrid />
           </div>
         </div>
