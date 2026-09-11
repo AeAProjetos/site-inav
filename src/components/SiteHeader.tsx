@@ -46,7 +46,7 @@ export function SiteHeader() {
             alt={`Logotipo do ${site.name}`}
             className={cn(
               "w-auto transition-all duration-300",
-              transparent ? "h-13 brightness-0 invert" : "h-14",
+              transparent ? "h-20 brightness-0 invert" : "h-18",
             )}
           />
         </Link>

@@ -37,7 +37,7 @@ export function HomeHero() {
 
           <motion.h1
             variants={fadeUp}
-            className="mt-3 text-4xl font-extrabold uppercase leading-[0.98] text-white text-balance-pretty sm:text-6xl lg:text-7xl"
+            className="mt-3 text-3xl font-extrabold uppercase leading-[0.98] text-white text-balance-pretty sm:text-5xl lx:text-7xl"
           >
             Grandes transformações
             <br />
