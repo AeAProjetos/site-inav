@@ -47,7 +47,7 @@ export function SectionHeading({
       <motion.h2
         variants={fadeUp}
         className={cn(
-          "mt-3 text-3xl font-extrabold uppercase leading-[1.05] text-balance-pretty sm:text-4xl lg:text-5xl",
+          "mt-3 whitespace-pre-line text-3xl font-extrabold uppercase leading-[1.05] text-balance-pretty sm:text-4xl lg:text-5xl",
           tone === "light" ? "text-white" : "text-brand-blue-deep",
         )}
       >

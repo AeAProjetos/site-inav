@@ -46,7 +46,7 @@ export function JourneySteps() {
           variants={fadeUp}
           whileHover={{ y: -6 }}
           transition={{ type: "spring", stiffness: 260, damping: 22 }}
-          className="group overflow-hidden rounded-2xl border border-border bg-[rgba(107, 173, 253, 1)] shadow-soft transition-shadow duration-300 hover:shadow-lift"
+          className="group overflow-hidden rounded-2xl border border-border bg-brand-blue-soft shadow-soft transition-shadow duration-300 hover:shadow-lift"
         >
           <div className="relative aspect-[4/3] overflow-hidden">
             <img
@@ -59,7 +59,7 @@ export function JourneySteps() {
             </span>
           </div>
           <div className="p-5">
-            <h3 className="text-lx font-extrabold uppercase text-brand-blue-deep text-center">
+            <h3 className="text-xl font-extrabold uppercase text-brand-blue-deep text-center">
               {title}
             </h3>
             <p className="mt-5 text-base leading-relaxed text-muted-foreground text-center">
