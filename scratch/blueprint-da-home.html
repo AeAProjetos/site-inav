@@ -1,0 +1,509 @@
+<title>Blueprint da Home</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+Condensed:wght@600;700&display=swap">
+<style>
+  :root{
+    --blue-deep:#0f3454;
+    --blue-mid:#18507a;
+    --blue-line:#c3e2ff;
+    --blue-line-dim:rgba(195,226,255,0.34);
+    --blue-line-faint:rgba(195,226,255,0.14);
+    --paper:#f3eee1;
+    --paper-dim:#e7ddc8;
+    --ink:#20222a;
+    --ink-dim:#5a5f6e;
+    --pencil:#d6472a;
+    --pencil-dim:rgba(214,71,42,0.16);
+    --mono:'IBM Plex Mono', ui-monospace, 'SF Mono', Consolas, monospace;
+    --sans:'IBM Plex Sans', system-ui, -apple-system, sans-serif;
+    --cond:'IBM Plex Sans Condensed', 'IBM Plex Sans', system-ui, sans-serif;
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    background-color:var(--blue-deep);
+    background-image:
+      linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px);
+    background-size:26px 26px;
+    color:var(--blue-line);
+    font-family:var(--sans);
+  }
+
+  h1,h2,h3{font-family:var(--cond); font-weight:700; text-wrap:balance; margin:0;}
+  p{margin:0;}
+
+  .sheet{
+    max-width:1180px;
+    margin:0 auto;
+    padding-inline:max(16px, 5vw);
+    padding-block:40px 72px;
+  }
+
+  /* ---------- title block ---------- */
+  .titleblock{
+    border:2px solid var(--blue-line);
+    border-radius:10px;
+    padding:26px 26px 24px;
+    display:grid;
+    gap:22px;
+    margin-bottom:30px;
+    background:rgba(255,255,255,.025);
+  }
+  @media (min-width:800px){
+    .titleblock{grid-template-columns:1.5fr 1fr; align-items:end;}
+  }
+  .titleblock .eyebrow{
+    font-family:var(--mono); font-size:.72rem; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--pencil); font-weight:600;
+  }
+  .titleblock h1{font-size:clamp(1.7rem, 4vw, 2.5rem); color:var(--blue-line); margin-top:8px; letter-spacing:-.01em;}
+  .titleblock .lede{margin-top:12px; color:var(--blue-line-dim); max-width:48ch; line-height:1.55; font-size:.96rem;}
+
+  .titleblock-meta{
+    display:grid; grid-template-columns:repeat(2,1fr); gap:14px 22px;
+    border-top:1px dashed var(--blue-line-dim); padding-top:16px;
+  }
+  @media (min-width:800px){
+    .titleblock-meta{border-top:none; border-left:1px dashed var(--blue-line-dim); padding-top:0; padding-left:26px; grid-template-columns:1fr 1fr;}
+  }
+  .titleblock-meta dt{font-family:var(--mono); font-size:.65rem; letter-spacing:.1em; text-transform:uppercase; color:var(--blue-line-dim);}
+  .titleblock-meta dd{margin:3px 0 0; font-weight:600; font-size:.88rem; color:var(--blue-line);}
+
+  /* ---------- browser chrome ---------- */
+  .chrome{
+    border:1.5px dashed var(--blue-line-dim);
+    border-bottom:none;
+    border-radius:8px 8px 0 0;
+    padding:9px 14px;
+    display:flex; align-items:center; gap:8px;
+  }
+  .chrome .dot{width:8px;height:8px;border-radius:50%;border:1.3px solid var(--blue-line-dim);}
+  .chrome .url{
+    margin-left:6px; font-family:var(--mono); font-size:.72rem; color:var(--blue-line-dim);
+    letter-spacing:.02em;
+  }
+
+  /* ---------- cross-reference to nav blueprint ---------- */
+  .crossref{
+    border:1.5px dashed var(--blue-line-dim);
+    border-top:none;
+    border-radius:0;
+    padding:10px 20px;
+    display:flex; gap:10px; align-items:baseline; flex-wrap:wrap;
+    background:rgba(255,255,255,.015);
+  }
+  .crossref .tag{
+    font-family:var(--mono); font-size:.66rem; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--blue-line-dim); font-weight:600; white-space:nowrap;
+  }
+  .crossref p{font-family:var(--mono); font-size:.78rem; color:var(--blue-line-dim); line-height:1.5;}
+  .crossref em{color:var(--blue-line); font-style:normal;}
+
+  /* ---------- main grid ---------- */
+  .blueprint-grid{
+    display:grid;
+    grid-template-columns:300px 1fr;
+    gap:14px 26px;
+    align-items:stretch;
+    border:1.5px dashed var(--blue-line-dim);
+    border-top:none;
+    border-radius:0 0 8px 8px;
+    padding:20px;
+  }
+  @media (max-width:780px){
+    .blueprint-grid{grid-template-columns:1fr; gap:10px;}
+  }
+
+  .swatch{
+    position:relative;
+    border:1px dashed var(--blue-line-dim);
+    border-radius:6px;
+    padding:14px;
+    min-height:110px;
+    display:flex; flex-direction:column; gap:10px; justify-content:center;
+  }
+  .swatch .tag{
+    position:absolute; top:8px; right:10px;
+    font-family:var(--mono); font-size:.68rem; color:var(--blue-line-dim); letter-spacing:.04em;
+  }
+  .swatch .caption{
+    font-family:var(--mono); font-size:.62rem; text-transform:uppercase; letter-spacing:.08em;
+    color:var(--blue-line-dim); margin-top:2px;
+  }
+
+  .ph-line{height:7px; border-radius:2px; background:var(--blue-line-dim);}
+  .ph-line.tiny{height:5px;}
+  .ph-line.w-30{width:30%;} .ph-line.w-40{width:40%;} .ph-line.w-45{width:45%;}
+  .ph-line.w-55{width:55%;} .ph-line.w-65{width:65%;} .ph-line.w-70{width:70%;} .ph-line.w-90{width:90%;}
+
+  .ph-box{border:1.3px dashed var(--blue-line-dim); border-radius:4px;}
+
+  .ph-image{
+    border:1.3px dashed var(--blue-line-dim); border-radius:4px; overflow:hidden;
+    background:
+      linear-gradient(to bottom right, transparent calc(50% - 0.75px), var(--blue-line-faint) calc(50% - 0.75px), var(--blue-line-faint) calc(50% + 0.75px), transparent calc(50% + 0.75px)),
+      linear-gradient(to bottom left, transparent calc(50% - 0.75px), var(--blue-line-faint) calc(50% - 0.75px), var(--blue-line-faint) calc(50% + 0.75px), transparent calc(50% + 0.75px));
+  }
+
+  .ph-dot{width:14px; height:14px; border-radius:50%; border:1.3px solid var(--blue-line-dim);}
+
+  /* CTA pills: filled = primary action in its context, ghost = secondary */
+  .cta-row{display:flex; align-items:center; gap:8px; flex-wrap:wrap; justify-content:center;}
+  .cta-pill{
+    font-family:var(--mono); font-size:.68rem; font-weight:600; white-space:nowrap;
+    border:1.5px solid var(--pencil); border-radius:999px; padding:6px 14px;
+    color:var(--pencil); background:var(--pencil-dim);
+  }
+  .cta-pill--ghost{
+    border-style:dashed; border-color:var(--blue-line-dim); color:var(--blue-line-dim);
+    background:transparent; font-weight:500;
+  }
+
+  /* section-specific swatch layouts */
+  .swatch--hero .ph-image{height:72px;}
+
+  .swatch--areas{flex-direction:row; gap:8px;}
+  .area-card{
+    flex:1; border:1px dashed var(--blue-line-dim); border-radius:4px; padding:10px 6px;
+    display:flex; flex-direction:column; align-items:center; gap:7px; text-align:center;
+  }
+  .area-card .ph-box{width:18px; height:18px;}
+  .area-card span{font-family:var(--mono); font-size:.6rem; color:var(--blue-line-dim); letter-spacing:.01em; line-height:1.3;}
+
+  .swatch--stats{gap:14px;}
+  .stats-row{display:flex; justify-content:space-between; gap:10px;}
+  .stat{display:flex; flex-direction:column; align-items:center; gap:6px; flex:1;}
+  .stat-num{font-family:var(--mono); font-weight:600; font-size:1.3rem; color:var(--blue-line);}
+  .quote-line{
+    font-family:var(--sans); font-style:italic; font-size:.8rem; color:var(--blue-line);
+    text-align:center; opacity:.85;
+  }
+
+  .swatch--stories .ph-image{height:88px;}
+
+  .swatch--partners{gap:14px;}
+  .partners-row{display:flex; justify-content:center; gap:10px; flex-wrap:wrap;}
+  .partners-row .ph-box{width:34px; height:22px;}
+
+  .swatch--cta{align-items:center; text-align:center; min-height:96px; gap:14px;}
+  .swatch--cta .ph-line{margin:0 auto;}
+
+  .swatch--footer{flex-direction:row; gap:14px;}
+  .footer-col{flex:1; display:flex; flex-direction:column; gap:7px;}
+  .footer-col .caption{margin-top:0;}
+  .footer-socials{display:flex; gap:8px; margin-top:2px;}
+  .footer-legal{
+    margin-top:6px; padding-top:10px; border-top:1px dashed var(--blue-line-dim);
+    flex-basis:100%;
+  }
+
+  /* ---------- annotation cards ---------- */
+  .note{
+    background:var(--paper); color:var(--ink);
+    border-radius:8px; padding:18px 20px 20px;
+    box-shadow:0 8px 18px rgba(0,0,0,.28);
+    position:relative;
+  }
+  .note-num{
+    display:inline-flex; align-items:center; justify-content:center;
+    width:26px; height:26px; border-radius:50%;
+    border:1.6px solid var(--pencil); color:var(--pencil);
+    font-family:var(--mono); font-weight:600; font-size:.78rem;
+    position:absolute; top:-13px; left:18px; background:var(--paper);
+  }
+  .note h2{font-size:1.05rem; color:var(--ink); margin-top:6px; letter-spacing:.01em;}
+  .note .kicker{
+    font-family:var(--mono); font-size:.66rem; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--pencil); font-weight:600; margin-top:14px;
+  }
+  .note p.body{margin-top:5px; font-size:.9rem; line-height:1.55; color:var(--ink-dim);}
+  .note.note--cta{border:1.5px solid var(--pencil);}
+  .note.note--cta .note-num{background:var(--pencil); color:var(--paper); border-color:var(--pencil);}
+
+  /* ---------- detail callout ---------- */
+  .detail{
+    margin-top:16px;
+    border:1.5px dashed var(--pencil);
+    border-radius:8px;
+    padding:14px 18px;
+    display:flex; gap:12px; align-items:baseline; flex-wrap:wrap;
+    background:var(--pencil-dim);
+  }
+  .detail .tag{
+    font-family:var(--mono); font-size:.68rem; letter-spacing:.08em; color:var(--pencil); font-weight:700;
+    white-space:nowrap;
+  }
+  .detail p{font-size:.88rem; color:var(--blue-line); line-height:1.5;}
+  .detail + .detail{margin-top:10px;}
+
+  /* ---------- legend ---------- */
+  .legend{margin-top:44px;}
+  .legend h2{font-size:1.3rem; color:var(--blue-line);}
+  .legend .sub{margin-top:6px; color:var(--blue-line-dim); font-size:.9rem;}
+  .legend-grid{
+    margin-top:20px; display:grid; grid-template-columns:1fr; gap:14px;
+  }
+  @media (min-width:640px){ .legend-grid{grid-template-columns:1fr 1fr;} }
+  .legend-item{
+    border:1px dashed var(--blue-line-dim); border-radius:8px; padding:16px 18px;
+    display:flex; gap:14px; align-items:flex-start;
+  }
+  .legend-glyph{
+    flex:none; width:34px; height:34px; border-radius:6px;
+    border:1.3px dashed var(--blue-line-dim); display:flex; align-items:center; justify-content:center;
+    font-family:var(--mono); font-size:.74rem; color:var(--pencil); font-weight:700;
+  }
+  .legend-item h3{font-size:.92rem; color:var(--blue-line); letter-spacing:.01em;}
+  .legend-item p{margin-top:4px; font-size:.84rem; color:var(--blue-line-dim); line-height:1.5;}
+
+  /* ---------- footer ---------- */
+  .sheetfooter{
+    margin-top:40px; padding-top:20px; border-top:1px dashed var(--blue-line-dim);
+    font-family:var(--mono); font-size:.78rem; color:var(--blue-line-dim); line-height:1.6;
+  }
+  .sheetfooter strong{color:var(--blue-line); font-weight:600;}
+
+  @media (prefers-reduced-motion:no-preference){
+    .note, .swatch{transition:transform .18s ease, box-shadow .18s ease;}
+  }
+
+  /* ---------- print / PDF export ---------- */
+  @media print{
+    @page{size:A4 landscape; margin:10mm;}
+    *{
+      -webkit-print-color-adjust:exact !important;
+      print-color-adjust:exact !important;
+      color-adjust:exact !important;
+    }
+    .sheet{max-width:none; padding-block:0;}
+    .chrome{break-after:avoid;}
+    .titleblock{break-after:avoid;}
+    .swatch, .note, .detail, .legend-item{break-inside:avoid;}
+    .legend, .sheetfooter{break-before:avoid;}
+  }
+</style>
+
+<div class="sheet">
+
+  <header class="titleblock">
+    <div>
+      <p class="eyebrow">Guia de referência — visão geral</p>
+      <h1>Blueprint da Home</h1>
+      <p class="lede">O que colocar em cada seção de uma home institucional, em que ordem, e por quê — modelo de referência para ONGs e institutos sociais, pronto para adaptar a qualquer cliente.</p>
+    </div>
+    <dl class="titleblock-meta">
+      <div><dt>Desenho</dt><dd>Home institucional / ONG</dd></div>
+      <div><dt>Escala</dt><dd>Desktop → Mobile</dd></div>
+      <div><dt>Rev.</dt><dd>02</dd></div>
+      <div><dt>Aplicação</dt><dd>ONG / Instituto social</dd></div>
+    </dl>
+  </header>
+
+  <div class="chrome" aria-hidden="true">
+    <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+    <span class="url">suaorganizacao.org.br — página inicial</span>
+  </div>
+
+  <div class="crossref" aria-hidden="true">
+    <span class="tag">Cabeçalho</span>
+    <p>Logo + 7 abas + botão "Doe Agora" — detalhado à parte em <em>Blueprint da Navegação</em>.</p>
+  </div>
+
+  <main class="blueprint-grid">
+
+    <div class="swatch swatch--hero" aria-hidden="true">
+      <div class="ph-image"></div>
+      <div class="ph-line w-70"></div>
+      <div class="cta-row">
+        <div class="cta-pill">Conheça nossos projetos</div>
+        <div class="cta-pill cta-pill--ghost">Seja parceiro</div>
+      </div>
+      <span class="tag">§ 01</span>
+    </div>
+    <article class="note">
+      <span class="note-num">01</span>
+      <h2>Hero principal</h2>
+      <p class="kicker">O que tem aqui</p>
+      <p class="body">Uma foto real, uma mensagem institucional curta, e dois CTAs: "Conheça nossos projetos" (principal) e "Seja parceiro" (secundário).</p>
+      <p class="kicker">Por quê aqui</p>
+      <p class="body">Em três segundos o visitante entende a missão; os dois CTAs já separam quem quer explorar de quem já está pronto para se envolver.</p>
+    </article>
+
+    <div class="swatch" aria-hidden="true">
+      <div class="ph-line w-90"></div>
+      <div class="ph-line w-90"></div>
+      <div class="ph-line w-55"></div>
+      <div class="cta-row"><div class="cta-pill">Conheça nossa história</div></div>
+      <span class="tag">§ 02</span>
+    </div>
+    <article class="note">
+      <span class="note-num">02</span>
+      <h2>Quem Somos</h2>
+      <p class="kicker">O que tem aqui</p>
+      <p class="body">Um resumo institucional curto e um CTA para a página completa ("Conheça nossa história").</p>
+      <p class="kicker">Por quê aqui</p>
+      <p class="body">Logo depois do hero, confirma quem está por trás da mensagem — só o suficiente para sustentar a confiança inicial, sem se aprofundar ainda.</p>
+    </article>
+
+    <div class="swatch swatch--areas" aria-hidden="true">
+      <div class="area-card"><div class="ph-box"></div><span>Educação</span></div>
+      <div class="area-card"><div class="ph-box"></div><span>Esporte</span></div>
+      <div class="area-card"><div class="ph-box"></div><span>Cultura e desenvolvimento</span></div>
+      <div class="area-card"><div class="ph-box"></div><span>Fortalecimento social</span></div>
+      <span class="tag">§ 03</span>
+    </div>
+    <article class="note">
+      <span class="note-num">03</span>
+      <h2>Áreas de Atuação</h2>
+      <p class="kicker">O que tem aqui</p>
+      <p class="body">Quatro pilares de trabalho — Educação, Esporte, Cultura e desenvolvimento, Fortalecimento social — cada um com ícone e nome, sem CTA próprio.</p>
+      <p class="kicker">Por quê aqui</p>
+      <p class="body">Depois de saber "quem", o visitante entende "o quê": as frentes concretas de atuação, antes de qualquer prova numérica.</p>
+    </article>
+
+    <div class="swatch swatch--stats" aria-hidden="true">
+      <div class="stats-row">
+        <div class="stat"><span class="stat-num">00</span><div class="ph-line tiny w-90"></div></div>
+        <div class="stat"><span class="stat-num">00</span><div class="ph-line tiny w-90"></div></div>
+        <div class="stat"><span class="stat-num">00</span><div class="ph-line tiny w-90"></div></div>
+      </div>
+      <p class="quote-line">"Cada número representa uma história."</p>
+      <div class="cta-row"><div class="cta-pill">Conheça nosso impacto</div></div>
+      <span class="tag">§ 04</span>
+    </div>
+    <article class="note">
+      <span class="note-num">04</span>
+      <h2>Impacto</h2>
+      <p class="kicker">O que tem aqui</p>
+      <p class="body">3 a 4 números principais, a frase-ponte "Cada número representa uma história." e um CTA para a página de impacto completa.</p>
+      <p class="kicker">Por quê aqui</p>
+      <p class="body">Os números provam a escala do trabalho; a frase reconecta dado com emoção antes de pedir o próximo clique, evitando que a seção pareça uma planilha.</p>
+    </article>
+
+    <div class="swatch swatch--stories" aria-hidden="true">
+      <div class="ph-image"></div>
+      <div class="cta-row"><div class="cta-pill">Conheça as histórias</div></div>
+      <span class="tag">§ 05</span>
+    </div>
+    <article class="note">
+      <span class="note-num">05</span>
+      <h2>Histórias que Inspiram</h2>
+      <p class="kicker">O que tem aqui</p>
+      <p class="body">Apenas uma chamada visual (foto ou vídeo de destaque) e um CTA para a página de histórias — sem texto de apoio.</p>
+      <p class="kicker">Por quê aqui</p>
+      <p class="body">Uma pausa emocional e visual depois dos números, sem exigir leitura, antes de pedir qualquer engajamento mais formal.</p>
+    </article>
+
+    <div class="swatch swatch--partners" aria-hidden="true">
+      <div class="partners-row">
+        <div class="ph-box"></div><div class="ph-box"></div><div class="ph-box"></div><div class="ph-box"></div>
+      </div>
+      <div class="cta-row"><div class="cta-pill">Seja nosso parceiro</div></div>
+      <span class="tag">§ 06</span>
+    </div>
+    <article class="note">
+      <span class="note-num">06</span>
+      <h2>Parceiros</h2>
+      <p class="kicker">O que tem aqui</p>
+      <p class="body">Uma fileira com os logos dos principais parceiros/apoiadores, e um CTA para quem quer se tornar um.</p>
+      <p class="kicker">Por quê aqui</p>
+      <p class="body">Prova social institucional — terceiros validando o trabalho — logo antes do pedido final de parceria ou doação.</p>
+    </article>
+
+    <div class="swatch swatch--cta" aria-hidden="true">
+      <div class="ph-line w-55"></div>
+      <div class="cta-row">
+        <div class="cta-pill cta-pill--ghost">Seja parceiro</div>
+        <div class="cta-pill">Doe Agora</div>
+      </div>
+      <span class="tag">§ 07</span>
+    </div>
+    <article class="note note--cta">
+      <span class="note-num">07</span>
+      <h2>CTA Final</h2>
+      <p class="kicker">O que tem aqui</p>
+      <p class="body">As duas ações mais importantes do site lado a lado — "Seja parceiro" (secundário) e "Doe Agora" (primário) — com hierarquia visual clara entre elas.</p>
+      <p class="kicker">Por quê aqui</p>
+      <p class="body">Fecha oferecendo dois caminhos de conversão — colaboração institucional ou doação direta — sem empatar visualmente: um se destaca, o outro apoia.</p>
+    </article>
+
+    <div class="swatch swatch--footer" aria-hidden="true">
+      <div class="footer-col">
+        <span class="caption">Links</span>
+        <div class="ph-line tiny w-70"></div><div class="ph-line tiny w-55"></div><div class="ph-line tiny w-65"></div>
+      </div>
+      <div class="footer-col">
+        <span class="caption">Redes</span>
+        <div class="footer-socials"><div class="ph-dot"></div><div class="ph-dot"></div><div class="ph-dot"></div></div>
+      </div>
+      <div class="footer-col">
+        <span class="caption">Legal</span>
+        <div class="ph-line tiny w-90"></div>
+      </div>
+      <div class="footer-legal">
+        <div class="ph-line tiny w-45"></div>
+      </div>
+      <span class="tag">§ 08</span>
+    </div>
+    <article class="note">
+      <span class="note-num">08</span>
+      <h2>Rodapé</h2>
+      <p class="kicker">O que tem aqui</p>
+      <p class="body">Links principais (com Transparência e Contato), redes sociais, Política de Privacidade e uma linha de copyright sempre atualizada.</p>
+      <p class="kicker">Por quê aqui</p>
+      <p class="body">Fecha com legitimidade e conformidade — política de privacidade e copyright confirmam, formalmente, que é uma organização real e responsável.</p>
+    </article>
+
+  </main>
+
+  <div class="detail">
+    <span class="tag">DETALHE A</span>
+    <p>Botão flutuante de WhatsApp: canal direto sempre visível, sobreposto a todas as seções — não faz parte da ordem de leitura.</p>
+  </div>
+  <div class="detail">
+    <span class="tag">DETALHE B</span>
+    <p>Hero e CTA Final são as únicas seções com duas ações. Nos dois casos, uma é visualmente primária (preenchida) e a outra secundária (contorno) — nunca duas competindo em pé de igualdade.</p>
+  </div>
+
+  <section class="legend">
+    <h2>Legenda — princípios gerais</h2>
+    <p class="sub">A ordem das seções não é decoração: cada uma prepara o terreno para a próxima.</p>
+    <div class="legend-grid">
+      <div class="legend-item">
+        <span class="legend-glyph">§</span>
+        <div>
+          <h3>A numeração é a ordem de leitura</h3>
+          <p>Não é a ordem de importância pro negócio — é a ordem em que o visitante precisa encontrar cada coisa.</p>
+        </div>
+      </div>
+      <div class="legend-item">
+        <span class="legend-glyph">♥</span>
+        <div>
+          <h3>Emoção antes da lógica</h3>
+          <p>O hero (emoção) vem antes dos números (lógica), e os números antes da prova social de parceiros.</p>
+        </div>
+      </div>
+      <div class="legend-item">
+        <span class="legend-glyph">1×</span>
+        <div>
+          <h3>Hierarquia clara entre CTAs</h3>
+          <p>A maioria das seções pede um clique só. Onde há duas ações (Hero, CTA Final), uma é sempre primária e a outra secundária.</p>
+        </div>
+      </div>
+      <div class="legend-item">
+        <span class="legend-glyph">↑</span>
+        <div>
+          <h3>Confiança sobe, pedido desce</h3>
+          <p>Cada seção seguinte aumenta a confiança até liberar, no fim, a conversão principal.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="sheetfooter">
+    <p><strong>Como usar:</strong> a ordem e o conteúdo de cada bloco se adaptam ao cliente — o que não muda é a lógica: emoção → prova → explicação → confiança → ação → legitimidade. Ver também <em>Blueprint da Navegação</em> para o detalhe do cabeçalho.</p>
+  </footer>
+
+</div>

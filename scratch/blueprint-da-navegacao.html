@@ -1,0 +1,448 @@
+<title>Blueprint da Navegação</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+Condensed:wght@600;700&display=swap">
+<style>
+  :root{
+    --blue-deep:#0f3454;
+    --blue-mid:#18507a;
+    --blue-line:#c3e2ff;
+    --blue-line-dim:rgba(195,226,255,0.34);
+    --blue-line-faint:rgba(195,226,255,0.14);
+    --paper:#f3eee1;
+    --paper-dim:#e7ddc8;
+    --ink:#20222a;
+    --ink-dim:#5a5f6e;
+    --pencil:#d6472a;
+    --pencil-dim:rgba(214,71,42,0.16);
+    --mono:'IBM Plex Mono', ui-monospace, 'SF Mono', Consolas, monospace;
+    --sans:'IBM Plex Sans', system-ui, -apple-system, sans-serif;
+    --cond:'IBM Plex Sans Condensed', 'IBM Plex Sans', system-ui, sans-serif;
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    background-color:var(--blue-deep);
+    background-image:
+      linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px);
+    background-size:26px 26px;
+    color:var(--blue-line);
+    font-family:var(--sans);
+  }
+
+  h1,h2,h3{font-family:var(--cond); font-weight:700; text-wrap:balance; margin:0;}
+  p{margin:0;}
+
+  .sheet{
+    max-width:1180px;
+    margin:0 auto;
+    padding-inline:max(16px, 5vw);
+    padding-block:40px 72px;
+  }
+
+  /* ---------- title block ---------- */
+  .titleblock{
+    border:2px solid var(--blue-line);
+    border-radius:10px;
+    padding:26px 26px 24px;
+    display:grid;
+    gap:22px;
+    margin-bottom:30px;
+    background:rgba(255,255,255,.025);
+  }
+  @media (min-width:800px){
+    .titleblock{grid-template-columns:1.5fr 1fr; align-items:end;}
+  }
+  .titleblock .eyebrow{
+    font-family:var(--mono); font-size:.72rem; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--pencil); font-weight:600;
+  }
+  .titleblock h1{font-size:clamp(1.7rem, 4vw, 2.5rem); color:var(--blue-line); margin-top:8px; letter-spacing:-.01em;}
+  .titleblock .lede{margin-top:12px; color:var(--blue-line-dim); max-width:50ch; line-height:1.55; font-size:.96rem;}
+
+  .titleblock-meta{
+    display:grid; grid-template-columns:repeat(2,1fr); gap:14px 22px;
+    border-top:1px dashed var(--blue-line-dim); padding-top:16px;
+  }
+  @media (min-width:800px){
+    .titleblock-meta{border-top:none; border-left:1px dashed var(--blue-line-dim); padding-top:0; padding-left:26px; grid-template-columns:1fr 1fr;}
+  }
+  .titleblock-meta dt{font-family:var(--mono); font-size:.65rem; letter-spacing:.1em; text-transform:uppercase; color:var(--blue-line-dim);}
+  .titleblock-meta dd{margin:3px 0 0; font-weight:600; font-size:.88rem; color:var(--blue-line);}
+
+  /* ---------- browser chrome ---------- */
+  .chrome{
+    border:1.5px dashed var(--blue-line-dim);
+    border-bottom:none;
+    border-radius:8px 8px 0 0;
+    padding:9px 14px;
+    display:flex; align-items:center; gap:8px;
+  }
+  .chrome .dot{width:8px;height:8px;border-radius:50%;border:1.3px solid var(--blue-line-dim);}
+  .chrome .url{
+    margin-left:6px; font-family:var(--mono); font-size:.72rem; color:var(--blue-line-dim);
+    letter-spacing:.02em;
+  }
+
+  /* ---------- main grid ---------- */
+  .blueprint-grid{
+    display:grid;
+    grid-template-columns:300px 1fr;
+    gap:14px 26px;
+    align-items:stretch;
+    border:1.5px dashed var(--blue-line-dim);
+    border-radius:0 0 8px 8px;
+    padding:20px;
+  }
+  @media (max-width:780px){
+    .blueprint-grid{grid-template-columns:1fr; gap:10px;}
+  }
+
+  .swatch{
+    position:relative;
+    border:1px dashed var(--blue-line-dim);
+    border-radius:6px;
+    padding:14px;
+    min-height:110px;
+    display:flex; flex-direction:column; gap:10px; justify-content:center;
+  }
+  .swatch .tag{
+    position:absolute; top:8px; right:10px;
+    font-family:var(--mono); font-size:.68rem; color:var(--blue-line-dim); letter-spacing:.04em;
+  }
+
+  .ph-box{border:1.3px dashed var(--blue-line-dim); border-radius:4px;}
+
+  /* ---------- nav-specific swatches ---------- */
+  .swatch--fullnav{grid-column:1 / -1; align-items:stretch;}
+  .fullnav-row{display:flex; align-items:flex-end; gap:12px; flex-wrap:wrap;}
+  .fullnav-item--logo .ph-box{width:32px; height:24px; flex:none;}
+  .fullnav-items{display:flex; align-items:flex-end; gap:10px; flex-wrap:wrap; flex:1;}
+  .fullnav-item{display:flex; flex-direction:column; align-items:center; gap:5px;}
+  .fullnav-item .idx{font-family:var(--mono); font-size:.62rem; color:var(--blue-line-dim); letter-spacing:.04em;}
+  .fullnav-item.is-cta{margin-left:6px;}
+  .fullnav-item--logo{padding-right:6px; border-right:1px dashed var(--blue-line-dim);}
+
+  .navitem-box{
+    font-family:var(--mono); font-size:.72rem; letter-spacing:.01em; color:var(--blue-line);
+    border:1px dashed var(--blue-line-dim); border-radius:6px;
+    padding:7px 12px; white-space:nowrap; background:rgba(255,255,255,.02);
+  }
+  .navitem-box--cta{
+    border:1.5px solid var(--pencil); border-radius:999px; color:var(--pencil);
+    font-weight:600; background:var(--pencil-dim); padding:8px 18px;
+  }
+  .navitem-box--big{font-size:.82rem; padding:10px 18px;}
+
+  .swatch--navitem{align-items:center; justify-content:center; gap:8px;}
+  .ph-box--logo{width:44px; height:32px;}
+  .swatch--navitem .idx{font-family:var(--mono); font-size:.62rem; color:var(--blue-line-dim); letter-spacing:.04em;}
+
+  /* ---------- annotation cards ---------- */
+  .note{
+    background:var(--paper); color:var(--ink);
+    border-radius:8px; padding:18px 20px 20px;
+    box-shadow:0 8px 18px rgba(0,0,0,.28);
+    position:relative;
+  }
+  .note-num{
+    display:inline-flex; align-items:center; justify-content:center;
+    width:26px; height:26px; border-radius:50%;
+    border:1.6px solid var(--pencil); color:var(--pencil);
+    font-family:var(--mono); font-weight:600; font-size:.78rem;
+    position:absolute; top:-13px; left:18px; background:var(--paper);
+  }
+  .note h2{font-size:1.05rem; color:var(--ink); margin-top:6px; letter-spacing:.01em;}
+  .note .kicker{
+    font-family:var(--mono); font-size:.66rem; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--pencil); font-weight:600; margin-top:14px;
+  }
+  .note p.body{margin-top:5px; font-size:.9rem; line-height:1.55; color:var(--ink-dim);}
+  .note.note--cta{background:var(--paper); border:1.5px solid var(--pencil);}
+  .note.note--cta .note-num{background:var(--pencil); color:var(--paper); border-color:var(--pencil);}
+
+  /* ---------- detail callout ---------- */
+  .detail{
+    margin-top:16px;
+    border:1.5px dashed var(--pencil);
+    border-radius:8px;
+    padding:14px 18px;
+    display:flex; gap:12px; align-items:baseline; flex-wrap:wrap;
+    background:var(--pencil-dim);
+  }
+  .detail .tag{
+    font-family:var(--mono); font-size:.68rem; letter-spacing:.08em; color:var(--pencil); font-weight:700;
+    white-space:nowrap;
+  }
+  .detail p{font-size:.88rem; color:var(--blue-line); line-height:1.5;}
+  .detail + .detail{margin-top:10px;}
+
+  /* ---------- legend ---------- */
+  .legend{margin-top:44px;}
+  .legend h2{font-size:1.3rem; color:var(--blue-line);}
+  .legend .sub{margin-top:6px; color:var(--blue-line-dim); font-size:.9rem;}
+  .legend-grid{
+    margin-top:20px; display:grid; grid-template-columns:1fr; gap:14px;
+  }
+  @media (min-width:640px){ .legend-grid{grid-template-columns:1fr 1fr;} }
+  .legend-item{
+    border:1px dashed var(--blue-line-dim); border-radius:8px; padding:16px 18px;
+    display:flex; gap:14px; align-items:flex-start;
+  }
+  .legend-glyph{
+    flex:none; width:34px; height:34px; border-radius:6px;
+    border:1.3px dashed var(--blue-line-dim); display:flex; align-items:center; justify-content:center;
+    font-family:var(--mono); font-size:.74rem; color:var(--pencil); font-weight:700;
+  }
+  .legend-item h3{font-size:.92rem; color:var(--blue-line); letter-spacing:.01em;}
+  .legend-item p{margin-top:4px; font-size:.84rem; color:var(--blue-line-dim); line-height:1.5;}
+
+  /* ---------- footer ---------- */
+  .sheetfooter{
+    margin-top:40px; padding-top:20px; border-top:1px dashed var(--blue-line-dim);
+    font-family:var(--mono); font-size:.78rem; color:var(--blue-line-dim); line-height:1.6;
+  }
+  .sheetfooter strong{color:var(--blue-line); font-weight:600;}
+
+  @media (prefers-reduced-motion:no-preference){
+    .note, .swatch{transition:transform .18s ease, box-shadow .18s ease;}
+  }
+
+  /* ---------- print / PDF export ---------- */
+  @media print{
+    @page{size:A4 landscape; margin:10mm;}
+    *{
+      -webkit-print-color-adjust:exact !important;
+      print-color-adjust:exact !important;
+      color-adjust:exact !important;
+    }
+    .sheet{max-width:none; padding-block:0;}
+    .chrome{break-after:avoid;}
+    .titleblock{break-after:avoid;}
+    .swatch, .note, .detail, .legend-item{break-inside:avoid;}
+    .legend, .sheetfooter{break-before:avoid;}
+  }
+</style>
+
+<div class="sheet">
+
+  <header class="titleblock">
+    <div>
+      <p class="eyebrow">Guia de referência — barra de navegação</p>
+      <h1>Blueprint da Navegação</h1>
+      <p class="lede">O que colocar no menu principal, em que ordem, e por quê — modelo de referência para ONGs e institutos sociais: logo, Quem Somos, Projetos, Impacto, Transparência, Notícias, Seja Parceiro, Contato e Doe Agora.</p>
+    </div>
+    <dl class="titleblock-meta">
+      <div><dt>Desenho</dt><dd>Menu principal / ONG</dd></div>
+      <div><dt>Escala</dt><dd>Desktop → Mobile</dd></div>
+      <div><dt>Rev.</dt><dd>01</dd></div>
+      <div><dt>Aplicação</dt><dd>ONG / Instituto social</dd></div>
+    </dl>
+  </header>
+
+  <div class="chrome" aria-hidden="true">
+    <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+    <span class="url">suaorganizacao.org.br — menu principal</span>
+  </div>
+
+  <main class="blueprint-grid">
+
+    <div class="swatch swatch--fullnav" aria-hidden="true">
+      <span class="tag">§ MENU</span>
+      <div class="fullnav-row">
+        <div class="fullnav-item fullnav-item--logo"><span class="idx">00</span><div class="ph-box"></div></div>
+        <div class="fullnav-items">
+          <div class="fullnav-item"><span class="idx">01</span><div class="navitem-box">Quem Somos</div></div>
+          <div class="fullnav-item"><span class="idx">02</span><div class="navitem-box">Projetos</div></div>
+          <div class="fullnav-item"><span class="idx">03</span><div class="navitem-box">Impacto</div></div>
+          <div class="fullnav-item"><span class="idx">04</span><div class="navitem-box">Transparência</div></div>
+          <div class="fullnav-item"><span class="idx">05</span><div class="navitem-box">Notícias</div></div>
+          <div class="fullnav-item"><span class="idx">06</span><div class="navitem-box">Seja Parceiro</div></div>
+          <div class="fullnav-item"><span class="idx">07</span><div class="navitem-box">Contato</div></div>
+          <div class="fullnav-item is-cta"><span class="idx">08</span><div class="navitem-box navitem-box--cta">Doe Agora</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="swatch swatch--navitem" aria-hidden="true">
+      <span class="tag">§ 00</span>
+      <span class="idx">EXTREMO ESQUERDO — FIXO</span>
+      <div class="ph-box ph-box--logo"></div>
+    </div>
+    <article class="note">
+      <span class="note-num">00</span>
+      <h2>Logo</h2>
+      <p class="kicker">O que tem aqui</p>
+      <p class="body">A identidade visual da instituição, sempre no canto esquerdo — e também um link de volta para a home.</p>
+      <p class="kicker">Por quê aqui</p>
+      <p class="body">Convenção universal de leitura: o olhar entra pela esquerda, e a marca precisa ser reconhecida antes de qualquer item de menu.</p>
+    </article>
+
+    <div class="swatch swatch--navitem" aria-hidden="true">
+      <span class="tag">§ 01</span>
+      <span class="idx">POSIÇÃO 1 DE 8</span>
+      <div class="navitem-box navitem-box--big">Quem Somos</div>
+    </div>
+    <article class="note">
+      <span class="note-num">01</span>
+      <h2>Quem Somos</h2>
+      <p class="kicker">O que tem aqui</p>
+      <p class="body">Link para a página institucional: história, missão e as pessoas por trás do trabalho.</p>
+      <p class="kicker">Por quê aqui</p>
+      <p class="body">É a primeira pergunta de quem ainda não conhece a organização — "quem está por trás disso?" — por isso abre o menu.</p>
+    </article>
+
+    <div class="swatch swatch--navitem" aria-hidden="true">
+      <span class="tag">§ 02</span>
+      <span class="idx">POSIÇÃO 2 DE 8</span>
+      <div class="navitem-box navitem-box--big">Projetos</div>
+    </div>
+    <article class="note">
+      <span class="note-num">02</span>
+      <h2>Projetos</h2>
+      <p class="kicker">O que tem aqui</p>
+      <p class="body">Link para os programas e atividades oferecidos no dia a dia.</p>
+      <p class="kicker">Por quê aqui</p>
+      <p class="body">Depois de saber quem é a instituição, o visitante quer saber o que ela faz na prática.</p>
+    </article>
+
+    <div class="swatch swatch--navitem" aria-hidden="true">
+      <span class="tag">§ 03</span>
+      <span class="idx">POSIÇÃO 3 DE 8</span>
+      <div class="navitem-box navitem-box--big">Impacto</div>
+    </div>
+    <article class="note">
+      <span class="note-num">03</span>
+      <h2>Impacto</h2>
+      <p class="kicker">O que tem aqui</p>
+      <p class="body">Link para números e resultados mensuráveis do trabalho realizado.</p>
+      <p class="kicker">Por quê aqui</p>
+      <p class="body">Prova concreta que sustenta a promessa feita em "Projetos" com dados, não com discurso.</p>
+    </article>
+
+    <div class="swatch swatch--navitem" aria-hidden="true">
+      <span class="tag">§ 04</span>
+      <span class="idx">POSIÇÃO 4 DE 8</span>
+      <div class="navitem-box navitem-box--big">Transparência</div>
+    </div>
+    <article class="note">
+      <span class="note-num">04</span>
+      <h2>Transparência</h2>
+      <p class="kicker">O que tem aqui</p>
+      <p class="body">Link para documentos financeiros, prestação de contas e certificações.</p>
+      <p class="kicker">Por quê aqui</p>
+      <p class="body">Reforça credibilidade logo antes de qualquer pedido de engajamento — decisivo para quem avalia doar.</p>
+    </article>
+
+    <div class="swatch swatch--navitem" aria-hidden="true">
+      <span class="tag">§ 05</span>
+      <span class="idx">POSIÇÃO 5 DE 8</span>
+      <div class="navitem-box navitem-box--big">Notícias</div>
+    </div>
+    <article class="note">
+      <span class="note-num">05</span>
+      <h2>Notícias</h2>
+      <p class="kicker">O que tem aqui</p>
+      <p class="body">Link para atualizações recentes, eventos e cobertura de imprensa.</p>
+      <p class="kicker">Por quê aqui</p>
+      <p class="body">Mostra que a instituição está ativa agora — mantém engajado quem já confia, sem pedir nada em troca.</p>
+    </article>
+
+    <div class="swatch swatch--navitem" aria-hidden="true">
+      <span class="tag">§ 06</span>
+      <span class="idx">POSIÇÃO 6 DE 8</span>
+      <div class="navitem-box navitem-box--big">Seja Parceiro</div>
+    </div>
+    <article class="note">
+      <span class="note-num">06</span>
+      <h2>Seja Parceiro</h2>
+      <p class="kicker">O que tem aqui</p>
+      <p class="body">Link para a página de parcerias: empresas, apadrinhamento, colaboração recorrente.</p>
+      <p class="kicker">Por quê aqui</p>
+      <p class="body">Rota de conversão alternativa para quem quer se envolver além de uma doação pontual — vem perto do fim porque pressupõe confiança já construída pelos itens anteriores.</p>
+    </article>
+
+    <div class="swatch swatch--navitem" aria-hidden="true">
+      <span class="tag">§ 07</span>
+      <span class="idx">POSIÇÃO 7 DE 8</span>
+      <div class="navitem-box navitem-box--big">Contato</div>
+    </div>
+    <article class="note">
+      <span class="note-num">07</span>
+      <h2>Contato</h2>
+      <p class="kicker">O que tem aqui</p>
+      <p class="body">Link para formulário, endereço e canais diretos de comunicação.</p>
+      <p class="kicker">Por quê aqui</p>
+      <p class="body">Item de utilidade prática — para imprensa, famílias ou fornecedores que já decidiram falar com a instituição.</p>
+    </article>
+
+    <div class="swatch swatch--navitem" aria-hidden="true">
+      <span class="tag">§ 08</span>
+      <span class="idx">POSIÇÃO 8 DE 8</span>
+      <div class="navitem-box navitem-box--cta navitem-box--big">Doe Agora</div>
+    </div>
+    <article class="note note--cta">
+      <span class="note-num">08</span>
+      <h2>Doe Agora</h2>
+      <p class="kicker">O que tem aqui</p>
+      <p class="body">Botão de destaque — não um link de texto — sempre no canto direito do menu.</p>
+      <p class="kicker">Por quê aqui</p>
+      <p class="body">Fecha o padrão de leitura esquerda→direita exatamente onde ele termina; por ser visualmente diferente, nunca compete com os itens institucionais.</p>
+    </article>
+
+  </main>
+
+  <div class="detail">
+    <span class="tag">DETALHE A</span>
+    <p>Diferença visual proposital: 7 links de texto + 1 botão preenchido. Se "Doe Agora" parecer só mais um link, ele perde a força de call-to-action.</p>
+  </div>
+  <div class="detail">
+    <span class="tag">DETALHE B</span>
+    <p>No menu mobile (hambúrguer), a ordem permanece idêntica — reordenar itens no colapso confunde quem já navegou pelo desktop.</p>
+  </div>
+  <div class="detail">
+    <span class="tag">DETALHE C</span>
+    <p>A logo é sempre clicável e leva de volta à home — funciona como uma "saída de emergência" implícita, mesmo sem estar escrita em lugar nenhum.</p>
+  </div>
+
+  <section class="legend">
+    <h2>Legenda — princípios gerais</h2>
+    <p class="sub">A ordem do menu não é alfabética nem arbitrária: cada item pressupõe que o anterior já convenceu o visitante de algo.</p>
+    <div class="legend-grid">
+      <div class="legend-item">
+        <span class="legend-glyph">§</span>
+        <div>
+          <h3>A ordem é a jornada de confiança</h3>
+          <p>Identidade → prova → atualidade vêm antes de contato e ação. Pular a ordem quebra essa lógica.</p>
+        </div>
+      </div>
+      <div class="legend-item">
+        <span class="legend-glyph">I·T</span>
+        <div>
+          <h3>Institucional antes de transacional</h3>
+          <p>Os 5 primeiros itens constroem confiança; só os 3 últimos pedem algo do visitante (parceria, contato, doação).</p>
+        </div>
+      </div>
+      <div class="legend-item">
+        <span class="legend-glyph">1×</span>
+        <div>
+          <h3>Uma única ação de destaque</h3>
+          <p>Apenas "Doe Agora" tem estilo de botão. Se dois itens competirem visualmente, nenhum vence.</p>
+        </div>
+      </div>
+      <div class="legend-item">
+        <span class="legend-glyph">☰</span>
+        <div>
+          <h3>O mobile herda a mesma ordem</h3>
+          <p>O menu hambúrguer empilha os itens verticalmente, mas não os reordena.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="sheetfooter">
+    <p><strong>Como usar:</strong> os nomes das abas mudam por cliente — o que não muda é o agrupamento: identidade → prova → atualidade → engajamento secundário → utilidade → conversão. Ver também <em>Blueprint da Home</em> para a mesma lógica aplicada à página inicial.</p>
+  </footer>
+
+</div>

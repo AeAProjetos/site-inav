@@ -1,0 +1,454 @@
+<title>Blueprint do Doe Agora</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+Condensed:wght@600;700&display=swap">
+<style>
+  :root{
+    --blue-deep:#0f3454;
+    --blue-mid:#18507a;
+    --blue-line:#c3e2ff;
+    --blue-line-dim:rgba(195,226,255,0.34);
+    --blue-line-faint:rgba(195,226,255,0.14);
+    --paper:#f3eee1;
+    --paper-dim:#e7ddc8;
+    --ink:#20222a;
+    --ink-dim:#5a5f6e;
+    --pencil:#d6472a;
+    --pencil-dim:rgba(214,71,42,0.16);
+    --mono:'IBM Plex Mono', ui-monospace, 'SF Mono', Consolas, monospace;
+    --sans:'IBM Plex Sans', system-ui, -apple-system, sans-serif;
+    --cond:'IBM Plex Sans Condensed', 'IBM Plex Sans', system-ui, sans-serif;
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    background-color:var(--blue-deep);
+    background-image:
+      linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px);
+    background-size:26px 26px;
+    color:var(--blue-line);
+    font-family:var(--sans);
+  }
+
+  h1,h2,h3{font-family:var(--cond); font-weight:700; text-wrap:balance; margin:0;}
+  p{margin:0;}
+
+  .sheet{
+    max-width:1180px;
+    margin:0 auto;
+    padding-inline:max(16px, 5vw);
+    padding-block:40px 72px;
+  }
+
+  /* ---------- title block ---------- */
+  .titleblock{
+    border:2px solid var(--blue-line);
+    border-radius:10px;
+    padding:26px 26px 24px;
+    display:grid;
+    gap:22px;
+    margin-bottom:30px;
+    background:rgba(255,255,255,.025);
+  }
+  @media (min-width:800px){
+    .titleblock{grid-template-columns:1.5fr 1fr; align-items:end;}
+  }
+  .titleblock .eyebrow{
+    font-family:var(--mono); font-size:.72rem; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--pencil); font-weight:600;
+  }
+  .titleblock h1{font-size:clamp(1.7rem, 4vw, 2.5rem); color:var(--blue-line); margin-top:8px; letter-spacing:-.01em;}
+  .titleblock .lede{margin-top:12px; color:var(--blue-line-dim); max-width:48ch; line-height:1.55; font-size:.96rem;}
+
+  .titleblock-meta{
+    display:grid; grid-template-columns:repeat(2,1fr); gap:14px 22px;
+    border-top:1px dashed var(--blue-line-dim); padding-top:16px;
+  }
+  @media (min-width:800px){
+    .titleblock-meta{border-top:none; border-left:1px dashed var(--blue-line-dim); padding-top:0; padding-left:26px; grid-template-columns:1fr 1fr;}
+  }
+  .titleblock-meta dt{font-family:var(--mono); font-size:.65rem; letter-spacing:.1em; text-transform:uppercase; color:var(--blue-line-dim);}
+  .titleblock-meta dd{margin:3px 0 0; font-weight:600; font-size:.88rem; color:var(--blue-line);}
+
+  /* ---------- browser chrome ---------- */
+  .chrome{
+    border:1.5px dashed var(--blue-line-dim);
+    border-bottom:none;
+    border-radius:8px 8px 0 0;
+    padding:9px 14px;
+    display:flex; align-items:center; gap:8px;
+  }
+  .chrome .dot{width:8px;height:8px;border-radius:50%;border:1.3px solid var(--blue-line-dim);}
+  .chrome .url{
+    margin-left:6px; font-family:var(--mono); font-size:.72rem; color:var(--blue-line-dim);
+    letter-spacing:.02em;
+  }
+
+  /* ---------- cross-reference bar ---------- */
+  .crossref{
+    border:1.5px dashed var(--blue-line-dim);
+    border-top:none;
+    padding:10px 20px;
+    display:flex; gap:10px; align-items:baseline; flex-wrap:wrap;
+    background:rgba(255,255,255,.015);
+  }
+  .crossref .tag{
+    font-family:var(--mono); font-size:.66rem; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--blue-line-dim); font-weight:600; white-space:nowrap;
+  }
+  .crossref p{font-family:var(--mono); font-size:.78rem; color:var(--blue-line-dim); line-height:1.5;}
+  .crossref em{color:var(--blue-line); font-style:normal;}
+
+  /* ---------- main grid ---------- */
+  .blueprint-grid{
+    display:grid;
+    grid-template-columns:300px 1fr;
+    gap:14px 26px;
+    align-items:stretch;
+    border:1.5px dashed var(--blue-line-dim);
+    border-top:none;
+    border-radius:0 0 8px 8px;
+    padding:20px;
+  }
+  @media (max-width:780px){
+    .blueprint-grid{grid-template-columns:1fr; gap:10px;}
+  }
+
+  .swatch{
+    position:relative;
+    border:1px dashed var(--blue-line-dim);
+    border-radius:6px;
+    padding:14px;
+    min-height:110px;
+    display:flex; flex-direction:column; gap:10px; justify-content:center;
+  }
+  .swatch .tag{
+    position:absolute; top:8px; right:10px;
+    font-family:var(--mono); font-size:.68rem; color:var(--blue-line-dim); letter-spacing:.04em;
+  }
+  .swatch .caption{
+    font-family:var(--mono); font-size:.6rem; text-transform:uppercase; letter-spacing:.06em;
+    color:var(--pencil); font-weight:600;
+  }
+
+  .ph-line{height:7px; border-radius:2px; background:var(--blue-line-dim);}
+  .ph-line.tiny{height:5px;}
+  .ph-line.w-45{width:45%;} .ph-line.w-55{width:55%;} .ph-line.w-65{width:65%;}
+  .ph-line.w-70{width:70%;} .ph-line.w-90{width:90%;}
+
+  .ph-box{border:1.3px dashed var(--blue-line-dim); border-radius:4px;}
+
+  .ph-image{
+    border:1.3px dashed var(--blue-line-dim); border-radius:4px; overflow:hidden;
+    background:
+      linear-gradient(to bottom right, transparent calc(50% - 0.75px), var(--blue-line-faint) calc(50% - 0.75px), var(--blue-line-faint) calc(50% + 0.75px), transparent calc(50% + 0.75px)),
+      linear-gradient(to bottom left, transparent calc(50% - 0.75px), var(--blue-line-faint) calc(50% - 0.75px), var(--blue-line-faint) calc(50% + 0.75px), transparent calc(50% + 0.75px));
+  }
+  .swatch--hero .ph-image{height:60px;}
+
+  .cta-row{display:flex; align-items:center; gap:8px; flex-wrap:wrap; justify-content:center;}
+  .cta-pill{
+    font-family:var(--mono); font-size:.68rem; font-weight:600; white-space:nowrap;
+    border:1.5px solid var(--pencil); border-radius:999px; padding:6px 14px;
+    color:var(--pencil); background:var(--pencil-dim);
+  }
+
+  /* ---------- §02 impacto por valor ---------- */
+  .impact-table{display:flex; flex-direction:column; gap:6px;}
+  .impact-row{display:flex; align-items:center; gap:8px;}
+  .impact-value{
+    font-family:var(--mono); font-size:.68rem; font-weight:600; color:var(--blue-line);
+    border:1px dashed var(--blue-line-dim); border-radius:4px; padding:3px 8px; white-space:nowrap;
+  }
+  .impact-arrow{color:var(--blue-line-dim); font-family:var(--mono); font-size:.7rem;}
+  .impact-row .ph-line{flex:1;}
+
+  /* ---------- §03/§04 seletor de valor ---------- */
+  .amount-row{display:flex; gap:6px; flex-wrap:wrap; justify-content:center;}
+  .amount-pill{
+    font-family:var(--mono); font-size:.64rem; color:var(--blue-line-dim);
+    border:1px dashed var(--blue-line-dim); border-radius:999px; padding:5px 12px;
+  }
+  .amount-pill--selected{border-style:solid; border-color:var(--pencil); color:var(--pencil); background:var(--pencil-dim); font-weight:600;}
+  .recommended-tag{
+    font-family:var(--mono); font-size:.56rem; letter-spacing:.06em; text-transform:uppercase;
+    color:var(--pencil); text-align:center;
+  }
+
+  /* ---------- §05 PIX (destaque) ---------- */
+  .swatch--pix{border:1.5px solid var(--pencil); background:var(--pencil-dim); flex-direction:row; align-items:center; gap:14px;}
+  .pix-qr{width:52px; height:52px; border:1.3px dashed var(--pencil); border-radius:4px; flex:none;}
+  .pix-info{display:flex; flex-direction:column; gap:6px; flex:1;}
+  .pix-key{font-family:var(--mono); font-size:.62rem; color:var(--blue-line); border:1px dashed var(--blue-line-dim); border-radius:4px; padding:5px 8px;}
+
+  /* ---------- §06 outros meios ---------- */
+  .other-methods{display:flex; flex-direction:column; gap:6px;}
+  .other-method{font-family:var(--mono); font-size:.64rem; color:var(--blue-line-dim);}
+
+  /* ---------- annotation cards ---------- */
+  .note{
+    background:var(--paper); color:var(--ink);
+    border-radius:8px; padding:18px 20px 20px;
+    box-shadow:0 8px 18px rgba(0,0,0,.28);
+    position:relative;
+  }
+  .note-num{
+    display:inline-flex; align-items:center; justify-content:center;
+    width:26px; height:26px; border-radius:50%;
+    border:1.6px solid var(--pencil); color:var(--pencil);
+    font-family:var(--mono); font-weight:600; font-size:.78rem;
+    position:absolute; top:-13px; left:18px; background:var(--paper);
+  }
+  .note h2{font-size:1.05rem; color:var(--ink); margin-top:6px; letter-spacing:.01em;}
+  .note .kicker{
+    font-family:var(--mono); font-size:.66rem; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--pencil); font-weight:600; margin-top:14px;
+  }
+  .note p.body{margin-top:5px; font-size:.9rem; line-height:1.55; color:var(--ink-dim);}
+  .note.note--cta{border:1.5px solid var(--pencil);}
+  .note.note--cta .note-num{background:var(--pencil); color:var(--paper); border-color:var(--pencil);}
+
+  /* ---------- detail callout ---------- */
+  .detail{
+    margin-top:16px;
+    border:1.5px dashed var(--pencil);
+    border-radius:8px;
+    padding:14px 18px;
+    display:flex; gap:12px; align-items:baseline; flex-wrap:wrap;
+    background:var(--pencil-dim);
+  }
+  .detail .tag{
+    font-family:var(--mono); font-size:.68rem; letter-spacing:.08em; color:var(--pencil); font-weight:700;
+    white-space:nowrap;
+  }
+  .detail p{font-size:.88rem; color:var(--blue-line); line-height:1.5;}
+  .detail + .detail{margin-top:10px;}
+
+  /* ---------- legend ---------- */
+  .legend{margin-top:44px;}
+  .legend h2{font-size:1.3rem; color:var(--blue-line);}
+  .legend .sub{margin-top:6px; color:var(--blue-line-dim); font-size:.9rem;}
+  .legend-grid{margin-top:20px; display:grid; grid-template-columns:1fr; gap:14px;}
+  @media (min-width:640px){ .legend-grid{grid-template-columns:1fr 1fr;} }
+  .legend-item{
+    border:1px dashed var(--blue-line-dim); border-radius:8px; padding:16px 18px;
+    display:flex; gap:14px; align-items:flex-start;
+  }
+  .legend-glyph{
+    flex:none; width:34px; height:34px; border-radius:6px;
+    border:1.3px dashed var(--blue-line-dim); display:flex; align-items:center; justify-content:center;
+    font-family:var(--mono); font-size:.68rem; color:var(--pencil); font-weight:700;
+  }
+  .legend-item h3{font-size:.92rem; color:var(--blue-line); letter-spacing:.01em;}
+  .legend-item p{margin-top:4px; font-size:.84rem; color:var(--blue-line-dim); line-height:1.5;}
+
+  /* ---------- footer ---------- */
+  .sheetfooter{
+    margin-top:40px; padding-top:20px; border-top:1px dashed var(--blue-line-dim);
+    font-family:var(--mono); font-size:.78rem; color:var(--blue-line-dim); line-height:1.6;
+  }
+  .sheetfooter strong{color:var(--blue-line); font-weight:600;}
+
+  @media (prefers-reduced-motion:no-preference){
+    .note, .swatch{transition:transform .18s ease, box-shadow .18s ease;}
+  }
+
+  /* ---------- print / PDF export ---------- */
+  @media print{
+    @page{size:A4 landscape; margin:10mm;}
+    *{
+      -webkit-print-color-adjust:exact !important;
+      print-color-adjust:exact !important;
+      color-adjust:exact !important;
+    }
+    .sheet{max-width:none; padding-block:0;}
+    .chrome{break-after:avoid;}
+    .titleblock{break-after:avoid;}
+    .swatch, .note, .detail, .legend-item{break-inside:avoid;}
+    .legend, .sheetfooter{break-before:avoid;}
+  }
+</style>
+
+<div class="sheet">
+
+  <header class="titleblock">
+    <div>
+      <p class="eyebrow">Guia de referência — página de doação · última da série</p>
+      <h1>Blueprint do Doe Agora</h1>
+      <p class="lede">Como levar alguém convencido até a doação concluída, sem fricção, e por quê — modelo de referência para ONGs e institutos sociais.</p>
+    </div>
+    <dl class="titleblock-meta">
+      <div><dt>Desenho</dt><dd>Página institucional / ONG</dd></div>
+      <div><dt>Escala</dt><dd>Desktop → Mobile</dd></div>
+      <div><dt>Rev.</dt><dd>01</dd></div>
+      <div><dt>Aplicação</dt><dd>ONG / Instituto social</dd></div>
+    </dl>
+  </header>
+
+  <div class="chrome" aria-hidden="true">
+    <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+    <span class="url">suaorganizacao.org.br — doe agora</span>
+  </div>
+
+  <div class="crossref" aria-hidden="true">
+    <span class="tag">Cabeçalho</span>
+    <p>Logo + abas + botão de doação — detalhado à parte em <em>Blueprint da Navegação</em>.</p>
+  </div>
+
+  <main class="blueprint-grid">
+
+    <div class="swatch swatch--hero" aria-hidden="true">
+      <div class="ph-image"></div>
+      <div class="ph-line w-70"></div>
+      <span class="tag">§ 01</span>
+    </div>
+    <article class="note">
+      <span class="note-num">01</span>
+      <h2>Por que doar</h2>
+      <p class="kicker">O que tem aqui</p>
+      <p class="body">Uma foto real e uma mensagem emocional curta sobre por que a doação importa.</p>
+      <p class="kicker">Por quê aqui</p>
+      <p class="body">Abertura clássica — conexão antes do pedido, mesmo padrão de outras páginas de conversão do site.</p>
+    </article>
+
+    <div class="swatch" aria-hidden="true">
+      <div class="impact-table">
+        <div class="impact-row"><span class="impact-value">R$ XX</span><span class="impact-arrow">→</span><div class="ph-line"></div></div>
+        <div class="impact-row"><span class="impact-value">R$ XX</span><span class="impact-arrow">→</span><div class="ph-line"></div></div>
+        <div class="impact-row"><span class="impact-value">R$ XX</span><span class="impact-arrow">→</span><div class="ph-line"></div></div>
+      </div>
+      <span class="tag">§ 02</span>
+    </div>
+    <article class="note">
+      <span class="note-num">02</span>
+      <h2>Como sua contribuição gera impacto</h2>
+      <p class="kicker">O que tem aqui</p>
+      <p class="body">Uma tabela simples relacionando valores de doação a resultados concretos (ex: "R$ XX = uma semana de material escolar").</p>
+      <p class="kicker">Por quê aqui</p>
+      <p class="body">Torna a doação tangível antes de pedir um valor — a pessoa já sabe o que o dinheiro vira, antes de escolher quanto dar.</p>
+    </article>
+
+    <div class="swatch" aria-hidden="true">
+      <div class="amount-row">
+        <div class="amount-pill">R$ 20</div>
+        <div class="amount-pill amount-pill--selected">R$ 50</div>
+        <div class="amount-pill">R$ 100</div>
+        <div class="amount-pill">Outro valor</div>
+      </div>
+      <div class="cta-row"><div class="cta-pill">Doar uma vez</div></div>
+      <span class="tag">§ 03</span>
+    </div>
+    <article class="note">
+      <span class="note-num">03</span>
+      <h2>Doação única</h2>
+      <p class="kicker">O que tem aqui</p>
+      <p class="body">Valores sugeridos em botões, campo para valor livre, e um botão de doar.</p>
+      <p class="kicker">Por quê aqui</p>
+      <p class="body">Menor fricção possível para quem já decidiu contribuir uma única vez.</p>
+    </article>
+
+    <div class="swatch" aria-hidden="true">
+      <span class="recommended-tag">Recomendado</span>
+      <div class="amount-row">
+        <div class="amount-pill">R$ 20/mês</div>
+        <div class="amount-pill amount-pill--selected">R$ 50/mês</div>
+        <div class="amount-pill">R$ 100/mês</div>
+      </div>
+      <div class="cta-row"><div class="cta-pill">Doar todo mês</div></div>
+      <span class="tag">§ 04</span>
+    </div>
+    <article class="note note--cta">
+      <span class="note-num">04</span>
+      <h2>Doação recorrente</h2>
+      <p class="kicker">O que tem aqui</p>
+      <p class="body">O mesmo padrão de valores sugeridos, mas marcado como "recomendado", com aviso de que dá para cancelar quando quiser.</p>
+      <p class="kicker">Por quê aqui</p>
+      <p class="body">Sustenta a instituição de forma previsível — por isso é a opção destacada, não escondida atrás da doação única.</p>
+    </article>
+
+    <div class="swatch swatch--pix" aria-hidden="true">
+      <div class="pix-qr"></div>
+      <div class="pix-info">
+        <div class="ph-line tiny w-45"></div>
+        <div class="pix-key">chave@suaorganizacao.org.br · copiar</div>
+      </div>
+      <span class="tag">§ 05</span>
+    </div>
+    <article class="note note--cta">
+      <span class="note-num">05</span>
+      <h2>PIX</h2>
+      <p class="kicker">O que tem aqui</p>
+      <p class="body">QR code e chave PIX com botão de copiar, direto nesta página — sem redirecionar para outro site.</p>
+      <p class="kicker">Por quê aqui</p>
+      <p class="body">No Brasil, PIX é o método mais rápido e sem taxas; reduzir a doação a "escanear e pronto" costuma converter mais que formulário de cartão.</p>
+    </article>
+
+    <div class="swatch" aria-hidden="true">
+      <div class="other-methods">
+        <span class="other-method">Cartão de crédito</span>
+        <span class="other-method">Transferência bancária</span>
+        <span class="other-method">Boleto</span>
+      </div>
+      <span class="tag">§ 06</span>
+    </div>
+    <article class="note">
+      <span class="note-num">06</span>
+      <h2>Outros meios de contribuição</h2>
+      <p class="kicker">O que tem aqui</p>
+      <p class="body">Cartão de crédito, transferência bancária e boleto, como opções secundárias em texto — não como botões grandes.</p>
+      <p class="kicker">Por quê aqui</p>
+      <p class="body">Cobre quem prefere outro meio, sem competir visualmente com o PIX, que é a via priorizada.</p>
+    </article>
+
+  </main>
+
+  <div class="detail">
+    <span class="tag">DETALHE A</span>
+    <p>PIX recebe destaque visual maior que os outros métodos — não é só mais uma opção na lista, é o caminho que a página quer que a maioria escolha.</p>
+  </div>
+  <div class="detail">
+    <span class="tag">DETALHE B</span>
+    <p>Doação recorrente vem marcada como recomendada, não a doação única — sustenta a instituição de forma previsível. É uma escolha deliberada de produto, não um padrão técnico qualquer.</p>
+  </div>
+
+  <section class="legend">
+    <h2>Legenda — princípios gerais</h2>
+    <p class="sub">Esta é a página onde a intenção vira ação — cada escolha de design existe para reduzir fricção.</p>
+    <div class="legend-grid">
+      <div class="legend-item">
+        <span class="legend-glyph">§</span>
+        <div>
+          <h3>Sinta antes de calcular</h3>
+          <p>Por que doar e o impacto por valor vêm antes de qualquer botão — emoção e lógica, depois número.</p>
+        </div>
+      </div>
+      <div class="legend-item">
+        <span class="legend-glyph">R$→</span>
+        <div>
+          <h3>Valor vira resultado</h3>
+          <p>Cada quantia é traduzida em algo concreto — nunca fica abstrata como só um número.</p>
+        </div>
+      </div>
+      <div class="legend-item">
+        <span class="legend-glyph">★</span>
+        <div>
+          <h3>Um método é o preferido</h3>
+          <p>PIX recebe destaque visual deliberado; os demais existem, mas não competem em igualdade.</p>
+        </div>
+      </div>
+      <div class="legend-item">
+        <span class="legend-glyph">↻</span>
+        <div>
+          <h3>Recorrência é a meta, não a exceção</h3>
+          <p>A doação mensal aparece como o caminho recomendado, não como opção secundária escondida.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="sheetfooter">
+    <p><strong>Como usar:</strong> valores, chave PIX e meios de pagamento mudam por cliente — o que não muda é a estrutura: emoção → impacto tangível → valor único → valor recorrente (destacado) → PIX (destacado) → outros meios. Ver também <em>Blueprint da Home</em>, <em>Blueprint da Navegação</em>, <em>Blueprint do Quem Somos</em>, <em>Blueprint dos Projetos</em>, <em>Blueprint do Impacto</em>, <em>Blueprint da Transparência</em>, <em>Blueprint das Notícias</em>, <em>Blueprint do Seja Parceiro</em> e <em>Blueprint do Contato</em>.</p>
+  </footer>
+
+</div>

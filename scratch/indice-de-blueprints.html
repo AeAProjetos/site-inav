@@ -1,0 +1,242 @@
+<title>Índice de Blueprints</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+Condensed:wght@600;700&display=swap">
+<style>
+  :root{
+    --blue-deep:#0f3454;
+    --blue-mid:#18507a;
+    --blue-line:#c3e2ff;
+    --blue-line-dim:rgba(195,226,255,0.34);
+    --blue-line-faint:rgba(195,226,255,0.14);
+    --paper:#f3eee1;
+    --paper-dim:#e7ddc8;
+    --ink:#20222a;
+    --ink-dim:#5a5f6e;
+    --pencil:#d6472a;
+    --pencil-dim:rgba(214,71,42,0.16);
+    --mono:'IBM Plex Mono', ui-monospace, 'SF Mono', Consolas, monospace;
+    --sans:'IBM Plex Sans', system-ui, -apple-system, sans-serif;
+    --cond:'IBM Plex Sans Condensed', 'IBM Plex Sans', system-ui, sans-serif;
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    background-color:var(--blue-deep);
+    background-image:
+      linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px);
+    background-size:26px 26px;
+    color:var(--blue-line);
+    font-family:var(--sans);
+  }
+
+  h1,h2,h3{font-family:var(--cond); font-weight:700; text-wrap:balance; margin:0;}
+  p{margin:0;}
+  a{color:inherit;}
+
+  .sheet{
+    max-width:900px;
+    margin:0 auto;
+    padding-inline:max(16px, 5vw);
+    padding-block:40px 72px;
+  }
+
+  /* ---------- title block ---------- */
+  .titleblock{
+    border:2px solid var(--blue-line);
+    border-radius:10px;
+    padding:26px 26px 24px;
+    display:grid;
+    gap:22px;
+    margin-bottom:26px;
+    background:rgba(255,255,255,.025);
+  }
+  @media (min-width:700px){
+    .titleblock{grid-template-columns:1.5fr 1fr; align-items:end;}
+  }
+  .titleblock .eyebrow{
+    font-family:var(--mono); font-size:.72rem; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--pencil); font-weight:600;
+  }
+  .titleblock h1{font-size:clamp(1.8rem, 5vw, 2.7rem); color:var(--blue-line); margin-top:8px; letter-spacing:-.01em;}
+  .titleblock .lede{margin-top:12px; color:var(--blue-line-dim); max-width:50ch; line-height:1.55; font-size:.96rem;}
+
+  .titleblock-meta{
+    display:grid; grid-template-columns:repeat(2,1fr); gap:14px 22px;
+    border-top:1px dashed var(--blue-line-dim); padding-top:16px;
+  }
+  @media (min-width:700px){
+    .titleblock-meta{border-top:none; border-left:1px dashed var(--blue-line-dim); padding-top:0; padding-left:26px; grid-template-columns:1fr 1fr;}
+  }
+  .titleblock-meta dt{font-family:var(--mono); font-size:.65rem; letter-spacing:.1em; text-transform:uppercase; color:var(--blue-line-dim);}
+  .titleblock-meta dd{margin:3px 0 0; font-weight:600; font-size:.88rem; color:var(--blue-line);}
+
+  /* ---------- explainer card ---------- */
+  .explainer{
+    background:var(--paper); color:var(--ink);
+    border-radius:8px; padding:20px 22px;
+    box-shadow:0 8px 18px rgba(0,0,0,.28);
+    display:grid; gap:16px;
+    margin-bottom:34px;
+  }
+  @media (min-width:640px){ .explainer{grid-template-columns:1fr 1fr;} }
+  .explainer .kicker{
+    font-family:var(--mono); font-size:.66rem; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--pencil); font-weight:600;
+  }
+  .explainer h2{font-size:1rem; color:var(--ink); margin-top:6px;}
+  .explainer p.body{margin-top:6px; font-size:.9rem; line-height:1.6; color:var(--ink-dim);}
+
+  /* ---------- index list ---------- */
+  .index-list{display:flex; flex-direction:column; gap:10px;}
+  .index-row{
+    background:var(--paper); color:var(--ink);
+    border-radius:8px; padding:14px 18px;
+    box-shadow:0 8px 18px rgba(0,0,0,.24);
+    display:flex; align-items:center; gap:16px;
+    text-decoration:none;
+  }
+  .index-num{
+    flex:none; display:flex; align-items:center; justify-content:center;
+    width:30px; height:30px; border-radius:50%;
+    border:1.6px solid var(--pencil); color:var(--pencil);
+    font-family:var(--mono); font-weight:600; font-size:.82rem;
+  }
+  .index-body{flex:1; min-width:0;}
+  .index-body h3{font-size:.98rem; color:var(--ink); letter-spacing:.005em;}
+  .index-body p{margin-top:3px; font-size:.82rem; color:var(--ink-dim); line-height:1.4;}
+  .index-arrow{
+    flex:none; font-family:var(--mono); font-size:.7rem; color:var(--pencil); font-weight:600;
+    white-space:nowrap;
+  }
+  .index-row:hover{box-shadow:0 10px 22px rgba(0,0,0,.32);}
+  .index-row:focus-visible{outline:2px solid var(--pencil); outline-offset:2px;}
+
+  .index-group-label{
+    margin:22px 0 2px; font-family:var(--mono); font-size:.66rem; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--blue-line-dim); font-weight:600;
+  }
+  .index-group-label:first-of-type{margin-top:0;}
+
+  /* ---------- footer ---------- */
+  .sheetfooter{
+    margin-top:40px; padding-top:20px; border-top:1px dashed var(--blue-line-dim);
+    font-family:var(--mono); font-size:.78rem; color:var(--blue-line-dim); line-height:1.6;
+  }
+  .sheetfooter strong{color:var(--blue-line); font-weight:600;}
+
+  @media (prefers-reduced-motion:no-preference){
+    .index-row{transition:box-shadow .18s ease;}
+  }
+
+  /* ---------- print / PDF export ---------- */
+  @media print{
+    @page{size:A4 portrait; margin:14mm;}
+    *{
+      -webkit-print-color-adjust:exact !important;
+      print-color-adjust:exact !important;
+      color-adjust:exact !important;
+    }
+    .sheet{max-width:none; padding-block:0;}
+    .titleblock{break-after:avoid;}
+    .explainer, .index-row{break-inside:avoid;}
+  }
+</style>
+
+<div class="sheet">
+
+  <header class="titleblock">
+    <div>
+      <p class="eyebrow">Coleção completa — guia de referência</p>
+      <h1>Índice de Blueprints</h1>
+      <p class="lede">Dez mapas visuais anotados, um para cada página do site, mostrando o que vai em cada bloco e por quê. A planta baixa completa, antes da construção.</p>
+    </div>
+    <dl class="titleblock-meta">
+      <div><dt>Coleção</dt><dd>10 documentos</dd></div>
+      <div><dt>Formato</dt><dd>Wireframe anotado</dd></div>
+      <div><dt>Rev.</dt><dd>01</dd></div>
+      <div><dt>Aplicação</dt><dd>ONG / Instituto social</dd></div>
+    </dl>
+  </header>
+
+  <section class="explainer">
+    <div>
+      <p class="kicker">O que é o Blueprint</p>
+      <h2>Um mapa, não só um desenho</h2>
+      <p class="body">É um mapa visual da página: mostra onde cada bloco vai ficar e explica por que ele está naquela posição — não é só um desenho, é uma justificativa.</p>
+    </div>
+    <div>
+      <p class="kicker">Por que importa</p>
+      <h2>Alinha antes de construir</h2>
+      <p class="body">Ele alinha cliente e equipe antes de qualquer coisa ser produzida, evitando retrabalho depois. Mostra que a ordem das seções não é estética — é pensada para guiar o visitante até a ação que importa.</p>
+    </div>
+  </section>
+
+  <p class="index-group-label">Estrutura do site</p>
+  <div class="index-list">
+    <a class="index-row" href="https://claude.ai/artifact/DegPdb4rCSY8Eh2FbS5TBa" target="_blank" rel="noopener">
+      <span class="index-num">01</span>
+      <span class="index-body"><h3>Home</h3><p>A página inicial: da emoção ao pedido de doação, seção por seção.</p></span>
+      <span class="index-arrow">Abrir →</span>
+    </a>
+    <a class="index-row" href="https://claude.ai/artifact/HsZZ4SEHbHx5FQz7nDRPYE" target="_blank" rel="noopener">
+      <span class="index-num">02</span>
+      <span class="index-body"><h3>Navegação</h3><p>O menu principal: quais abas, em que ordem, e por quê.</p></span>
+      <span class="index-arrow">Abrir →</span>
+    </a>
+  </div>
+
+  <p class="index-group-label">Páginas institucionais</p>
+  <div class="index-list">
+    <a class="index-row" href="https://claude.ai/artifact/RZcYygQYpnBpSttyh2tShE" target="_blank" rel="noopener">
+      <span class="index-num">03</span>
+      <span class="index-body"><h3>Quem Somos</h3><p>Do institucional ao humano: história, estrutura e pessoas.</p></span>
+      <span class="index-arrow">Abrir →</span>
+    </a>
+    <a class="index-row" href="https://claude.ai/artifact/5EckiQ5GZFfSVeNFWF6dQq" target="_blank" rel="noopener">
+      <span class="index-num">04</span>
+      <span class="index-body"><h3>Projetos</h3><p>As frentes de atuação e os programas dentro de cada uma.</p></span>
+      <span class="index-arrow">Abrir →</span>
+    </a>
+    <a class="index-row" href="https://claude.ai/artifact/4cufXhJYx6Dj7RjoVQ5YLr" target="_blank" rel="noopener">
+      <span class="index-num">05</span>
+      <span class="index-body"><h3>Impacto</h3><p>Números que provam, histórias que emocionam.</p></span>
+      <span class="index-arrow">Abrir →</span>
+    </a>
+    <a class="index-row" href="https://claude.ai/artifact/8ZtXhYrVzan6w6qMjEBo1h" target="_blank" rel="noopener">
+      <span class="index-num">06</span>
+      <span class="index-body"><h3>Transparência</h3><p>A grade de documentos institucionais para consulta pública.</p></span>
+      <span class="index-arrow">Abrir →</span>
+    </a>
+    <a class="index-row" href="https://claude.ai/artifact/K7jcVEMgLEepAYjuMEWjio" target="_blank" rel="noopener">
+      <span class="index-num">07</span>
+      <span class="index-body"><h3>Notícias</h3><p>O feed de atualidades, filtrável por categoria.</p></span>
+      <span class="index-arrow">Abrir →</span>
+    </a>
+  </div>
+
+  <p class="index-group-label">Páginas de conversão</p>
+  <div class="index-list">
+    <a class="index-row" href="https://claude.ai/artifact/MUuF6KwRyXwUCjNPeWZZ5e" target="_blank" rel="noopener">
+      <span class="index-num">08</span>
+      <span class="index-body"><h3>Seja Parceiro</h3><p>Do motivo ao formulário de proposta de parceria.</p></span>
+      <span class="index-arrow">Abrir →</span>
+    </a>
+    <a class="index-row" href="https://claude.ai/artifact/LeLiLnBcpzrH1fDcXdDmQS" target="_blank" rel="noopener">
+      <span class="index-num">09</span>
+      <span class="index-body"><h3>Contato</h3><p>Canais rápidos, formulário geral e ouvidoria separada.</p></span>
+      <span class="index-arrow">Abrir →</span>
+    </a>
+    <a class="index-row" href="https://claude.ai/artifact/UJnbHFzwEbDdLn1xneh92f" target="_blank" rel="noopener">
+      <span class="index-num">10</span>
+      <span class="index-body"><h3>Doe Agora</h3><p>Da emoção ao PIX: a página onde a intenção vira ação.</p></span>
+      <span class="index-arrow">Abrir →</span>
+    </a>
+  </div>
+
+  <footer class="sheetfooter">
+    <p><strong>Como usar:</strong> nomes, valores e documentos mudam por cliente — o que não muda é a lógica por trás de cada página. Em conjunto, os dez blueprints cobrem o site inteiro, do primeiro clique ao PIX copiado.</p>
+  </footer>
+
+</div>

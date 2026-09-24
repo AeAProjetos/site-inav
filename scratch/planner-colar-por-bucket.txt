@@ -1,0 +1,47 @@
+PLANO SITE INAV — TÍTULOS PARA COLAR NO PLANNER
+Cada bloco vai no bucket indicado. Copie só as linhas (sem o cabeçalho do bloco)
+e cole na caixa "Adicionar tarefa" do bucket. O detalhe de cada item está em
+scratch/backlog-inav.csv (procure pelo ID).
+
+=== BUCKET: Pronto para fazer (6) ===
+[INAV-001] Commitar e publicar as mudanças pendentes
+[INAV-013] Comprimir as fotos pesadas
+[INAV-019] Corrigir classe lx:text-7xl do título do Hero
+[INAV-020] Corrigir cor de fundo dos cards de Nossa Jornada
+[INAV-021] Testar seções novas no celular e no tablet
+[INAV-024] Planner: organizar buckets e rótulos e importar o backlog
+
+=== BUCKET: Aguardando material ou decisão (15) ===
+[INAV-002] Decidir o que entra no repositório (scratch, .claude, skills)
+[INAV-003] Substituir dados institucionais placeholder (PIX, telefone, WhatsApp, endereço)
+[INAV-004] Incluir Instagram e redes sociais no site
+[INAV-005] Trocar ícone do QR Code do PIX pela imagem real
+[INAV-006] Conferir números institucionais (refeições 4 ou 5, crianças, anos)
+[INAV-007] Popular planilha de Transparência com documentos reais
+[INAV-008] Revisar textos gerados por IA nas páginas internas
+[INAV-009] Adicionar fotos reais nas páginas internas
+[INAV-010] Substituir depoimentos fictícios por reais, com foto
+[INAV-011] Definir foto final do banner de encerramento
+[INAV-012] Enviar vídeos ao YouTube para Nossa Estrutura
+[INAV-014] Configurar domínio inav.org.br na Vercel
+[INAV-015] SEO técnico: sitemap, JSON-LD e og:image
+[INAV-022] Decidir layout do título de Nossa Estrutura
+[INAV-023] Decidir destino do logo-inav-header.jpeg
+
+=== BUCKET: Ideias (4) ===
+[INAV-016] Blog com Notion (/blog e /blog/$slug)
+[INAV-017] Newsletter fase 1: captura de e-mail
+[INAV-018] Newsletter fase 2: disparo automático
+[INAV-025] Planner: rotina de entrada dos documentos do designer
+
+=== BUCKETS VAZIOS (criar sem tarefas) ===
+Em andamento
+Revisar no navegador
+Concluído
+
+=== RÓTULOS (16, dentro do limite de 25 do Planner) ===
+Páginas: Home, Quem Somos, Educação Infantil, Projetos, Transparência, Quer Ajudar, Contato, Blog, Geral
+Tipos: Visual, Funcionalidade, Conteúdo, Bug, Infra, Performance, QA
+
+=== PRIORIDADE (campo nativo do Planner) ===
+Alta = Importante · Média = Média · Baixa = Baixa
