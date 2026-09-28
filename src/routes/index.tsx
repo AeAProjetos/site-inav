@@ -105,7 +105,7 @@ Educação infantil, alimentação, acolhimento e desenvolvimento fazem parte de
 
       {/* Seções internas */}
       <section className="bg-background py-20 sm:py-28">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-1">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeading
             eyebrow="Explore o instituto"
             title="CONHEÇA MAIS SOBRE O"

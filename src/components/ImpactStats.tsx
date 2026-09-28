@@ -10,13 +10,13 @@ export function ImpactStats() {
         <motion.dl
           variants={stagger}
           {...revealOnScroll}
-          className="grid grid-cols-2 gap-x-30 gap-y-40 lg:grid-cols-4"
+          className="grid grid-cols-2 gap-x-6 gap-y-12 sm:gap-x-8 lg:grid-cols-4"
         >
           {impactStats.map((stat) => (
             <motion.div key={stat.label} variants={fadeUp} className="text-center">
               <dt className="sr-only">{stat.label}</dt>
               <dd>
-                <span className="block font-display text-4xl font-extrabold text-brand-green-light sm:text-5xl lg:text-6xl">
+                <span className="block font-display text-4xl font-extrabold text-brand-green-light sm:text-5xl xl:text-6xl">
                   {stat.value}
                 </span>
                 <span className="mt-2 block text-balance-pretty text-sm font-bold uppercase tracking-wide text-white sm:text-base">
