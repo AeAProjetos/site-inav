@@ -1,20 +1,21 @@
+import type { ReactNode } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "motion/react";
-import {
-  Apple,
-  Baby,
-  BookOpen,
-  HeartPulse,
-  Palette,
-  Sun,
-  Users,
-  Utensils,
-} from "lucide-react";
+import { BookOpen, HeartHandshake, Sprout } from "lucide-react";
 
 import { PageHero } from "@/components/PageHero";
 import { SectionHeading } from "@/components/SectionHeading";
-import { FeatureCard } from "@/components/FeatureCard";
+import { ClosingBanner } from "@/components/ClosingBanner";
+import { PhotoGallery, type GalleryItem } from "@/components/PhotoGallery";
+import { Pending, PendingPhoto } from "@/components/Pending";
 import { fadeUp, revealOnScroll, stagger } from "@/lib/motion-presets";
+import { cn } from "@/lib/utils";
+
+/*
+ * Estrutura conforme o documento do designer (INAV-026). Textos são rascunho até a
+ * aprovação do INAV; o que depende de informação da instituição está marcado com
+ * os componentes Pending e PendingPhoto — `bun run pendencias` lista tudo o que falta.
+ */
 
 export const Route = createFileRoute("/educacao-infantil")({
   head: () => ({
@@ -23,188 +24,354 @@ export const Route = createFileRoute("/educacao-infantil")({
       {
         name: "description",
         content:
-          "Creche e pré-escola gratuitas com rotina pedagógica estruturada, cinco refeições diárias e atendimento multidisciplinar no INAV.",
+          "Creche e pré-escola gratuitas, em período integral, com educação, cinco refeições diárias e acompanhamento das famílias no INAV.",
       },
       { property: "og:title", content: "Educação Infantil — Instituto Nair Valadares" },
       {
         property: "og:description",
         content:
-          "Rotina pedagógica, nutrição balanceada e desenvolvimento integral para crianças de creche e pré-escola.",
+          "Educação, alimentação e cuidado na mesma rotina: creche e pré-escola gratuitas em período integral.",
       },
     ],
   }),
   component: EducacaoInfantilPage,
 });
 
-const routine = [
+const accents = {
+  orange: { text: "text-brand-orange", ring: "border-brand-orange" },
+  blue: { text: "text-brand-blue", ring: "border-brand-blue" },
+  green: { text: "text-brand-green", ring: "border-brand-green" },
+} as const;
+
+const accentCycle = ["orange", "blue", "green"] as const;
+
+const facts: { label: string; value: ReactNode; detail?: ReactNode }[] = [
+  { label: "Faixa etária", value: <Pending>faixa etária (ex.: 0 a 5 anos)</Pending> },
+  { label: "Período", value: "Integral", detail: <Pending>horário de entrada e saída</Pending> },
+  { label: "Custo", value: "Gratuito", detail: "Sem mensalidade para as famílias" },
+  { label: "Turmas", value: "Creche e pré-escola" },
+];
+
+const beyondClassroom = [
   {
-    time: "07h — 08h",
-    title: "Acolhida e café da manhã",
-    text: "As crianças chegam, são recebidas individualmente pela equipe e fazem a primeira refeição do dia.",
+    icon: BookOpen,
+    title: "Educação",
+    text: "Rodas de conversa, histórias, música, movimento e propostas pedagógicas pensadas para cada idade, até as primeiras descobertas da leitura e da escrita.",
+    accent: "orange" as const,
   },
   {
-    time: "08h — 11h",
-    title: "Atividades pedagógicas",
-    text: "Roda de conversa, contação de histórias, alfabetização lúdica e atividades motoras adequadas a cada faixa etária.",
+    icon: HeartHandshake,
+    title: "Cuidado e acolhimento",
+    text: "Higiene, descanso e atenção individual fazem parte da rotina. A criança passa o dia com adultos que conhecem o seu jeito e as suas necessidades.",
+    accent: "blue" as const,
   },
   {
-    time: "11h — 13h",
-    title: "Almoço e descanso",
-    text: "Refeição completa acompanhada por nutricionista, higiene orientada e período de repouso.",
-  },
-  {
-    time: "13h — 15h",
-    title: "Oficinas e brincar livre",
-    text: "Arte, música, horta e jogos cooperativos — o momento em que a criança escolhe e experimenta.",
-  },
-  {
-    time: "15h — 17h",
-    title: "Lanche e encerramento",
-    text: "Última refeição, registro do dia com as famílias e saída acompanhada.",
+    icon: Sprout,
+    title: "Desenvolvimento integral",
+    text: "Brincar, conviver e se expressar têm o mesmo peso que aprender conteúdos. É assim que crescem a autonomia, a linguagem e a coordenação.",
+    accent: "green" as const,
   },
 ];
 
-const pillars = [
+const dayRoutine: { time: ReactNode; title: string; text: string }[] = [
   {
-    icon: Baby,
-    title: "Creche (0 a 3 anos)",
-    description:
-      "Cuidado individualizado, estímulo sensorial, desenvolvimento motor e construção do vínculo afetivo em turmas reduzidas.",
-    accent: "blue" as const,
+    time: <Pending>horário</Pending>,
+    title: "Chegada",
+    text: "As crianças são recebidas pela equipe na entrada e o dia começa com acolhida.",
   },
   {
-    icon: BookOpen,
-    title: "Pré-escola (4 e 5 anos)",
-    description:
-      "Alfabetização lúdica, raciocínio lógico, socialização e preparação para a transição ao ensino fundamental.",
-    accent: "green" as const,
+    time: <Pending>horário</Pending>,
+    title: "Atividades",
+    text: "Rodas de conversa, histórias, música e propostas pedagógicas para cada idade.",
   },
   {
-    icon: Utensils,
-    title: "Cinco refeições diárias",
-    description:
-      "Preparadas na cozinha própria, com cardápio elaborado por nutricionista.",
-    accent: "orange" as const,
+    time: <Pending>horário</Pending>,
+    title: "Alimentação",
+    text: "Refeição completa, com hábitos de higiene antes e depois.",
   },
   {
-    icon: HeartPulse,
-    title: "Atendimento multidisciplinar",
-    description:
-      "Acompanhamento com psicologia, serviço social, fonoaudiologia e nutrição, conforme a necessidade de cada criança.",
-    accent: "blue" as const,
+    time: <Pending>horário</Pending>,
+    title: "Descanso",
+    text: "Um tempo de repouso para recuperar a energia da manhã.",
   },
   {
-    icon: Palette,
-    title: "Desenvolvimento integral",
-    description:
-      "Arte, movimento, música e convivência entram na rotina com o mesmo peso que o conteúdo pedagógico formal.",
-    accent: "green" as const,
+    time: <Pending>horário</Pending>,
+    title: "Brincadeiras",
+    text: "Brincar livre e atividades em grupo, dentro e fora da sala.",
   },
   {
-    icon: Users,
-    title: "Família presente",
-    description:
-      "Reuniões periódicas, orientação às famílias e canal aberto com a equipe — a criança não é atendida sozinha.",
-    accent: "orange" as const,
+    time: <Pending>horário</Pending>,
+    title: "Encerramento",
+    text: "Últimos momentos do dia e saída acompanhada pelos responsáveis.",
+  },
+];
+
+const familyTopics: { title: string; text: ReactNode }[] = [
+  {
+    title: "Diálogo com os responsáveis",
+    text: "Reuniões, conversas no dia a dia e um canal aberto com a equipe.",
+  },
+  {
+    title: "Acompanhamento",
+    text: "O desenvolvimento de cada criança é acompanhado e compartilhado com a família.",
+  },
+  {
+    title: "Equipe de apoio",
+    text: (
+      <Pending>confirmar se há psicologia, serviço social, fonoaudiologia e nutrição</Pending>
+    ),
+  },
+];
+
+const gallery: GalleryItem[] = [
+  {
+    alt: "Crianças em atividade na sala",
+    placeholder: <PendingPhoto description="Crianças em atividade na sala (foto grande)" />,
+  },
+  { alt: "Brincadeira ao ar livre", placeholder: <PendingPhoto description="Brincadeira ao ar livre" /> },
+  { alt: "Momento de refeição", placeholder: <PendingPhoto description="Momento de refeição" /> },
+  { alt: "Atividade em grupo", placeholder: <PendingPhoto description="Atividade em grupo" /> },
+  {
+    alt: "Momento coletivo",
+    placeholder: <PendingPhoto description="Momento coletivo ou celebração" />,
   },
 ];
 
 function EducacaoInfantilPage() {
   return (
     <>
+      {/* 01 — Abertura */}
       <PageHero
         eyebrow="Educação infantil"
-        title="Aprender com barriga cheia e colo"
-        highlight="garantido"
-        description="Creche e pré-escola gratuitas, em período integral, com rotina pedagógica estruturada e nutrição acompanhada de perto. Educação de qualidade não deveria depender da renda da família — aqui, não depende."
+        title="Educação infantil que acolhe, cuida e"
+        highlight="desenvolve"
+        description="Creche e pré-escola gratuitas, em período integral, com educação, alimentação e cuidado reunidos na mesma rotina."
+        aside={
+          <PendingPhoto description="Crianças em atividade ou interação (foto real, com autorização dos responsáveis)" />
+        }
       />
 
-      <section className="bg-background py-20 sm:py-24">
+      {/* 02 — Como funciona */}
+      <section className="bg-background pt-12 sm:pt-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <SectionHeading
-            eyebrow="Como funciona"
-            title="Os pilares do nosso"
-            highlight="atendimento"
-            description="Cada frente foi desenhada para sustentar a outra. Nutrição sem pedagogia não transforma; pedagogia sem nutrição não se sustenta."
-          />
-          <motion.div
+          <h2 className="text-sm font-bold uppercase tracking-[0.18em] text-brand-orange">
+            Como funciona o atendimento
+          </h2>
+          <motion.dl
             variants={stagger}
             {...revealOnScroll}
-            className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3"
+            className="mt-5 grid grid-cols-2 gap-x-6 gap-y-8 border-y border-border py-8 lg:grid-cols-4 lg:gap-x-0 lg:divide-x lg:divide-border"
           >
-            {pillars.map((pillar) => (
-              <FeatureCard key={pillar.title} {...pillar} />
+            {facts.map((fact) => (
+              <motion.div key={fact.label} variants={fadeUp} className="lg:px-8 lg:first:pl-0">
+                <dt className="text-xs font-bold uppercase tracking-[0.18em] text-muted-foreground">
+                  {fact.label}
+                </dt>
+                <dd className="mt-2 text-xl font-extrabold uppercase text-brand-blue-deep">
+                  {fact.value}
+                </dd>
+                {fact.detail && (
+                  <dd className="mt-1 text-sm text-muted-foreground">{fact.detail}</dd>
+                )}
+              </motion.div>
             ))}
-          </motion.div>
+          </motion.dl>
         </div>
       </section>
 
+      {/* 03 — Muito além da sala de aula */}
+      <section className="bg-background py-20 sm:py-24">
+        <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[400px_1fr] lg:gap-16 lg:px-8">
+          <SectionHeading
+            eyebrow="Pilares"
+            title="Muito além da sala de"
+            highlight="aula"
+            description="Na educação infantil, aprender passa pelo brincar, pelo cuidado e pela convivência. A rotina do INAV junta essas frentes no mesmo dia."
+          />
+
+          <motion.ul
+            variants={stagger}
+            {...revealOnScroll}
+            className="divide-y divide-border border-y border-border"
+          >
+            {beyondClassroom.map(({ icon: Icon, title, text, accent }) => (
+              <motion.li
+                key={title}
+                variants={fadeUp}
+                className="grid gap-3 py-7 sm:grid-cols-[40px_1fr] sm:gap-6"
+              >
+                <Icon className={cn("size-7", accents[accent].text)} aria-hidden="true" />
+                <div>
+                  <h3 className="text-xl font-extrabold uppercase text-brand-blue-deep">{title}</h3>
+                  <p className="mt-2 leading-relaxed text-muted-foreground">{text}</p>
+                </div>
+              </motion.li>
+            ))}
+          </motion.ul>
+        </div>
+      </section>
+
+      {/* 04 — Um dia no INAV */}
       <section className="bg-surface-tint py-20 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeading
-            eyebrow="Rotina diária"
+            eyebrow="Rotina"
             title="Um dia no"
-            highlight="instituto"
-            description="A previsibilidade da rotina é parte do cuidado: a criança sabe o que vem a seguir e isso a deixa segura."
+            highlight="INAV"
+            description="Uma rotina previsível ajuda a criança a se sentir segura: ela sabe o que vem depois."
           />
 
+          {/* Vertical no celular, horizontal no desktop */}
           <motion.ol
             variants={stagger}
             {...revealOnScroll}
-            className="mt-14 grid gap-5 lg:grid-cols-5"
+            className="mt-14 grid gap-10 lg:grid-cols-6 lg:gap-6"
           >
-            {routine.map((item) => (
-              <motion.li
-                key={item.time}
-                variants={fadeUp}
-                whileHover={{ y: -6 }}
-                transition={{ type: "spring", stiffness: 260, damping: 22 }}
-                className="rounded-2xl border border-border bg-card p-6 shadow-soft transition-shadow duration-300 hover:shadow-lift"
-              >
-                <span className="inline-flex items-center gap-1.5 rounded-full bg-brand-blue-soft px-3 py-1 text-xs font-bold uppercase tracking-wide text-brand-blue-deep">
-                  <Sun className="size-3" aria-hidden="true" />
-                  {item.time}
-                </span>
-                <h3 className="mt-4 text-base font-extrabold text-brand-blue-deep">
-                  {item.title}
-                </h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                  {item.text}
-                </p>
-              </motion.li>
-            ))}
+            {dayRoutine.map((step, index) => {
+              const accent = accents[accentCycle[index % accentCycle.length]!];
+              const isLast = index === dayRoutine.length - 1;
+              return (
+                <motion.li key={step.title} variants={fadeUp} className="relative pl-10 lg:pl-0 lg:pt-10">
+                  {!isLast && (
+                    <span
+                      className="absolute -bottom-10 left-[9px] top-5 w-0.5 bg-brand-blue/20 lg:bottom-auto lg:-right-6 lg:left-5 lg:top-[9px] lg:h-0.5 lg:w-auto"
+                      aria-hidden="true"
+                    />
+                  )}
+                  <span
+                    className={cn(
+                      "absolute left-0 top-0.5 size-5 rounded-full border-4 bg-surface-tint lg:top-0",
+                      accent.ring,
+                    )}
+                    aria-hidden="true"
+                  />
+                  <div className="text-sm font-bold uppercase tracking-[0.18em] text-muted-foreground">
+                    {step.time}
+                  </div>
+                  <h3 className={cn("mt-2 text-lg font-extrabold uppercase", accent.text)}>
+                    {step.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{step.text}</p>
+                </motion.li>
+              );
+            })}
           </motion.ol>
+
+          <p className="mt-10">
+            <Pending>em quais etapas entram as 5 refeições e o nome de cada uma</Pending>
+          </p>
         </div>
       </section>
 
+      {/* 05 — Alimentação também é cuidado */}
       <section className="bg-background py-20 sm:py-24">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:items-center lg:px-8">
           <motion.div
-            variants={stagger}
+            variants={fadeUp}
             {...revealOnScroll}
-            className="brand-gradient overflow-hidden rounded-3xl px-6 py-12 text-white shadow-lift sm:px-12 sm:py-16"
+            className="aspect-[4/3] overflow-hidden rounded-2xl shadow-lift"
           >
-            <motion.span
+            <img
+              src="/img/estrutura-cozinha.jpeg"
+              alt="Cozinha institucional do INAV, onde as refeições são preparadas"
+              className="size-full object-cover"
+            />
+          </motion.div>
+
+          <div>
+            <SectionHeading
+              eyebrow="Alimentação"
+              title="Alimentação também é"
+              highlight="cuidado"
+              description="Para muitas crianças, as refeições servidas no INAV são as principais do dia. Todas são preparadas na cozinha do próprio instituto."
+            />
+
+            <motion.div
               variants={fadeUp}
-              className="inline-flex size-14 items-center justify-center rounded-2xl bg-white/15"
+              {...revealOnScroll}
+              className="mt-8 flex items-center gap-5 border-t border-border pt-8"
             >
-              <Apple className="size-7" aria-hidden="true" />
-            </motion.span>
-            <motion.h2
-              variants={fadeUp}
-              className="mt-6 max-w-2xl text-3xl font-extrabold uppercase leading-tight text-balance-pretty sm:text-4xl"
+              <span className="font-display text-7xl font-extrabold leading-none text-brand-orange">
+                5
+              </span>
+              <div>
+                <p className="text-lg font-extrabold uppercase text-brand-blue-deep">
+                  refeições por dia
+                </p>
+                <div className="mt-2">
+                  <Pending>nomes e horários das 5 refeições</Pending>
+                </div>
+              </div>
+            </motion.div>
+
+            <p className="mt-6">
+              <Pending>confirmar se o cardápio é feito por nutricionista e como é o acompanhamento</Pending>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* 06 — A família também faz parte */}
+      <section className="bg-surface-tint py-20 sm:py-24">
+        <div className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-[1fr_420px] lg:items-center lg:px-8">
+          <div>
+            <SectionHeading
+              eyebrow="Família"
+              title="A família também faz parte desse"
+              highlight="cuidado"
+              description="O que a criança vive no INAV continua em casa. A equipe conversa com os responsáveis, orienta as famílias e acompanha cada etapa do desenvolvimento."
+            />
+
+            <motion.dl
+              variants={stagger}
+              {...revealOnScroll}
+              className="mt-8 divide-y divide-border border-y border-border"
             >
-              Nutrição não é detalhe. É a base de tudo.
-            </motion.h2>
-            <motion.p variants={fadeUp} className="mt-5 max-w-2xl text-white/85">
-              Para muitas das crianças atendidas, as refeições servidas no instituto são as
-              principais do dia. Por isso o cardápio é elaborado por nutricionista, preparado
-              na cozinha própria e acompanhado individualmente — com atenção especial a
-              crianças em risco nutricional.
-            </motion.p>
+              {familyTopics.map((topic) => (
+                <motion.div
+                  key={topic.title}
+                  variants={fadeUp}
+                  className="grid gap-1 py-5 sm:grid-cols-[220px_1fr] sm:gap-6"
+                >
+                  <dt className="font-extrabold uppercase text-brand-blue-deep">{topic.title}</dt>
+                  <dd className="leading-relaxed text-muted-foreground">{topic.text}</dd>
+                </motion.div>
+              ))}
+            </motion.dl>
+          </div>
+
+          <motion.div variants={fadeUp} {...revealOnScroll} className="aspect-[4/3] lg:aspect-[4/5]">
+            <PendingPhoto description="Acolhimento de uma família (foto real, com autorização)" />
           </motion.div>
         </div>
       </section>
+
+      {/* 07 — O dia a dia em imagens */}
+      <section className="bg-background py-20 sm:py-24">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <SectionHeading
+            eyebrow="Dia a dia"
+            title="O dia a dia em"
+            highlight="imagens"
+            align="center"
+          />
+          <div className="mt-12">
+            <PhotoGallery items={gallery} />
+          </div>
+        </div>
+      </section>
+
+      {/* 08 — Encerramento */}
+      <ClosingBanner
+        title="O trabalho"
+        highlight="continua"
+        description="O trabalho do INAV vai além da educação infantil. Conheça os projetos e iniciativas desenvolvidos com crianças, famílias e comunidade."
+        ctaLabel="Conhecer projetos"
+        ctaTo="/projetos"
+        imagePlaceholder={
+          <PendingPhoto description="Foto para o encerramento, com espaço livre à esquerda para o texto" />
+        }
+      />
     </>
   );
 }

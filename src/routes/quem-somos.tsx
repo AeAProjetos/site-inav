@@ -275,7 +275,19 @@ function QuemSomosPage() {
         </div>
       </section>
 
-      <ClosingBanner />
+      <ClosingBanner
+        title={"Uma história que\nsegue em"}
+        highlight="movimento."
+        description="Conheça os projetos e iniciativas que fazem parte da atuação do INAV e veja como você também pode contribuir."
+        ctaLabel="Conheça nossos projetos"
+        ctaTo="/projetos"
+        // Foto provisória — trocar pela foto definitiva do encerramento (INAV-011).
+        image={{
+          src: "/img/hero_criancas.jpg",
+          alt: "Crianças brincando com blocos coloridos em sala de aula do INAV",
+        }}
+        script="Mais infâncias possíveis."
+      />
     </>
   );
 }

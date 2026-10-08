@@ -12,6 +12,17 @@ aprovada em 2026-10-07. Esta é a checklist do item INAV-026 do backlog.
 - Só publicar com fotos reais e autorização de uso de imagem dos responsáveis.
 - Refeições: **5 por dia** (confirmado pelo INAV). Atualizar em todo o site.
 
+## Andamento
+
+- 2026-10-08: estrutura das 8 seções construída no branch
+  `educacao-infantil-designer` (não está na main). O que falta da instituição
+  aparece na página como marca amarela "Preencher:" ou "Foto pendente";
+  `bun run pendencias` lista tudo e só pode ir para a main com a lista vazia.
+- Os textos das seções são rascunho e precisam de aprovação do INAV antes de
+  publicar (abertura, Pilares, rotina, alimentação, família, encerramento).
+- A foto da seção 05 é a da cozinha (real, já usada em Nossa Estrutura).
+  Se vier uma foto de crianças numa refeição, ela é melhor.
+
 ## Checklist por seção
 
 - [ ] **01 Abertura:** texto curto à esquerda e foto real de crianças em

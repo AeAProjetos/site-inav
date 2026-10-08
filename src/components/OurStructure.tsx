@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { motion } from "motion/react";
 import { Image as ImageIcon, Play, X, ZoomIn } from "lucide-react";
 
+import { ImageLightbox, useEscapeToClose } from "@/components/Lightbox";
 import { SectionHeading } from "@/components/SectionHeading";
 import { fadeUp, revealOnScroll, stagger } from "@/lib/motion-presets";
 import { cn } from "@/lib/utils";
@@ -173,16 +174,6 @@ function StructureCell({
   );
 }
 
-function useEscapeToClose(onClose: () => void) {
-  useEffect(() => {
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") onClose();
-    };
-    window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
-  }, [onClose]);
-}
-
 function VideoLightbox({
   videoId,
   label,
@@ -217,46 +208,6 @@ function VideoLightbox({
             className="size-full"
           />
         </div>
-      </div>
-    </div>
-  );
-}
-
-function ImageLightbox({
-  src,
-  alt,
-  label,
-  onClose,
-}: {
-  src: string;
-  alt: string;
-  label: string;
-  onClose: () => void;
-}) {
-  useEscapeToClose(onClose);
-
-  return (
-    <div
-      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/85 p-4"
-      onClick={onClose}
-    >
-      <div className="relative max-h-full max-w-5xl" onClick={(event) => event.stopPropagation()}>
-        <button
-          type="button"
-          onClick={onClose}
-          aria-label="Fechar imagem"
-          className="absolute -top-10 right-0 text-white/80 transition-colors hover:text-white"
-        >
-          <X className="size-7" aria-hidden="true" />
-        </button>
-        <img
-          src={src}
-          alt={alt}
-          className="max-h-[85vh] w-auto rounded-xl object-contain shadow-lift"
-        />
-        <p className="mt-3 text-center text-sm font-semibold uppercase tracking-wide text-white/80">
-          {label}
-        </p>
       </div>
     </div>
   );
