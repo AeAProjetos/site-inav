@@ -23,7 +23,7 @@ export const Route = createFileRoute("/educacao-infantil")({
       {
         name: "description",
         content:
-          "Creche e pré-escola gratuitas com rotina pedagógica estruturada, quatro refeições diárias e atendimento multidisciplinar no INAV.",
+          "Creche e pré-escola gratuitas com rotina pedagógica estruturada, cinco refeições diárias e atendimento multidisciplinar no INAV.",
       },
       { property: "og:title", content: "Educação Infantil — Instituto Nair Valadares" },
       {
@@ -81,9 +81,9 @@ const pillars = [
   },
   {
     icon: Utensils,
-    title: "Quatro refeições diárias",
+    title: "Cinco refeições diárias",
     description:
-      "Café da manhã, almoço, lanche e jantar preparados na cozinha própria, com cardápio elaborado por nutricionista.",
+      "Preparadas na cozinha própria, com cardápio elaborado por nutricionista.",
     accent: "orange" as const,
   },
   {

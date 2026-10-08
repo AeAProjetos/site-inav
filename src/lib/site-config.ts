@@ -29,7 +29,7 @@ export const site = {
 export const impactStats = [
   { value: "240+", label: "Crianças atendidas", detail: "todos os dias, gratuitamente" },
   { value: "25+", label: "Anos de história", detail: "de dedicação à comunidade" },
-  { value: "4", label: "Refeições diárias", detail: "nutrição balanceada e acompanhada" },
+  { value: "5", label: "Refeições diárias", detail: "nutrição balanceada e acompanhada" },
   { value: "+10.000", label: "Crianças, adolescentes e famílias", detail: "beneficiadas" },
 ] as const;
 
