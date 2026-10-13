@@ -8,6 +8,7 @@ import {
   Scripts,
 } from "@tanstack/react-router";
 import type { ReactNode } from "react";
+import { MotionConfig } from "motion/react";
 
 import appCss from "../styles.css?url";
 import { SiteHeader } from "@/components/SiteHeader";
@@ -119,19 +120,22 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <a
-        href="#conteudo"
-        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-brand-blue-deep focus:px-5 focus:py-3 focus:text-sm focus:font-bold focus:text-white"
-      >
-        Pular para o conteúdo
-      </a>
-      <SiteHeader />
-      <main id="conteudo">
-        {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-        <Outlet />
-      </main>
-      <SiteFooter />
-      <WhatsAppFloat />
+      {/* Com "reduzir movimento" ativo no sistema, as animações perdem os deslocamentos. */}
+      <MotionConfig reducedMotion="user">
+        <a
+          href="#conteudo"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-brand-blue-deep focus:px-5 focus:py-3 focus:text-sm focus:font-bold focus:text-white"
+        >
+          Pular para o conteúdo
+        </a>
+        <SiteHeader />
+        <main id="conteudo">
+          {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+          <Outlet />
+        </main>
+        <SiteFooter />
+        <WhatsAppFloat />
+      </MotionConfig>
     </QueryClientProvider>
   );
 }
