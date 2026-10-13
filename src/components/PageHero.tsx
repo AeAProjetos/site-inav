@@ -6,7 +6,7 @@ import { WaveDivider } from "@/components/WaveDivider";
 import { cn } from "@/lib/utils";
 
 type PageHeroProps = {
-  eyebrow: string;
+  eyebrow?: string;
   title: string;
   highlight?: string;
   description: string;
@@ -33,19 +33,26 @@ export function PageHero({ eyebrow, title, highlight, description, aside }: Page
         animate="show"
         className={cn(
           "relative mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8",
-          aside && "grid gap-10 lg:grid-cols-[1fr_minmax(0,460px)] lg:items-center",
+          aside &&
+            "grid gap-10 lg:grid-cols-[1fr_minmax(0,380px)] lg:items-center xl:grid-cols-[1fr_minmax(0,460px)]",
         )}
       >
         <div>
-          <motion.p
-            variants={fadeUp}
-            className="text-sm font-bold uppercase tracking-[0.18em] text-brand-orange"
-          >
-            {eyebrow}
-          </motion.p>
+          {eyebrow && (
+            <motion.p
+              variants={fadeUp}
+              className="mb-3 text-sm font-bold uppercase tracking-[0.18em] text-brand-orange"
+            >
+              {eyebrow}
+            </motion.p>
+          )}
           <motion.h1
             variants={fadeUp}
-            className="mt-3 max-w-3xl text-4xl font-extrabold uppercase leading-[1] text-white text-balance-pretty sm:text-5xl lg:text-6xl"
+            // Sem cn() aqui: o tailwind-merge confunde text-balance-pretty com cor e descarta o text-white.
+            // Com foto ao lado a coluna de texto é mais estreita; título menor para caber em 2 linhas.
+            className={`max-w-3xl text-4xl font-extrabold uppercase leading-[1] text-white text-balance-pretty sm:text-5xl ${
+              aside ? "lg:text-[2.5rem] xl:text-[2.75rem]" : "lg:text-6xl"
+            }`}
           >
             {title}
             {highlight && (

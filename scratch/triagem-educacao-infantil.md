@@ -22,6 +22,10 @@ aprovada em 2026-10-07. Esta é a checklist do item INAV-026 do backlog.
   publicar (abertura, Pilares, rotina, alimentação, família, encerramento).
 - A foto da seção 05 é a da cozinha (real, já usada em Nossa Estrutura).
   Se vier uma foto de crianças numa refeição, ela é melhor.
+- 2026-10-13 (auditoria com as skills de design): a página ficou só com o
+  rótulo "Como funciona o atendimento"; os outros seis repetiam o título da
+  seção. O título do topo foi reduzido quando há foto ao lado, para caber em
+  2 linhas no desktop (44px em 1280px).
 
 ## Checklist por seção
 

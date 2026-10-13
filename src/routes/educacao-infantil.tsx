@@ -142,7 +142,6 @@ function EducacaoInfantilPage() {
     <>
       {/* 01 — Abertura */}
       <PageHero
-        eyebrow="Educação infantil"
         title="Educação infantil que acolhe, cuida e"
         highlight="desenvolve"
         description="Creche e pré-escola gratuitas, em período integral, com educação, alimentação e cuidado reunidos na mesma rotina."
@@ -183,7 +182,6 @@ function EducacaoInfantilPage() {
       <section className="bg-background py-20 sm:py-24">
         <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[400px_1fr] lg:gap-16 lg:px-8">
           <SectionHeading
-            eyebrow="Pilares"
             title="Muito além da sala de"
             highlight="aula"
             description="Na educação infantil, aprender passa pelo brincar, pelo cuidado e pela convivência. A rotina do INAV junta essas frentes no mesmo dia."
@@ -215,7 +213,6 @@ function EducacaoInfantilPage() {
       <section className="bg-surface-tint py-20 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeading
-            eyebrow="Rotina"
             title="Um dia no"
             highlight="INAV"
             description="Uma rotina previsível ajuda a criança a se sentir segura: ela sabe o que vem depois."
@@ -280,7 +277,6 @@ function EducacaoInfantilPage() {
 
           <div>
             <SectionHeading
-              eyebrow="Alimentação"
               title="Alimentação também é"
               highlight="cuidado"
               description="Para muitas crianças, as refeições servidas no INAV são as principais do dia. Todas são preparadas na cozinha do próprio instituto."
@@ -316,7 +312,6 @@ function EducacaoInfantilPage() {
         <div className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-[1fr_420px] lg:items-center lg:px-8">
           <div>
             <SectionHeading
-              eyebrow="Família"
               title="A família também faz parte desse"
               highlight="cuidado"
               description="O que a criança vive no INAV continua em casa. A equipe conversa com os responsáveis, orienta as famílias e acompanha cada etapa do desenvolvimento."
@@ -350,7 +345,6 @@ function EducacaoInfantilPage() {
       <section className="bg-background py-20 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeading
-            eyebrow="Dia a dia"
             title="O dia a dia em"
             highlight="imagens"
             align="center"
