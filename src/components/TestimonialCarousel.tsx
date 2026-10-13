@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "motion/react";
+import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { Quote } from "lucide-react";
 
 import { cn } from "@/lib/utils";
@@ -25,14 +25,16 @@ export function TestimonialCarousel({ testimonials }: { testimonials: Testimonia
   const [activeIndex, setActiveIndex] = useState(0);
   const [paused, setPaused] = useState(false);
   const active = testimonials[activeIndex];
+  // Com "reduzir movimento" ativo, a troca é só manual (pelos pontinhos).
+  const reduceMotion = useReducedMotion();
 
   useEffect(() => {
-    if (paused || testimonials.length <= 1) return;
+    if (paused || reduceMotion || testimonials.length <= 1) return;
     const id = setInterval(() => {
       setActiveIndex((current) => (current + 1) % testimonials.length);
     }, AUTOPLAY_INTERVAL_MS);
     return () => clearInterval(id);
-  }, [paused, testimonials.length]);
+  }, [paused, reduceMotion, testimonials.length]);
 
   if (!active) return null;
 
