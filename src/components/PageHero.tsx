@@ -13,7 +13,7 @@ type PageHeroProps = {
 /** Cabeçalho padrão das páginas internas, com a curva orgânica da marca. */
 export function PageHero({ eyebrow, title, highlight, description }: PageHeroProps) {
   return (
-    <section className="relative isolate overflow-hidden bg-brand-blue-deep pb-4 pt-32 sm:pt-40">
+    <section className="relative isolate overflow-hidden bg-brand-blue-deep pt-32 sm:pt-40">
       <div
         className="absolute -right-24 -top-24 size-96 rounded-full bg-brand-blue/40 blur-3xl"
         aria-hidden="true"
@@ -56,7 +56,8 @@ export function PageHero({ eyebrow, title, highlight, description }: PageHeroPro
         </motion.p>
       </motion.div>
 
-      <WaveDivider variant="down" className="text-background" height="md" />
+      {/* relative: a onda fica por cima dos brilhos decorativos e termina rente ao fim do topo. */}
+      <WaveDivider variant="down" className="relative -mb-px text-background" height="md" />
     </section>
   );
 }

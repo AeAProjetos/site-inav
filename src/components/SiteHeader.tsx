@@ -30,9 +30,7 @@ export function SiteHeader() {
     <header
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-all duration-300",
-        transparent
-          ? "bg-transparent py-4"
-          : "bg-background/95 py-2 shadow-soft backdrop-blur-md",
+        transparent ? "bg-transparent py-4" : "bg-background/95 py-2 shadow-soft backdrop-blur-md",
       )}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-4 sm:px-6 lg:px-8">
@@ -42,19 +40,15 @@ export function SiteHeader() {
           aria-label={`${site.name} — página inicial`}
         >
           <img
-            src="/img/logo-inav-header.png"
+            src={transparent ? "/img/logo-inav-branco.png" : "/img/logo-inav-header.png"}
             alt={`Logotipo do ${site.name}`}
-            className={cn(
-              "w-auto transition-all duration-300",
-              transparent ? "h-20 brightness-0 invert" : "h-18",
-            )}
+            className={cn("w-auto transition-all duration-300", transparent ? "h-16" : "h-18")}
           />
         </Link>
 
         <nav className="hidden items-center gap-1 lg:flex" aria-label="Navegação principal">
           {navigation.map((item) => {
-            const active =
-              item.to === "/" ? pathname === "/" : pathname.startsWith(item.to);
+            const active = item.to === "/" ? pathname === "/" : pathname.startsWith(item.to);
             return (
               <Link
                 key={item.to}
@@ -114,8 +108,7 @@ export function SiteHeader() {
           >
             <div className="mx-4 mt-3 space-y-1 rounded-2xl bg-background p-3 shadow-lift sm:mx-6">
               {navigation.map((item) => {
-                const active =
-                  item.to === "/" ? pathname === "/" : pathname.startsWith(item.to);
+                const active = item.to === "/" ? pathname === "/" : pathname.startsWith(item.to);
                 return (
                   <Link
                     key={item.to}
