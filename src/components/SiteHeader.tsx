@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { Link, useRouterState } from "@tanstack/react-router";
 import { AnimatePresence, motion } from "motion/react";
-import { Menu, X, Heart } from "lucide-react";
+import { Menu, X, Heart, ShoppingBag } from "lucide-react";
 
 import { navigation, site } from "@/lib/site-config";
+import { useUnidadesNaSacola } from "@/lib/sacola";
 import { cn } from "@/lib/utils";
 
 export function SiteHeader() {
@@ -22,6 +23,10 @@ export function SiteHeader() {
     setOpen(false);
   }, [pathname]);
 
+  const unidadesNaSacola = useUnidadesNaSacola();
+  /* A sacola só aparece nas páginas do bazar. */
+  const noBazar = pathname.startsWith("/bazar");
+
   const isHome = pathname === "/";
   /* Sobre o hero da home o header é transparente com texto claro. */
   const transparent = isHome && !scrolled;
@@ -30,9 +35,7 @@ export function SiteHeader() {
     <header
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-all duration-300",
-        transparent
-          ? "bg-transparent py-4"
-          : "bg-background/95 py-2 shadow-soft backdrop-blur-md",
+        transparent ? "bg-transparent py-4" : "bg-background/95 py-2 shadow-soft backdrop-blur-md",
       )}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-4 sm:px-6 lg:px-8">
@@ -51,16 +54,15 @@ export function SiteHeader() {
           />
         </Link>
 
-        <nav className="hidden items-center gap-1 lg:flex" aria-label="Navegação principal">
+        <nav className="hidden items-center gap-0.5 xl:flex" aria-label="Navegação principal">
           {navigation.map((item) => {
-            const active =
-              item.to === "/" ? pathname === "/" : pathname.startsWith(item.to);
+            const active = item.to === "/" ? pathname === "/" : pathname.startsWith(item.to);
             return (
               <Link
                 key={item.to}
                 to={item.to}
                 className={cn(
-                  "rounded-full px-4 py-2 text-[0.8rem] font-semibold uppercase tracking-wide transition-colors",
+                  "whitespace-nowrap rounded-full px-3 py-2 text-[0.8rem] font-semibold uppercase tracking-wide transition-colors",
                   active
                     ? "bg-brand-green text-white"
                     : transparent
@@ -75,10 +77,28 @@ export function SiteHeader() {
         </nav>
 
         <div className="flex items-center gap-2">
+          {noBazar && (
+            <Link
+              to="/bazar/sacola"
+              aria-label={
+                unidadesNaSacola > 0
+                  ? `Sacola do bazar, ${unidadesNaSacola} ${unidadesNaSacola === 1 ? "item" : "itens"}`
+                  : "Sacola do bazar, vazia"
+              }
+              className="relative inline-flex size-11 items-center justify-center rounded-full bg-secondary text-brand-blue-deep transition-colors hover:bg-brand-blue-soft"
+            >
+              <ShoppingBag className="size-5" aria-hidden="true" />
+              {unidadesNaSacola > 0 && (
+                <span className="absolute -right-1 -top-1 inline-flex min-w-5 items-center justify-center rounded-full bg-brand-orange px-1 text-xs font-bold leading-5 text-white">
+                  {unidadesNaSacola}
+                </span>
+              )}
+            </Link>
+          )}
           <Link
             to="/quer-ajudar"
             hash="envolvimento"
-            className="warm-gradient hidden items-center gap-2 rounded-full px-5 py-2.5 text-sm font-bold uppercase tracking-wide text-white shadow-cta transition-transform duration-200 hover:scale-[1.04] md:inline-flex"
+            className="warm-gradient hidden shrink-0 items-center whitespace-nowrap gap-2 rounded-full px-5 py-2.5 text-sm font-bold uppercase tracking-wide text-white shadow-cta transition-transform duration-200 hover:scale-[1.04] md:inline-flex"
           >
             <Heart className="size-4" aria-hidden="true" />
             Seja um parceiro
@@ -90,7 +110,7 @@ export function SiteHeader() {
             aria-label={open ? "Fechar menu" : "Abrir menu"}
             aria-expanded={open}
             className={cn(
-              "inline-flex size-11 items-center justify-center rounded-full transition-colors lg:hidden",
+              "inline-flex size-11 items-center justify-center rounded-full transition-colors xl:hidden",
               transparent
                 ? "bg-white/15 text-white hover:bg-white/25"
                 : "bg-secondary text-brand-blue-deep hover:bg-brand-blue-soft",
@@ -109,13 +129,12 @@ export function SiteHeader() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
-            className="overflow-hidden lg:hidden"
+            className="overflow-hidden xl:hidden"
             aria-label="Navegação móvel"
           >
             <div className="mx-4 mt-3 space-y-1 rounded-2xl bg-background p-3 shadow-lift sm:mx-6">
               {navigation.map((item) => {
-                const active =
-                  item.to === "/" ? pathname === "/" : pathname.startsWith(item.to);
+                const active = item.to === "/" ? pathname === "/" : pathname.startsWith(item.to);
                 return (
                   <Link
                     key={item.to}

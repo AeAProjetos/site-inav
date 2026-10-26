@@ -94,6 +94,44 @@ function QuerAjudarPage() {
         </div>
       </section>
 
+      {/* Bazar — outra forma de ajudar: comprar itens doados ao instituto */}
+      <section id="bazar" className="bg-brand-blue-soft py-16 sm:py-20">
+        <motion.div
+          variants={stagger}
+          {...revealOnScroll}
+          className="mx-auto flex max-w-7xl flex-col gap-8 px-4 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8"
+        >
+          <div className="max-w-2xl">
+            <motion.h2
+              variants={fadeUp}
+              className="text-3xl font-extrabold uppercase leading-[1.05] text-brand-blue-deep sm:text-4xl"
+            >
+              Compre no bazar <span className="text-brand-green">solidário</span>
+            </motion.h2>
+            <motion.p
+              variants={fadeUp}
+              className="mt-4 text-base leading-relaxed text-muted-foreground sm:text-lg"
+            >
+              Roupas, itens para casa e outros produtos a preços acessíveis. Escolha pelo site,
+              envie o pedido pelo WhatsApp e retire no INAV. Cada compra ajuda a fortalecer as
+              atividades do instituto.
+            </motion.p>
+          </div>
+          <motion.div variants={fadeUp} className="shrink-0">
+            <Link
+              to="/bazar"
+              className="group inline-flex items-center gap-2 rounded-full bg-brand-blue px-8 py-4 text-sm font-bold uppercase tracking-wide text-white shadow-soft transition-colors duration-200 hover:bg-brand-blue-deep"
+            >
+              Conhecer o bazar
+              <ArrowRight
+                className="size-4 transition-transform duration-300 group-hover:translate-x-1"
+                aria-hidden="true"
+              />
+            </Link>
+          </motion.div>
+        </motion.div>
+      </section>
+
       {/* Envolvimento — relação contínua, passa por uma conversa */}
       <section id="envolvimento" className="bg-surface-tint py-20 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -156,13 +194,10 @@ function QuerAjudarPage() {
               variants={fadeUp}
               className="mx-auto mt-4 max-w-xl leading-relaxed text-muted-foreground"
             >
-              Fale direto com a equipe pelo WhatsApp. Explicamos como o recurso é aplicado,
-              enviamos os relatórios e combinamos uma visita ao instituto.
+              Fale direto com a equipe pelo WhatsApp. Explicamos como o recurso é aplicado, enviamos
+              os relatórios e combinamos uma visita ao instituto.
             </motion.p>
-            <motion.div
-              variants={fadeUp}
-              className="mt-8 flex flex-wrap justify-center gap-3"
-            >
+            <motion.div variants={fadeUp} className="mt-8 flex flex-wrap justify-center gap-3">
               <a
                 href={whatsappLink}
                 target="_blank"

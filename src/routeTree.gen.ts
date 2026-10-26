@@ -16,6 +16,9 @@ import { Route as ProjetosRouteImport } from './routes/projetos'
 import { Route as QuemSomosRouteImport } from './routes/quem-somos'
 import { Route as QuerAjudarRouteImport } from './routes/quer-ajudar'
 import { Route as TransparenciaRouteImport } from './routes/transparencia'
+import { Route as BazarIndexRouteImport } from './routes/bazar/index'
+import { Route as BazarCodigoRouteImport } from './routes/bazar/$codigo'
+import { Route as BazarSacolaRouteImport } from './routes/bazar/sacola'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -52,6 +55,21 @@ const TransparenciaRoute = TransparenciaRouteImport.update({
   path: '/transparencia',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BazarIndexRoute = BazarIndexRouteImport.update({
+  id: '/bazar/',
+  path: '/bazar/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BazarCodigoRoute = BazarCodigoRouteImport.update({
+  id: '/bazar/$codigo',
+  path: '/bazar/$codigo',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BazarSacolaRoute = BazarSacolaRouteImport.update({
+  id: '/bazar/sacola',
+  path: '/bazar/sacola',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -61,6 +79,9 @@ export interface FileRoutesByFullPath {
   '/quem-somos': typeof QuemSomosRoute
   '/quer-ajudar': typeof QuerAjudarRoute
   '/transparencia': typeof TransparenciaRoute
+  '/bazar/$codigo': typeof BazarCodigoRoute
+  '/bazar/sacola': typeof BazarSacolaRoute
+  '/bazar/': typeof BazarIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -70,6 +91,9 @@ export interface FileRoutesByTo {
   '/quem-somos': typeof QuemSomosRoute
   '/quer-ajudar': typeof QuerAjudarRoute
   '/transparencia': typeof TransparenciaRoute
+  '/bazar/$codigo': typeof BazarCodigoRoute
+  '/bazar/sacola': typeof BazarSacolaRoute
+  '/bazar': typeof BazarIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -80,6 +104,9 @@ export interface FileRoutesById {
   '/quem-somos': typeof QuemSomosRoute
   '/quer-ajudar': typeof QuerAjudarRoute
   '/transparencia': typeof TransparenciaRoute
+  '/bazar/$codigo': typeof BazarCodigoRoute
+  '/bazar/sacola': typeof BazarSacolaRoute
+  '/bazar/': typeof BazarIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -91,6 +118,9 @@ export interface FileRouteTypes {
     | '/quem-somos'
     | '/quer-ajudar'
     | '/transparencia'
+    | '/bazar/$codigo'
+    | '/bazar/sacola'
+    | '/bazar/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -100,6 +130,9 @@ export interface FileRouteTypes {
     | '/quem-somos'
     | '/quer-ajudar'
     | '/transparencia'
+    | '/bazar/$codigo'
+    | '/bazar/sacola'
+    | '/bazar'
   id:
     | '__root__'
     | '/'
@@ -109,6 +142,9 @@ export interface FileRouteTypes {
     | '/quem-somos'
     | '/quer-ajudar'
     | '/transparencia'
+    | '/bazar/$codigo'
+    | '/bazar/sacola'
+    | '/bazar/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -119,6 +155,9 @@ export interface RootRouteChildren {
   QuemSomosRoute: typeof QuemSomosRoute
   QuerAjudarRoute: typeof QuerAjudarRoute
   TransparenciaRoute: typeof TransparenciaRoute
+  BazarCodigoRoute: typeof BazarCodigoRoute
+  BazarSacolaRoute: typeof BazarSacolaRoute
+  BazarIndexRoute: typeof BazarIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -172,6 +211,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TransparenciaRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/bazar/': {
+      id: '/bazar/'
+      path: '/bazar'
+      fullPath: '/bazar/'
+      preLoaderRoute: typeof BazarIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/bazar/$codigo': {
+      id: '/bazar/$codigo'
+      path: '/bazar/$codigo'
+      fullPath: '/bazar/$codigo'
+      preLoaderRoute: typeof BazarCodigoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/bazar/sacola': {
+      id: '/bazar/sacola'
+      path: '/bazar/sacola'
+      fullPath: '/bazar/sacola'
+      preLoaderRoute: typeof BazarSacolaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -183,6 +243,9 @@ const rootRouteChildren: RootRouteChildren = {
   QuemSomosRoute: QuemSomosRoute,
   QuerAjudarRoute: QuerAjudarRoute,
   TransparenciaRoute: TransparenciaRoute,
+  BazarCodigoRoute: BazarCodigoRoute,
+  BazarSacolaRoute: BazarSacolaRoute,
+  BazarIndexRoute: BazarIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
