@@ -40,6 +40,7 @@ export const navigation = [
   { label: "Projetos", to: "/projetos" },
   { label: "Transparência", to: "/transparencia" },
   { label: "Bazar", to: "/bazar" },
+  { label: "Blog", to: "/blog" },
   { label: "Quer Ajudar", to: "/quer-ajudar" },
   { label: "Contato", to: "/contato" },
 ] as const;

@@ -2,16 +2,19 @@ import { motion } from "motion/react";
 
 import { EASE_SOFT, fadeUp, stagger } from "@/lib/motion-presets";
 import { WaveDivider } from "@/components/WaveDivider";
+import { cn } from "@/lib/utils";
 
 type PageHeroProps = {
   eyebrow: string;
   title: string;
   highlight?: string;
   description: string;
+  /** Título menor, para títulos longos como o de uma publicação do blog. */
+  compact?: boolean;
 };
 
 /** Cabeçalho padrão das páginas internas, com a curva orgânica da marca. */
-export function PageHero({ eyebrow, title, highlight, description }: PageHeroProps) {
+export function PageHero({ eyebrow, title, highlight, description, compact }: PageHeroProps) {
   return (
     <section className="relative isolate overflow-hidden bg-brand-blue-deep pb-4 pt-32 sm:pt-40">
       <div
@@ -37,7 +40,13 @@ export function PageHero({ eyebrow, title, highlight, description }: PageHeroPro
         </motion.p>
         <motion.h1
           variants={fadeUp}
-          className="mt-3 max-w-3xl text-4xl font-extrabold uppercase leading-[1] text-white text-balance-pretty sm:text-5xl lg:text-6xl"
+          // text-balance-pretty fica fora do cn(): o tailwind-merge acha que é cor e apagaria o text-white.
+          className={`${cn(
+            "mt-3 max-w-3xl font-extrabold uppercase text-white",
+            compact
+              ? "text-3xl leading-[1.08] sm:text-4xl lg:text-5xl"
+              : "text-4xl leading-[1] sm:text-5xl lg:text-6xl",
+          )} text-balance-pretty`}
         >
           {title}
           {highlight && (

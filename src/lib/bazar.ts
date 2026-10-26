@@ -1,14 +1,7 @@
 import { createServerFn } from "@tanstack/react-start";
-import { createImageUrlBuilder } from "@sanity/image-url";
+import { consultar, imagemDoSanity, type FotoSanity } from "@/lib/sanity";
 
-/**
- * Bazar: os itens vêm do Sanity (painel em https://inav.sanity.studio).
- * O site no ar lê o dataset "production". Para ver os itens de exemplo na sua máquina,
- * rode o site com SANITY_DATASET=development (ex.: SANITY_DATASET=development bun run dev).
- */
-const projectId = "2k4u015k";
-const apiVersion = "v2026-10-01";
-const dataset = () => process.env["SANITY_DATASET"] ?? "production";
+/** Bazar: os itens vêm do Sanity (painel em https://inav.sanity.studio). Acesso em src/lib/sanity.ts. */
 
 // Mesmas listas do painel (studio/schemaTypes/itemBazar.ts). Se mudar lá, mude aqui.
 export const categorias = [
@@ -68,33 +61,14 @@ const FOTO = `{asset, crop, hotspot, "lqip": asset->metadata.lqip}`;
 const RESUMO = `codigo, nome, categoria, conservacao, tamanho, preco, quantidade,
   "reservado": ${RESERVADO}, "foto": fotos[0]${FOTO}`;
 
-type FotoSanity = Parameters<ReturnType<typeof createImageUrlBuilder>["image"]>[0] & {
-  lqip?: string;
-};
-
 function montarFoto(foto: FotoSanity): Foto {
-  const imagem = createImageUrlBuilder({ projectId, dataset: dataset() })
-    .image(foto)
-    .auto("format");
+  const imagem = imagemDoSanity(foto);
   return {
     card: imagem.width(640).height(480).fit("crop").url(),
     media: imagem.width(1100).fit("max").url(),
     grande: imagem.width(1800).fit("max").url(),
     lqip: foto.lqip,
   };
-}
-
-async function consultar<T>(query: string, params: Record<string, unknown> = {}): Promise<T> {
-  const url = new URL(
-    `https://${projectId}.apicdn.sanity.io/${apiVersion}/data/query/${dataset()}`,
-  );
-  url.searchParams.set("query", query);
-  for (const [nome, valor] of Object.entries(params)) {
-    url.searchParams.set(`$${nome}`, JSON.stringify(valor));
-  }
-  const resposta = await fetch(url);
-  if (!resposta.ok) throw new Error(`O Sanity respondeu ${resposta.status}`);
-  return ((await resposta.json()) as { result: T }).result;
 }
 
 type ResumoSanity = Omit<ItemResumo, "foto"> & { foto: FotoSanity };

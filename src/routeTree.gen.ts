@@ -19,6 +19,8 @@ import { Route as TransparenciaRouteImport } from './routes/transparencia'
 import { Route as BazarIndexRouteImport } from './routes/bazar/index'
 import { Route as BazarCodigoRouteImport } from './routes/bazar/$codigo'
 import { Route as BazarSacolaRouteImport } from './routes/bazar/sacola'
+import { Route as BlogIndexRouteImport } from './routes/blog/index'
+import { Route as BlogSlugRouteImport } from './routes/blog/$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -70,6 +72,16 @@ const BazarSacolaRoute = BazarSacolaRouteImport.update({
   path: '/bazar/sacola',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BlogIndexRoute = BlogIndexRouteImport.update({
+  id: '/blog/',
+  path: '/blog/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogSlugRoute = BlogSlugRouteImport.update({
+  id: '/blog/$slug',
+  path: '/blog/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -81,7 +93,9 @@ export interface FileRoutesByFullPath {
   '/transparencia': typeof TransparenciaRoute
   '/bazar/$codigo': typeof BazarCodigoRoute
   '/bazar/sacola': typeof BazarSacolaRoute
+  '/blog/$slug': typeof BlogSlugRoute
   '/bazar/': typeof BazarIndexRoute
+  '/blog/': typeof BlogIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -93,7 +107,9 @@ export interface FileRoutesByTo {
   '/transparencia': typeof TransparenciaRoute
   '/bazar/$codigo': typeof BazarCodigoRoute
   '/bazar/sacola': typeof BazarSacolaRoute
+  '/blog/$slug': typeof BlogSlugRoute
   '/bazar': typeof BazarIndexRoute
+  '/blog': typeof BlogIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -106,7 +122,9 @@ export interface FileRoutesById {
   '/transparencia': typeof TransparenciaRoute
   '/bazar/$codigo': typeof BazarCodigoRoute
   '/bazar/sacola': typeof BazarSacolaRoute
+  '/blog/$slug': typeof BlogSlugRoute
   '/bazar/': typeof BazarIndexRoute
+  '/blog/': typeof BlogIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -120,7 +138,9 @@ export interface FileRouteTypes {
     | '/transparencia'
     | '/bazar/$codigo'
     | '/bazar/sacola'
+    | '/blog/$slug'
     | '/bazar/'
+    | '/blog/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -132,7 +152,9 @@ export interface FileRouteTypes {
     | '/transparencia'
     | '/bazar/$codigo'
     | '/bazar/sacola'
+    | '/blog/$slug'
     | '/bazar'
+    | '/blog'
   id:
     | '__root__'
     | '/'
@@ -144,7 +166,9 @@ export interface FileRouteTypes {
     | '/transparencia'
     | '/bazar/$codigo'
     | '/bazar/sacola'
+    | '/blog/$slug'
     | '/bazar/'
+    | '/blog/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -157,7 +181,9 @@ export interface RootRouteChildren {
   TransparenciaRoute: typeof TransparenciaRoute
   BazarCodigoRoute: typeof BazarCodigoRoute
   BazarSacolaRoute: typeof BazarSacolaRoute
+  BlogSlugRoute: typeof BlogSlugRoute
   BazarIndexRoute: typeof BazarIndexRoute
+  BlogIndexRoute: typeof BlogIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -232,6 +258,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BazarSacolaRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog/': {
+      id: '/blog/'
+      path: '/blog'
+      fullPath: '/blog/'
+      preLoaderRoute: typeof BlogIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/$slug': {
+      id: '/blog/$slug'
+      path: '/blog/$slug'
+      fullPath: '/blog/$slug'
+      preLoaderRoute: typeof BlogSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -245,7 +285,9 @@ const rootRouteChildren: RootRouteChildren = {
   TransparenciaRoute: TransparenciaRoute,
   BazarCodigoRoute: BazarCodigoRoute,
   BazarSacolaRoute: BazarSacolaRoute,
+  BlogSlugRoute: BlogSlugRoute,
   BazarIndexRoute: BazarIndexRoute,
+  BlogIndexRoute: BlogIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
