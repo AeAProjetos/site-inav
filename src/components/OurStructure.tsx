@@ -61,7 +61,8 @@ export function OurStructure() {
   return (
     <section className="bg-brand-blue-soft py-20 sm:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid gap-10 lg:grid-cols-[400px_1fr] lg:items-center">
+        {/* Título largo acima das fotos (decisão INAV-022, 26/10/2026). */}
+        <div>
           <SectionHeading
             eyebrow="Nossa estrutura"
             title="Espaços para cuidar, aprender e"
@@ -72,11 +73,15 @@ export function OurStructure() {
           <motion.div
             variants={stagger}
             {...revealOnScroll}
-            className="grid grid-cols-2 gap-4 sm:grid-cols-3"
+            className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3 xl:grid-cols-6"
           >
             {items.map((item) => (
               <motion.div key={item.key} variants={fadeUp}>
-                <StructureCell item={item} onOpenVideo={setActiveVideo} onOpenImage={setActiveImage} />
+                <StructureCell
+                  item={item}
+                  onOpenVideo={setActiveVideo}
+                  onOpenImage={setActiveImage}
+                />
               </motion.div>
             ))}
           </motion.div>
@@ -124,8 +129,8 @@ function StructureCell({
       onKeyDown={
         isClickable
           ? (event) => {
-            if (event.key === "Enter" || event.key === " ") handleOpen();
-          }
+              if (event.key === "Enter" || event.key === " ") handleOpen();
+            }
           : undefined
       }
       className={cn(

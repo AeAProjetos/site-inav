@@ -45,12 +45,9 @@ export function SiteHeader() {
           aria-label={`${site.name} — página inicial`}
         >
           <img
-            src="/img/logo-inav-header.png"
+            src={transparent ? "/img/logo-inav-branco.png" : "/img/logo-inav-header.png"}
             alt={`Logotipo do ${site.name}`}
-            className={cn(
-              "w-auto transition-all duration-300",
-              transparent ? "h-20 brightness-0 invert" : "h-18",
-            )}
+            className={cn("w-auto transition-all duration-300", transparent ? "h-16" : "h-18")}
           />
         </Link>
 
