@@ -34,3 +34,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Arquivos de trabalho locais, fora do repositorio (decisao INAV-002, 26/10/2026)
+scratch/
+.agents/
+skills-lock.json
