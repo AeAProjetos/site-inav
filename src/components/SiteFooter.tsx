@@ -7,15 +7,21 @@ import { WaveDivider } from "@/components/WaveDivider";
 export function SiteFooter() {
   return (
     <footer className="relative">
-      <WaveDivider variant="up" className="text-brand-blue-deep" height="md" />
+      {/* A onda é a borda curva do rodapé: fica acima dele, sobre o fim da seção anterior, para o fundo dessa seção aparecer atrás da curva. */}
+      <WaveDivider
+        variant="down"
+        className="absolute inset-x-0 bottom-full -mb-px h-10 text-brand-blue-deep md:h-16"
+      />
 
       <div className="bg-brand-blue-deep text-white">
-        <div className="mx-auto grid max-w-7xl gap-10 px-4 pb-12 sm:px-6 lg:grid-cols-[1.4fr_1fr_1.2fr] lg:px-8">
+        <div className="mx-auto grid max-w-7xl gap-10 px-4 pb-12 pt-6 sm:px-6 md:pt-8 lg:grid-cols-[1.4fr_1fr_1.2fr] lg:px-8">
           <div>
             <img
-              src="/img/logo-inav-header.png"
+              src="/img/logo-inav-branco.png"
               alt={`Logotipo do ${site.name}`}
-              className="h-14 w-auto brightness-0 invert"
+              width={269}
+              height={160}
+              className="h-14 w-auto"
             />
             <p className="mt-5 max-w-sm text-sm leading-relaxed text-white/75">
               {site.description}
