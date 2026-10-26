@@ -21,6 +21,8 @@ import { Route as BazarCodigoRouteImport } from './routes/bazar/$codigo'
 import { Route as BazarSacolaRouteImport } from './routes/bazar/sacola'
 import { Route as BlogIndexRouteImport } from './routes/blog/index'
 import { Route as BlogSlugRouteImport } from './routes/blog/$slug'
+import { Route as NewsletterConfirmadaRouteImport } from './routes/newsletter/confirmada'
+import { Route as ApiNewsletterNovoPostRouteImport } from './routes/api/newsletter/novo-post'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -82,6 +84,16 @@ const BlogSlugRoute = BlogSlugRouteImport.update({
   path: '/blog/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const NewsletterConfirmadaRoute = NewsletterConfirmadaRouteImport.update({
+  id: '/newsletter/confirmada',
+  path: '/newsletter/confirmada',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiNewsletterNovoPostRoute = ApiNewsletterNovoPostRouteImport.update({
+  id: '/api/newsletter/novo-post',
+  path: '/api/newsletter/novo-post',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -94,8 +106,10 @@ export interface FileRoutesByFullPath {
   '/bazar/$codigo': typeof BazarCodigoRoute
   '/bazar/sacola': typeof BazarSacolaRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/newsletter/confirmada': typeof NewsletterConfirmadaRoute
   '/bazar/': typeof BazarIndexRoute
   '/blog/': typeof BlogIndexRoute
+  '/api/newsletter/novo-post': typeof ApiNewsletterNovoPostRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -108,8 +122,10 @@ export interface FileRoutesByTo {
   '/bazar/$codigo': typeof BazarCodigoRoute
   '/bazar/sacola': typeof BazarSacolaRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/newsletter/confirmada': typeof NewsletterConfirmadaRoute
   '/bazar': typeof BazarIndexRoute
   '/blog': typeof BlogIndexRoute
+  '/api/newsletter/novo-post': typeof ApiNewsletterNovoPostRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -123,8 +139,10 @@ export interface FileRoutesById {
   '/bazar/$codigo': typeof BazarCodigoRoute
   '/bazar/sacola': typeof BazarSacolaRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/newsletter/confirmada': typeof NewsletterConfirmadaRoute
   '/bazar/': typeof BazarIndexRoute
   '/blog/': typeof BlogIndexRoute
+  '/api/newsletter/novo-post': typeof ApiNewsletterNovoPostRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -139,8 +157,10 @@ export interface FileRouteTypes {
     | '/bazar/$codigo'
     | '/bazar/sacola'
     | '/blog/$slug'
+    | '/newsletter/confirmada'
     | '/bazar/'
     | '/blog/'
+    | '/api/newsletter/novo-post'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -153,8 +173,10 @@ export interface FileRouteTypes {
     | '/bazar/$codigo'
     | '/bazar/sacola'
     | '/blog/$slug'
+    | '/newsletter/confirmada'
     | '/bazar'
     | '/blog'
+    | '/api/newsletter/novo-post'
   id:
     | '__root__'
     | '/'
@@ -167,8 +189,10 @@ export interface FileRouteTypes {
     | '/bazar/$codigo'
     | '/bazar/sacola'
     | '/blog/$slug'
+    | '/newsletter/confirmada'
     | '/bazar/'
     | '/blog/'
+    | '/api/newsletter/novo-post'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -182,8 +206,10 @@ export interface RootRouteChildren {
   BazarCodigoRoute: typeof BazarCodigoRoute
   BazarSacolaRoute: typeof BazarSacolaRoute
   BlogSlugRoute: typeof BlogSlugRoute
+  NewsletterConfirmadaRoute: typeof NewsletterConfirmadaRoute
   BazarIndexRoute: typeof BazarIndexRoute
   BlogIndexRoute: typeof BlogIndexRoute
+  ApiNewsletterNovoPostRoute: typeof ApiNewsletterNovoPostRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -272,6 +298,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/newsletter/confirmada': {
+      id: '/newsletter/confirmada'
+      path: '/newsletter/confirmada'
+      fullPath: '/newsletter/confirmada'
+      preLoaderRoute: typeof NewsletterConfirmadaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/newsletter/novo-post': {
+      id: '/api/newsletter/novo-post'
+      path: '/api/newsletter/novo-post'
+      fullPath: '/api/newsletter/novo-post'
+      preLoaderRoute: typeof ApiNewsletterNovoPostRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -286,8 +326,10 @@ const rootRouteChildren: RootRouteChildren = {
   BazarCodigoRoute: BazarCodigoRoute,
   BazarSacolaRoute: BazarSacolaRoute,
   BlogSlugRoute: BlogSlugRoute,
+  NewsletterConfirmadaRoute: NewsletterConfirmadaRoute,
   BazarIndexRoute: BazarIndexRoute,
   BlogIndexRoute: BlogIndexRoute,
+  ApiNewsletterNovoPostRoute: ApiNewsletterNovoPostRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

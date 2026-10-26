@@ -11,14 +11,18 @@ export const projectId = "2k4u015k";
 const apiVersion = "v2026-10-01";
 export const dataset = () => process.env["SANITY_DATASET"] ?? "production";
 
-/** Consulta GROQ pela API pública (CDN). Falha com erro se o Sanity não responder. */
+/**
+ * Consulta GROQ pela API pública. Usa o CDN (rápido, pode atrasar alguns segundos depois de uma
+ * publicação); com `semCache`, lê direto da API, para quando o dado acabou de ser publicado.
+ * Falha com erro se o Sanity não responder.
+ */
 export async function consultar<T>(
   query: string,
   params: Record<string, unknown> = {},
+  { semCache = false }: { semCache?: boolean } = {},
 ): Promise<T> {
-  const url = new URL(
-    `https://${projectId}.apicdn.sanity.io/${apiVersion}/data/query/${dataset()}`,
-  );
+  const host = semCache ? "api.sanity.io" : "apicdn.sanity.io";
+  const url = new URL(`https://${projectId}.${host}/${apiVersion}/data/query/${dataset()}`);
   url.searchParams.set("query", query);
   for (const [nome, valor] of Object.entries(params)) {
     url.searchParams.set(`$${nome}`, JSON.stringify(valor));

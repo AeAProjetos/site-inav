@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { Mail, MapPin, Phone, Clock } from "lucide-react";
 
 import { navigation, site } from "@/lib/site-config";
+import { InscricaoNewsletter } from "@/components/InscricaoNewsletter";
 import { WaveDivider } from "@/components/WaveDivider";
 
 export function SiteFooter() {
@@ -29,6 +30,16 @@ export function SiteFooter() {
             <p className="mt-5 text-xs uppercase tracking-widest text-brand-green-light">
               Organização da Sociedade Civil sem fins lucrativos
             </p>
+
+            <div className="mt-8 max-w-sm">
+              <h2 className="text-sm font-bold uppercase tracking-widest text-brand-green-light">
+                Newsletter
+              </h2>
+              <p className="mb-4 mt-2 text-sm leading-relaxed text-white/75">
+                Receba por e-mail cada publicação nova do blog.
+              </p>
+              <InscricaoNewsletter variante="rodape" />
+            </div>
           </div>
 
           <nav aria-label="Rodapé">

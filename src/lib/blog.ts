@@ -159,3 +159,23 @@ export const buscarPost = createServerFn({ method: "GET" })
       };
     },
   );
+
+/**
+ * Para a newsletter: busca uma publicação pelo identificador, mesmo agendada para o futuro,
+ * direto da API (sem cache), porque o aviso do Sanity chega logo depois da publicação.
+ * Só para uso no servidor.
+ */
+export async function postParaNewsletter(
+  id: string,
+): Promise<(PostResumo & { enviarNewsletter: boolean }) | null> {
+  const post = await consultar<(ResumoSanity & { enviarNewsletter?: boolean | null }) | null>(
+    `*[_type == "post" && _id == $id && defined(slug.current) && defined(titulo) && defined(tipo)
+      && defined(publicadoEm)][0] {${RESUMO}, enviarNewsletter}`,
+    { id },
+    { semCache: true },
+  );
+  if (!post) return null;
+  const { enviarNewsletter, ...resto } = post;
+  // Publicações criadas antes desta opção existir contam como "enviar".
+  return { ...paraResumo(resto), enviarNewsletter: enviarNewsletter !== false };
+}

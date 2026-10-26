@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "motion/react";
 
+import { CartaoNewsletter } from "@/components/InscricaoNewsletter";
 import { PageHero } from "@/components/PageHero";
 import { PostCard } from "@/components/blog/PostCard";
 import { listarPosts, tipos } from "@/lib/blog";
@@ -135,6 +136,10 @@ function BlogPage() {
               </p>
             </div>
           )}
+
+          <div className="mt-16 sm:mt-20">
+            <CartaoNewsletter />
+          </div>
         </div>
       </section>
     </>

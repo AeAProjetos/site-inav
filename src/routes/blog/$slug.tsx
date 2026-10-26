@@ -2,6 +2,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { motion } from "motion/react";
 import { ArrowLeft, Clock, ExternalLink, PlayCircle } from "lucide-react";
 
+import { CartaoNewsletter } from "@/components/InscricaoNewsletter";
 import { PageHero } from "@/components/PageHero";
 import { PostCard } from "@/components/blog/PostCard";
 import { Compartilhar } from "@/components/blog/Compartilhar";
@@ -125,6 +126,10 @@ function PostPage() {
 
           <div className="mt-12 border-t border-border pt-8">
             <Compartilhar titulo={post.titulo} />
+          </div>
+
+          <div className="mt-12">
+            <CartaoNewsletter />
           </div>
         </div>
       </div>

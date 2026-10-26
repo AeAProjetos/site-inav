@@ -26,7 +26,7 @@ export const post = defineType({
   name: 'post',
   title: 'Publicação do blog',
   type: 'document',
-  initialValue: () => ({publicadoEm: new Date().toISOString()}),
+  initialValue: () => ({publicadoEm: new Date().toISOString(), enviarNewsletter: true}),
   fields: [
     defineField({
       name: 'titulo',
@@ -76,6 +76,14 @@ export const post = defineType({
       type: 'datetime',
       options: {timeStep: 15},
       validation: (rule) => rule.required().error('Informe a data de publicação.'),
+    }),
+    defineField({
+      name: 'enviarNewsletter',
+      title: 'Enviar por e-mail aos inscritos da newsletter',
+      description:
+        'Marcado, os inscritos recebem um e-mail com o resumo e o link assim que esta publicação for publicada pela primeira vez. Se a data for futura, o e-mail sai nessa data. O e-mail sai uma vez só: editar depois não reenvia, e mudar a data depois de publicar não muda o envio.',
+      type: 'boolean',
+      initialValue: true,
     }),
     defineField({
       name: 'capa',
