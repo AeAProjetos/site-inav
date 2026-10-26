@@ -35,6 +35,8 @@ de mais de um dia para chegar a todos, ou de um plano pago.
 
 ### 2. Variáveis na Vercel
 
+Na conta do INAV, criada em 26/10/2026 com o e-mail do projeto, a lista "Newsletter do site" é a **2** e o modelo "Confirmação da newsletter" é o **1**. O modelo tem a tag `optin` e o botão com o link de double opt-in.
+
 Em Vercel > Project > Settings > Environment Variables (ambiente Production):
 
 | Variável | Valor |
