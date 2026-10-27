@@ -141,15 +141,18 @@ function TransparenciaPage() {
             description="Baixe diretamente os documentos disponíveis ou solicite pelo nosso canal de contato."
           />
 
-          <motion.ul variants={stagger} {...revealOnScroll} className="mt-12 space-y-4">
+          {/* Cada item se revela sozinho: a lista vem da planilha e pode ter dezenas de linhas,
+              alta demais para o `amount` do revealOnScroll aplicado ao <ul> inteiro. */}
+          <ul className="mt-12 space-y-4">
             {documents.map((doc) => (
               <motion.li
-                key={doc.label}
+                key={doc.url ?? doc.label}
                 variants={fadeUp}
+                {...revealOnScroll}
                 className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-border bg-card p-6 shadow-soft transition-shadow duration-300 hover:shadow-lift"
               >
                 <div className="flex items-center gap-4">
-                  <span className="inline-flex size-11 items-center justify-center rounded-xl bg-brand-blue-soft text-brand-blue-deep">
+                  <span className="inline-flex size-11 shrink-0 items-center justify-center rounded-xl bg-brand-blue-soft text-brand-blue-deep">
                     <FileText className="size-5" aria-hidden="true" />
                   </span>
                   <div>
@@ -178,7 +181,7 @@ function TransparenciaPage() {
                 )}
               </motion.li>
             ))}
-          </motion.ul>
+          </ul>
         </div>
       </section>
     </>
