@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
-import { Mail, MapPin, Phone, Clock } from "lucide-react";
+import { Mail, MapPin, Phone, Clock, Instagram } from "lucide-react";
 
-import { navigation, site } from "@/lib/site-config";
+import { instagramLink, navigation, site } from "@/lib/site-config";
 import { InscricaoNewsletter } from "@/components/InscricaoNewsletter";
 import { WaveDivider } from "@/components/WaveDivider";
 
@@ -83,6 +83,17 @@ export function SiteFooter() {
                 <Mail className="mt-0.5 size-4 shrink-0 text-brand-orange" aria-hidden="true" />
                 <a className="transition-colors hover:text-white" href={`mailto:${site.email}`}>
                   {site.email}
+                </a>
+              </li>
+              <li className="flex gap-3">
+                <Instagram className="mt-0.5 size-4 shrink-0 text-brand-orange" aria-hidden="true" />
+                <a
+                  className="transition-colors hover:text-white"
+                  href={instagramLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  @{site.instagram}
                 </a>
               </li>
               <li className="flex gap-3">

@@ -1,12 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "motion/react";
-import { MapPin, Phone, Mail, Clock, MessageCircle } from "lucide-react";
+import { MapPin, Phone, Mail, Clock, MessageCircle, Instagram } from "lucide-react";
 
 import { ContactForm } from "@/components/ContactForm";
 import { PageHero } from "@/components/PageHero";
 import { SectionHeading } from "@/components/SectionHeading";
 import { fadeUp, revealOnScroll, stagger } from "@/lib/motion-presets";
-import { site, whatsappLink } from "@/lib/site-config";
+import { instagramLink, site, whatsappLink } from "@/lib/site-config";
 
 type ContatoSearch = { motivo?: string | undefined };
 
@@ -59,6 +59,12 @@ const channels = [
     label: "WhatsApp",
     value: site.whatsappDisplay,
     href: whatsappLink,
+  },
+  {
+    icon: Instagram,
+    label: "Instagram",
+    value: `@${site.instagram}`,
+    href: instagramLink,
   },
 ];
 

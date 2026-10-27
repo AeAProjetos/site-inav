@@ -17,6 +17,7 @@ export const site = {
   whatsapp: "5500000000000",
   whatsappDisplay: "(00) 00000-0000",
   email: "contato@inav.org.br",
+  instagram: "instituicaoinav",
   address: {
     street: "Rua Exemplo, 000 — Bairro",
     city: "Cidade",
@@ -48,6 +49,8 @@ export const navigation = [
 export const whatsappLink = `https://wa.me/${site.whatsapp}?text=${encodeURIComponent(
   "Olá! Gostaria de saber mais sobre o Instituto Nair Valadares.",
 )}`;
+
+export const instagramLink = `https://www.instagram.com/${site.instagram}/`;
 
 /**
  * Integrações externas — preencher quando as contas estiverem criadas.
