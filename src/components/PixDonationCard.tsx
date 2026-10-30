@@ -10,7 +10,10 @@ export function PixDonationCard() {
 
   const copyKey = async () => {
     try {
-      await navigator.clipboard.writeText(site.pixKey);
+      // Chave de CNPJ vai só com os números, o formato que todo app de banco aceita.
+      await navigator.clipboard.writeText(
+        site.pixLabel === "CNPJ" ? site.pixKey.replace(/\D/g, "") : site.pixKey,
+      );
     } catch {
       /* Ambientes sem permissão de clipboard: a chave segue visível na tela. */
     }
@@ -62,6 +65,9 @@ export function PixDonationCard() {
           </div>
           <p className="mt-3 break-all font-display text-xl font-bold sm:text-2xl">
             {site.pixKey}
+          </p>
+          <p className="mt-1 text-sm text-white/80">
+            {site.name} · {site.pixBank}
           </p>
           <button
             type="button"

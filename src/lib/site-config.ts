@@ -12,9 +12,11 @@ export const site = {
   url: "https://inav.org.br",
   /** Confirmado pelo INAV em 30/10/2026. */
   cnpj: "04.192.012/0001-16",
-  /* PLACEHOLDER — trocar pelos dados oficiais */
-  pixKey: "00.000.000/0001-00",
+  /** A chave Pix é o próprio CNPJ, conferida no app do banco em 30/10/2026 (recebedor no BRB). */
+  pixKey: "04.192.012/0001-16",
   pixLabel: "CNPJ",
+  pixBank: "BRB",
+  /* PLACEHOLDER — trocar pelos dados oficiais */
   phone: "(00) 0000-0000",
   whatsapp: "5500000000000",
   whatsappDisplay: "(00) 00000-0000",
