@@ -16,10 +16,11 @@ export const site = {
   pixKey: "04.192.012/0001-16",
   pixLabel: "CNPJ",
   pixBank: "BRB",
+  /** Por enquanto o mesmo número serve para telefone, WhatsApp e pedidos do bazar (30/10/2026). */
+  phone: "(61) 99394-9017",
+  whatsapp: "5561993949017",
+  whatsappDisplay: "(61) 99394-9017",
   /* PLACEHOLDER — trocar pelos dados oficiais */
-  phone: "(00) 0000-0000",
-  whatsapp: "5500000000000",
-  whatsappDisplay: "(00) 00000-0000",
   email: "contato@inav.org.br",
   instagram: "instituicaoinav",
   address: {
