@@ -3,16 +3,12 @@ import { Mail, MapPin, Phone, Clock, Instagram } from "lucide-react";
 
 import { instagramLink, navigation, site } from "@/lib/site-config";
 import { InscricaoNewsletter } from "@/components/InscricaoNewsletter";
-import { WaveDivider } from "@/components/WaveDivider";
+import { PaisagemRodape } from "@/components/Paisagem";
 
 export function SiteFooter() {
   return (
     <footer className="relative">
-      {/* A onda é a borda curva do rodapé: fica acima dele, sobre o fim da seção anterior, para o fundo dessa seção aparecer atrás da curva. */}
-      <WaveDivider
-        variant="down"
-        className="absolute inset-x-0 bottom-full -mb-px h-10 text-brand-blue-deep md:h-16"
-      />
+      <PaisagemRodape />
 
       <div className="bg-brand-blue-deep text-white">
         <div className="mx-auto grid max-w-7xl gap-10 px-4 pb-12 pt-6 sm:px-6 md:pt-8 lg:grid-cols-[1.4fr_1fr_1.2fr] lg:px-8">

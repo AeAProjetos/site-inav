@@ -14,6 +14,7 @@ import {
 import { PageHero } from "@/components/PageHero";
 import { SectionHeading } from "@/components/SectionHeading";
 import { FeatureCard } from "@/components/FeatureCard";
+import { Canteiro, Cena, Ilustracao } from "@/components/Ilustracao";
 import { fadeUp, revealOnScroll, stagger } from "@/lib/motion-presets";
 
 export const Route = createFileRoute("/educacao-infantil")({
@@ -119,7 +120,8 @@ function EducacaoInfantilPage() {
         description="Creche e pré-escola gratuitas, em período integral, com rotina pedagógica estruturada e nutrição acompanhada de perto. Educação de qualidade não deveria depender da renda da família — aqui, não depende."
       />
 
-      <section className="bg-background py-20 sm:py-24">
+      <section className="relative isolate overflow-hidden bg-background py-20 sm:py-24">
+        <Cena nome="sol-e-nuvem" className="right-[6%] top-10 w-20 lg:hidden xl:block" />
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeading
             eyebrow="Como funciona"
@@ -139,7 +141,9 @@ function EducacaoInfantilPage() {
         </div>
       </section>
 
-      <section className="bg-surface-tint py-20 sm:py-24">
+      <section className="relative isolate overflow-hidden bg-surface-tint py-20 sm:py-24">
+        <Canteiro itens={["margarida-laranja", "caracol", "tulipa", "capim"]} className="left-[3%]" />
+        <Ilustracao nome="borboleta" className="absolute right-[6%] top-14 -z-10 hidden w-11 rotate-6 xl:block" />
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeading
             eyebrow="Rotina diária"
@@ -177,8 +181,10 @@ function EducacaoInfantilPage() {
         </div>
       </section>
 
-      <section className="bg-background py-20 sm:py-24">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <section className="relative isolate overflow-hidden bg-background py-20 sm:py-24">
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          {/* Árvore atrás do banner, com o passarinho na copa. */}
+          <Cena nome="passarinho-na-arvore" className="-top-[5.5rem] right-16 w-28" />
           <motion.div
             variants={stagger}
             {...revealOnScroll}

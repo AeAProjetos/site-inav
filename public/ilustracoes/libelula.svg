@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130 92" width="260" height="184"><title>Libélula</title>
+<g fill="#DBEEFA" stroke="#004580" stroke-width="2.5">
+<ellipse cx="62" cy="26" rx="24" ry="8" transform="rotate(-18 62 26)"/>
+<ellipse cx="86" cy="24" rx="24" ry="8" transform="rotate(-6 86 24)"/>
+<ellipse cx="62" cy="66" rx="24" ry="8" transform="rotate(18 62 66)"/>
+<ellipse cx="86" cy="68" rx="24" ry="8" transform="rotate(6 86 68)"/>
+</g>
+<rect x="14" y="41" width="88" height="10" rx="5" fill="#0077C8" stroke="#004580" stroke-width="2.5"/>
+<path d="M34 41 V51 M48 41 V51 M62 41 V51 M76 41 V51" stroke="#004580" stroke-width="2"/>
+<circle cx="108" cy="46" r="13" fill="#3EBD37" stroke="#004580" stroke-width="3"/>
+<circle cx="112" cy="40" r="5" fill="#FFFFFF"/><circle cx="113" cy="40.5" r="2.4" fill="#004580"/>
+<circle cx="112" cy="52" r="5" fill="#FFFFFF"/><circle cx="113" cy="52.5" r="2.4" fill="#004580"/>
+</svg>

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 80" width="200" height="160"><title>Borboleta</title>
+<g stroke="#004580" stroke-width="2.5" stroke-linejoin="round">
+<path d="M50 40 C34 2 4 6 8 30 C10 46 36 48 50 40 Z" fill="#0077C8"/>
+<path d="M50 42 C34 44 14 52 20 68 C28 80 46 62 50 42 Z" fill="#F36F21"/>
+<path d="M50 40 C66 2 96 6 92 30 C90 46 64 48 50 40 Z" fill="#0077C8"/>
+<path d="M50 42 C66 44 86 52 80 68 C72 80 54 62 50 42 Z" fill="#F36F21"/>
+</g>
+<circle cx="24" cy="26" r="5" fill="#FFFFFF" opacity="0.7"/><circle cx="76" cy="26" r="5" fill="#FFFFFF" opacity="0.7"/>
+<rect x="47.5" y="24" width="5" height="38" rx="2.5" fill="#004580"/>
+<path d="M49 25 C46 14 40 9 36 8" fill="none" stroke="#004580" stroke-width="2.4" stroke-linecap="round"/>
+<path d="M51 25 C54 14 60 9 64 8" fill="none" stroke="#004580" stroke-width="2.4" stroke-linecap="round"/>
+</svg>

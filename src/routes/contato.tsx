@@ -5,6 +5,7 @@ import { MapPin, Phone, Mail, Clock, MessageCircle, Instagram } from "lucide-rea
 import { ContactForm } from "@/components/ContactForm";
 import { PageHero } from "@/components/PageHero";
 import { SectionHeading } from "@/components/SectionHeading";
+import { Cena, Ilustracao } from "@/components/Ilustracao";
 import { fadeUp, revealOnScroll, stagger } from "@/lib/motion-presets";
 import { instagramLink, site, whatsappLink } from "@/lib/site-config";
 
@@ -80,7 +81,9 @@ function ContatoPage() {
         description="Quer doar, propor uma parceria ou conhecer o instituto de perto? Escolha o canal que preferir — respondemos a todos."
       />
 
-      <section className="bg-background py-20 sm:py-24">
+      <section className="relative isolate overflow-hidden bg-background py-20 sm:py-24">
+        <Ilustracao nome="joaninha" className="absolute right-[6%] top-16 -z-10 hidden w-10 rotate-12 xl:block" />
+        <Cena nome="duas-nuvens" className="left-[4%] top-10 w-32 lg:hidden xl:block" />
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeading
             eyebrow="Canais de atendimento"
@@ -142,7 +145,9 @@ function ContatoPage() {
         </div>
       </section>
 
-      <section className="bg-surface-tint py-20 sm:py-24">
+      <section className="relative isolate overflow-hidden bg-surface-tint py-20 sm:py-24">
+        {/* Última seção antes do rodapé: sem canteiro, para não repetir a paisagem logo abaixo. */}
+        <Ilustracao nome="passarinho" className="absolute left-[5%] top-14 -z-10 hidden w-14 xl:block" />
         <div className="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
           <SectionHeading
             eyebrow="Visite o instituto"

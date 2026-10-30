@@ -3,6 +3,7 @@ import { motion } from "motion/react";
 import { Image as ImageIcon, Play, X, ZoomIn } from "lucide-react";
 
 import { SectionHeading } from "@/components/SectionHeading";
+import { Canteiro, Ilustracao } from "@/components/Ilustracao";
 import { fadeUp, revealOnScroll, stagger } from "@/lib/motion-presets";
 import { cn } from "@/lib/utils";
 
@@ -59,7 +60,9 @@ export function OurStructure() {
   const [activeImage, setActiveImage] = useState<StructureItem | null>(null);
 
   return (
-    <section className="bg-brand-blue-soft py-20 sm:py-24">
+    <section className="relative isolate overflow-hidden bg-brand-blue-soft py-20 sm:py-24">
+      <Canteiro itens={["arbusto", "tulipa", "margarida-azul"]} className="left-[3%]" />
+      <Ilustracao nome="borboleta" className="absolute right-[4%] top-8 -z-10 hidden w-10 -rotate-6 xl:block" />
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Título largo acima das fotos (decisão INAV-022, 26/10/2026). */}
         <div>

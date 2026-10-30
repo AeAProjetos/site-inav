@@ -5,6 +5,7 @@ import { Sprout, Music, BookMarked, Users2, Dumbbell, Handshake } from "lucide-r
 import { PageHero } from "@/components/PageHero";
 import { SectionHeading } from "@/components/SectionHeading";
 import { FeatureCard } from "@/components/FeatureCard";
+import { Cena, Ilustracao } from "@/components/Ilustracao";
 import { revealOnScroll, stagger } from "@/lib/motion-presets";
 
 export const Route = createFileRoute("/projetos")({
@@ -82,7 +83,9 @@ function ProjetosPage() {
         description="Nossos projetos ampliam a experiência das crianças e alcançam as famílias e a comunidade ao redor. São frentes contínuas, com equipe dedicada e resultados acompanhados."
       />
 
-      <section className="bg-background py-20 sm:py-24">
+      <section className="relative isolate overflow-hidden bg-background py-20 sm:py-24">
+        <Ilustracao nome="borboleta" className="absolute left-[5%] top-14 -z-10 hidden w-12 -rotate-6 xl:block" />
+        <Cena nome="sol-e-nuvem" className="right-[6%] top-8 w-20 lg:hidden xl:block" />
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeading
             eyebrow="Frentes ativas"
@@ -102,7 +105,10 @@ function ProjetosPage() {
         </div>
       </section>
 
-      <section className="bg-surface-tint py-20 sm:py-24">
+      <section className="relative isolate overflow-hidden bg-surface-tint py-20 sm:py-24">
+        {/* Última seção antes do rodapé: sem canteiro, para não repetir a paisagem logo abaixo. */}
+        <Ilustracao nome="libelula" className="absolute right-[6%] top-14 -z-10 hidden w-14 xl:block" />
+        <Cena nome="duas-nuvens" className="left-[4%] top-10 w-32 lg:hidden xl:block" />
         <div className="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
           <SectionHeading
             eyebrow="Quer apoiar um projeto?"

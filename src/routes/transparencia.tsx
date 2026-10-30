@@ -7,6 +7,7 @@ import { FileText, ShieldCheck, PieChart, Scale, Download, ExternalLink } from "
 import { PageHero } from "@/components/PageHero";
 import { SectionHeading } from "@/components/SectionHeading";
 import { FeatureCard } from "@/components/FeatureCard";
+import { Cena, Ilustracao } from "@/components/Ilustracao";
 import { fadeUp, revealOnScroll, stagger } from "@/lib/motion-presets";
 import { integrations } from "@/lib/site-config";
 
@@ -112,7 +113,9 @@ function TransparenciaPage() {
         description="Quem doa tem o direito de saber exatamente para onde o recurso vai. Publicamos relatórios, balanços e documentos institucionais para que qualquer pessoa possa conferir."
       />
 
-      <section className="bg-background py-20 sm:py-24">
+      <section className="relative isolate overflow-hidden bg-background py-20 sm:py-24">
+        <Ilustracao nome="passarinho" className="absolute right-[5%] top-14 -z-10 hidden w-14 xl:block" />
+        <Cena nome="duas-nuvens" className="left-[4%] top-10 w-32 lg:hidden xl:block" />
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeading
             eyebrow="Nossos compromissos"
@@ -132,7 +135,9 @@ function TransparenciaPage() {
         </div>
       </section>
 
-      <section className="bg-surface-tint py-20 sm:py-24">
+      <section className="relative isolate overflow-hidden bg-surface-tint py-20 sm:py-24">
+        {/* Última seção antes do rodapé: sem canteiro, para não repetir a paisagem logo abaixo. */}
+        <Ilustracao nome="borboleta" className="absolute right-[7%] top-16 -z-10 hidden w-11 rotate-6 xl:block" />
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <SectionHeading
             eyebrow="Documentos"
