@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ContatoRouteImport } from './routes/contato'
 import { Route as EducacaoInfantilRouteImport } from './routes/educacao-infantil'
+import { Route as PoliticaDePrivacidadeRouteImport } from './routes/politica-de-privacidade'
 import { Route as ProjetosRouteImport } from './routes/projetos'
 import { Route as QuemSomosRouteImport } from './routes/quem-somos'
 import { Route as QuerAjudarRouteImport } from './routes/quer-ajudar'
@@ -37,6 +38,11 @@ const ContatoRoute = ContatoRouteImport.update({
 const EducacaoInfantilRoute = EducacaoInfantilRouteImport.update({
   id: '/educacao-infantil',
   path: '/educacao-infantil',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PoliticaDePrivacidadeRoute = PoliticaDePrivacidadeRouteImport.update({
+  id: '/politica-de-privacidade',
+  path: '/politica-de-privacidade',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProjetosRoute = ProjetosRouteImport.update({
@@ -99,6 +105,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/contato': typeof ContatoRoute
   '/educacao-infantil': typeof EducacaoInfantilRoute
+  '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
   '/projetos': typeof ProjetosRoute
   '/quem-somos': typeof QuemSomosRoute
   '/quer-ajudar': typeof QuerAjudarRoute
@@ -115,6 +122,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/contato': typeof ContatoRoute
   '/educacao-infantil': typeof EducacaoInfantilRoute
+  '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
   '/projetos': typeof ProjetosRoute
   '/quem-somos': typeof QuemSomosRoute
   '/quer-ajudar': typeof QuerAjudarRoute
@@ -132,6 +140,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/contato': typeof ContatoRoute
   '/educacao-infantil': typeof EducacaoInfantilRoute
+  '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
   '/projetos': typeof ProjetosRoute
   '/quem-somos': typeof QuemSomosRoute
   '/quer-ajudar': typeof QuerAjudarRoute
@@ -150,6 +159,7 @@ export interface FileRouteTypes {
     | '/'
     | '/contato'
     | '/educacao-infantil'
+    | '/politica-de-privacidade'
     | '/projetos'
     | '/quem-somos'
     | '/quer-ajudar'
@@ -166,6 +176,7 @@ export interface FileRouteTypes {
     | '/'
     | '/contato'
     | '/educacao-infantil'
+    | '/politica-de-privacidade'
     | '/projetos'
     | '/quem-somos'
     | '/quer-ajudar'
@@ -182,6 +193,7 @@ export interface FileRouteTypes {
     | '/'
     | '/contato'
     | '/educacao-infantil'
+    | '/politica-de-privacidade'
     | '/projetos'
     | '/quem-somos'
     | '/quer-ajudar'
@@ -199,6 +211,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ContatoRoute: typeof ContatoRoute
   EducacaoInfantilRoute: typeof EducacaoInfantilRoute
+  PoliticaDePrivacidadeRoute: typeof PoliticaDePrivacidadeRoute
   ProjetosRoute: typeof ProjetosRoute
   QuemSomosRoute: typeof QuemSomosRoute
   QuerAjudarRoute: typeof QuerAjudarRoute
@@ -233,6 +246,13 @@ declare module '@tanstack/react-router' {
       path: '/educacao-infantil'
       fullPath: '/educacao-infantil'
       preLoaderRoute: typeof EducacaoInfantilRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/politica-de-privacidade': {
+      id: '/politica-de-privacidade'
+      path: '/politica-de-privacidade'
+      fullPath: '/politica-de-privacidade'
+      preLoaderRoute: typeof PoliticaDePrivacidadeRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/projetos': {
@@ -319,6 +339,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ContatoRoute: ContatoRoute,
   EducacaoInfantilRoute: EducacaoInfantilRoute,
+  PoliticaDePrivacidadeRoute: PoliticaDePrivacidadeRoute,
   ProjetosRoute: ProjetosRoute,
   QuemSomosRoute: QuemSomosRoute,
   QuerAjudarRoute: QuerAjudarRoute,

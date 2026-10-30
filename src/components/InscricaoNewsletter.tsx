@@ -1,4 +1,5 @@
 import { useId, useState, type FormEvent } from "react";
+import { Link } from "@tanstack/react-router";
 import { CheckCircle2, Loader2 } from "lucide-react";
 
 import { inscreverNaNewsletter, type ResultadoDaInscricao } from "@/lib/newsletter";
@@ -123,7 +124,14 @@ export function InscricaoNewsletter({ variante }: { variante: "cartao" | "rodape
         />
         <span>
           Autorizo o INAV a me enviar e-mails com as novidades do blog. Posso cancelar quando
-          quiser, pelo link no fim de cada e-mail.
+          quiser, pelo link no fim de cada e-mail. Veja a{" "}
+          <Link
+            to="/politica-de-privacidade"
+            className="font-semibold text-white underline underline-offset-2 hover:text-brand-orange"
+          >
+            Política de Privacidade
+          </Link>
+          .
         </span>
       </label>
 

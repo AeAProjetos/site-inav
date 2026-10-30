@@ -215,7 +215,7 @@ function VideoLightbox({
         </button>
         <div className="aspect-video overflow-hidden rounded-xl shadow-lift">
           <iframe
-            src={`https://www.youtube.com/embed/${videoId}?autoplay=1`}
+            src={`https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1`}
             title={label}
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen

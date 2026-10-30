@@ -86,7 +86,10 @@ export function SiteFooter() {
                 </a>
               </li>
               <li className="flex gap-3">
-                <Instagram className="mt-0.5 size-4 shrink-0 text-brand-orange" aria-hidden="true" />
+                <Instagram
+                  className="mt-0.5 size-4 shrink-0 text-brand-orange"
+                  aria-hidden="true"
+                />
                 <a
                   className="transition-colors hover:text-white"
                   href={instagramLink}
@@ -109,6 +112,9 @@ export function SiteFooter() {
             <p>
               © {new Date().getFullYear()} {site.name}. Todos os direitos reservados.
             </p>
+            <Link to="/politica-de-privacidade" className="transition-colors hover:text-white">
+              Política de Privacidade
+            </Link>
             <p>Feito com carinho para transformar vidas.</p>
           </div>
         </div>
