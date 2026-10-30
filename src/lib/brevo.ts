@@ -11,7 +11,8 @@ import { site } from "@/lib/site-config";
  * - BREVO_MODELO_CONFIRMACAO_ID: número do modelo de e-mail de confirmação (dupla confirmação).
  *   Sem ele, a pessoa entra na lista na hora, sem e-mail de confirmação.
  * - BREVO_REMETENTE_EMAIL e BREVO_REMETENTE_NOME: remetente já validado no Brevo.
- * - SITE_URL: endereço do site usado nos links dos e-mails (padrão: o de site-config).
+ * - SITE_URL: endereço do site usado nos links dos e-mails de posts (padrão: o de site-config).
+ *   O link de confirmação da inscrição volta para o endereço onde a pessoa se inscreveu.
  * - NEWSLETTER_SIMULAR=1: não chama o Brevo, só registra no terminal. Para testar na máquina.
  */
 
@@ -61,10 +62,13 @@ async function chamar<T>(caminho: string, init: { method: string; body?: unknown
  * Inscreve um e-mail. Com o modelo de confirmação configurado, o Brevo manda um e-mail pedindo
  * para confirmar, e a pessoa só entra na lista depois de clicar. Devolve se a confirmação foi pedida.
  */
-export async function inscrever(email: string): Promise<{ pedeConfirmacao: boolean }> {
+export async function inscrever(
+  email: string,
+  enderecoDoSite = urlDoSite(),
+): Promise<{ pedeConfirmacao: boolean }> {
   const { lista, modeloConfirmacao } = config();
   if (simulando()) {
-    console.info(`[newsletter simulada] inscrição de ${email}`);
+    console.info(`[newsletter simulada] inscrição de ${email}, confirmação volta para ${enderecoDoSite}`);
     return { pedeConfirmacao: true };
   }
   if (!lista) throw new NewsletterNaoConfigurada("BREVO_LISTA_ID");
@@ -76,7 +80,7 @@ export async function inscrever(email: string): Promise<{ pedeConfirmacao: boole
         email,
         includeListIds: [lista],
         templateId: modeloConfirmacao,
-        redirectionUrl: `${urlDoSite()}/newsletter/confirmada`,
+        redirectionUrl: `${enderecoDoSite}/newsletter/confirmada`,
       },
     });
     return { pedeConfirmacao: true };

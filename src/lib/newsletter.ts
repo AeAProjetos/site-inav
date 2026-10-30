@@ -1,6 +1,17 @@
 import { createServerFn } from "@tanstack/react-start";
+import { getRequestUrl } from "@tanstack/react-start/server";
 
-import { inscrever, NewsletterNaoConfigurada } from "@/lib/brevo";
+import { inscrever, NewsletterNaoConfigurada, urlDoSite } from "@/lib/brevo";
+
+// Endereços onde o site roda. O link de confirmação volta para o mesmo endereço da inscrição;
+// fora desta lista, usa o SITE_URL.
+const ENDERECO_DO_SITE =
+  /^(?:https:\/\/(?:www\.)?inav\.org\.br|https:\/\/site-inav(?:-[a-z0-9-]+)?\.vercel\.app|http:\/\/localhost:\d+)$/;
+
+function enderecoDaInscricao(): string {
+  const origem = getRequestUrl().origin;
+  return ENDERECO_DO_SITE.test(origem) ? origem : urlDoSite();
+}
 
 export type ResultadoDaInscricao =
   | { ok: true; pedeConfirmacao: boolean }
@@ -27,7 +38,7 @@ export const inscreverNaNewsletter = createServerFn({ method: "POST" })
     if (!data.consentimento) return { ok: false, motivo: "sem-consentimento" };
 
     try {
-      const { pedeConfirmacao } = await inscrever(data.email);
+      const { pedeConfirmacao } = await inscrever(data.email, enderecoDaInscricao());
       return { ok: true, pedeConfirmacao };
     } catch (erro) {
       console.error(erro);
