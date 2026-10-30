@@ -5,7 +5,11 @@ import { Check, Copy, QrCode } from "lucide-react";
 import { site } from "@/lib/site-config";
 import { fadeUp, revealOnScroll, stagger } from "@/lib/motion-presets";
 
-export function PixDonationCard() {
+/**
+ * Cartão de doação por Pix. `comQrCode` mostra o QR do Pix (BR Code estático, sem valor, gerado a
+ * partir da chave em site-config): usado em Quer Ajudar. Se a chave mudar, gerar o SVG de novo.
+ */
+export function PixDonationCard({ comQrCode = false }: { comQrCode?: boolean }) {
   const [copied, setCopied] = useState(false);
 
   const copyKey = async () => {
@@ -59,11 +63,26 @@ export function PixDonationCard() {
           variants={fadeUp}
           className="rounded-2xl bg-white/15 p-6 backdrop-blur-sm"
         >
+          {comQrCode && (
+            <div className="mb-6 text-center">
+              <img
+                src="/img/pix-qrcode-inav.svg"
+                alt={`QR Code do Pix do ${site.name}`}
+                width={176}
+                height={176}
+                className="mx-auto size-44 rounded-xl bg-white p-2 shadow-soft"
+              />
+              <p className="mt-3 text-sm text-white/85">
+                Aponte a câmera do app do seu banco para o código.
+              </p>
+            </div>
+          )}
           <div className="flex items-center gap-2 text-sm font-bold uppercase tracking-wide text-white/85">
             <QrCode className="size-4" aria-hidden="true" />
             Chave PIX ({site.pixLabel})
           </div>
-          <p className="mt-3 break-all font-display text-xl font-bold sm:text-2xl">
+          {/* Numa linha só: quebrada no meio, a chave fica difícil de conferir com a do app do banco. */}
+          <p className="mt-3 whitespace-nowrap font-display text-xl font-bold sm:text-2xl lg:text-xl xl:text-2xl">
             {site.pixKey}
           </p>
           <p className="mt-1 text-sm text-white/80">

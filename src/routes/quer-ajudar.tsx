@@ -91,7 +91,7 @@ function QuerAjudarPage() {
             {...revealOnScroll}
             className="mt-14 grid gap-6 lg:grid-cols-[1.4fr_1fr] lg:items-stretch"
           >
-            <PixDonationCard />
+            <PixDonationCard comQrCode />
             <FeatureCard {...itemDonation} className="h-full" />
           </motion.div>
         </div>
