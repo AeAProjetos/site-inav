@@ -10,6 +10,8 @@ export const site = {
   description:
     "OSC sem fins lucrativos dedicada ao acolhimento, nutrição e educação infantil gratuita para crianças e famílias em situação de vulnerabilidade social.",
   url: "https://inav.org.br",
+  /** Confirmado pelo INAV em 30/10/2026. */
+  cnpj: "04.192.012/0001-16",
   /* PLACEHOLDER — trocar pelos dados oficiais */
   pixKey: "00.000.000/0001-00",
   pixLabel: "CNPJ",

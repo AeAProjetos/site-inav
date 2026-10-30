@@ -98,10 +98,10 @@ function PoliticaDePrivacidade() {
           </p>
 
           <P>
-            O {site.name} ({site.shortName}) é o responsável pelos dados pessoais tratados neste
-            site. Esta página explica, em linguagem simples, quais dados recebemos, para quê, com
-            quem eles são compartilhados e como você pode exercer seus direitos, conforme a Lei
-            Geral de Proteção de Dados (Lei nº 13.709/2018, a LGPD).
+            O {site.name} ({site.shortName}), CNPJ {site.cnpj}, é o responsável pelos dados pessoais
+            tratados neste site. Esta página explica, em linguagem simples, quais dados recebemos,
+            para quê, com quem eles são compartilhados e como você pode exercer seus direitos,
+            conforme a Lei Geral de Proteção de Dados (Lei nº 13.709/2018, a LGPD).
           </P>
 
           <Titulo>Em poucas palavras</Titulo>
