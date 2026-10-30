@@ -103,6 +103,34 @@ Nunca usar roxo, neon, brilho externo ou preto puro (#000000).
   automática do carrossel.
 - Sem loops infinitos decorativos, sem parallax, sem cursor personalizado.
 
+## 6b. Ilustrações
+
+- **Onde estão:** `public/ilustracoes/` (bichinhos, céu, flores e plantas em SVG,
+  nas cores do INAV, mais amarelo `#FFC83D` e marrom `#B8814F` só nos desenhos).
+  Os arquivos vão sem metadados para ficarem leves.
+- **Componentes:** `Ilustracao` (um desenho solto), `Cena` (combinações prontas,
+  como sol atrás da nuvem, passarinho na árvore, caracol saindo do arbusto),
+  `Canteiro` (flores, plantas e bichinhos na base de uma seção) e `Paisagem`
+  (faixa da Home e abertura do rodapé).
+- **Rastro tracejado:** só nas duas paisagens. Nas seções, os bichinhos ficam
+  soltos, sem rastro.
+- **Espiando:** desenhos podem sair por trás de fotos e cards (árvore atrás da
+  foto, sol atrás do card do PIX, caracol em cima de um card). Nunca por trás de
+  texto.
+- **Por seção:** no máximo dois pontos (um bichinho ou cena num canto livre e um
+  canteiro ou desenho espiando). Céu com nuvens e sol nas seções de título
+  centralizado.
+- **Última seção antes do rodapé:** sem canteiro (repetiria a paisagem do rodapé).
+- **Rodapé:** paisagem com duas colinas verdes que terminam no azul do rodapé.
+  Desenhos nunca ficam sobre o azul-escuro: o contorno deles é dessa cor e some.
+- **Contraste:** desenho verde-claro não vai sobre a colina verde-clara, e o
+  mesmo vale para o verde.
+- **Telas:** ao lado de títulos, só a partir de 1280px; canteiros e desenhos
+  espiando a partir de 1024px; no celular ficam só as paisagens.
+- **Animação:** o rastro desenha uma vez, em 3,2s, e só começa quando está
+  inteiro na tela e fora do terço de baixo. Com "reduzir movimento", aparece pronto.
+- **Acessibilidade:** decoração tem `alt=""`, `aria-hidden` e não bloqueia cliques.
+
 ## 7. Anti-Patterns (Banned)
 
 - Cards repetidos com ícone dentro de uma caixa, em fileira de 3 colunas iguais.

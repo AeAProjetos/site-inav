@@ -2,12 +2,12 @@ import { Link } from "@tanstack/react-router";
 import { Mail, MapPin, Phone, Clock } from "lucide-react";
 
 import { navigation, site } from "@/lib/site-config";
-import { WaveDivider } from "@/components/WaveDivider";
+import { PaisagemRodape } from "@/components/Paisagem";
 
 export function SiteFooter() {
   return (
     <footer className="relative">
-      <WaveDivider variant="up" className="text-brand-blue-deep" height="md" />
+      <PaisagemRodape />
 
       <div className="bg-brand-blue-deep text-white">
         <div className="mx-auto grid max-w-7xl gap-10 px-4 pb-12 sm:px-6 lg:grid-cols-[1.4fr_1fr_1.2fr] lg:px-8">

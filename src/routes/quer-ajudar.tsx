@@ -6,6 +6,7 @@ import { PageHero } from "@/components/PageHero";
 import { SectionHeading } from "@/components/SectionHeading";
 import { FeatureCard } from "@/components/FeatureCard";
 import { PixDonationCard } from "@/components/PixDonationCard";
+import { Cena, Ilustracao } from "@/components/Ilustracao";
 import { fadeUp, revealOnScroll, stagger } from "@/lib/motion-presets";
 import { whatsappLink } from "@/lib/site-config";
 import { cn } from "@/lib/utils";
@@ -74,7 +75,9 @@ function QuerAjudarPage() {
       />
 
       {/* Doação direta — ação imediata, sem compromisso continuado */}
-      <section id="doacao" className="bg-background py-20 sm:py-24">
+      <section id="doacao" className="relative isolate overflow-hidden bg-background py-20 sm:py-24">
+        <Ilustracao nome="libelula" className="absolute left-[5%] top-14 -z-10 hidden w-14 xl:block" />
+        <Cena nome="sol-e-nuvem" className="right-[6%] top-8 w-20 lg:hidden xl:block" />
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeading
             eyebrow="Doação direta"
@@ -95,7 +98,10 @@ function QuerAjudarPage() {
       </section>
 
       {/* Envolvimento — relação contínua, passa por uma conversa */}
-      <section id="envolvimento" className="bg-surface-tint py-20 sm:py-24">
+      <section id="envolvimento" className="relative isolate overflow-hidden bg-surface-tint py-20 sm:py-24">
+        {/* Última seção antes do rodapé: sem canteiro, para não repetir a paisagem logo abaixo. */}
+        <Ilustracao nome="abelha" className="absolute right-[6%] top-16 -z-10 hidden w-12 -rotate-6 xl:block" />
+        <Cena nome="duas-nuvens" className="left-[4%] top-10 w-32 lg:hidden xl:block" />
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeading
             eyebrow="Quero me envolver"

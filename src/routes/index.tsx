@@ -3,8 +3,10 @@ import { motion } from "motion/react";
 import { ArrowRight } from "lucide-react";
 
 import { HomeHero } from "@/components/HomeHero";
+import { Canteiro, Cena, Ilustracao } from "@/components/Ilustracao";
 import { ImpactStats } from "@/components/ImpactStats";
 import { JourneySteps } from "@/components/JourneySteps";
+import { PaisagemHome } from "@/components/Paisagem";
 import { PixDonationCard } from "@/components/PixDonationCard";
 import { SectionHeading } from "@/components/SectionHeading";
 import { SectionPreviewGrid } from "@/components/SectionPreviewGrid";
@@ -42,7 +44,10 @@ function HomePage() {
       <WaveDivider variant="down" height="sm" className="-mt-px bg-brand-blue-deep text-background" />
 
       {/* Jornada em 3 etapas */}
-      <section className="bg-background py-30 sm:py-10">
+      <section className="relative isolate overflow-hidden bg-background py-30 sm:py-10">
+        {/* Céu: só em telas largas, nas laterais do título centralizado. */}
+        <Cena nome="duas-nuvens" className="left-[3%] top-8 w-40" />
+        <Cena nome="sol-e-nuvem" className="right-[6%] top-5 w-20" />
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeading
             eyebrow="NOSSA JORNADA"
@@ -57,8 +62,12 @@ function HomePage() {
         </div>
       </section>
 
+      <PaisagemHome />
+
       {/* Bloco institucional */}
-      <section className="bg-surface-tint py-20 sm:py-28">
+      <section className="relative isolate overflow-hidden bg-surface-tint py-20 sm:py-28">
+        <Canteiro itens={["tulipa", "joaninha", "margarida-azul", "capim"]} className="right-[4%]" />
+        <Ilustracao nome="abelha" className="absolute bottom-20 left-[5%] -z-10 hidden w-12 -rotate-6 xl:block" />
         <div className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:items-center lg:px-8">
           <div>
             <SectionHeading
@@ -83,28 +92,35 @@ Educação infantil, alimentação, acolhimento e desenvolvimento fazem parte de
             </motion.div>
           </div>
 
-          <motion.div
-            variants={fadeUp}
-            {...revealOnScroll}
-            className="relative overflow-hidden rounded-2xl border border-border shadow-soft"
-          >
-            <img
-              src="/img/Colaboradora_01.jpeg"
-              alt="Educadora auxiliando crianças em atividade pedagógica em sala de aula do INAV"
-              className="aspect-[4/5] size-full object-cover"
-            />
-            <div className="absolute inset-x-5 bottom-5 rounded-xl bg-brand-orange p-5 shadow-lift">
-              <p className="text-sm font-semibold leading-relaxed text-white sm:text-base">
-                Cada criança é acolhida em sua individualidade, em um ambiente onde
-                educação, cuidado e atenção fazem parte da mesma rotina.
-              </p>
-            </div>
-          </motion.div>
+          <div className="relative">
+            {/* A árvore fica atrás da foto e só a copa aparece por cima dela. */}
+            <Cena nome="passarinho-na-arvore" className="-top-24 right-10 w-28" />
+            <motion.div
+              variants={fadeUp}
+              {...revealOnScroll}
+              className="relative overflow-hidden rounded-2xl border border-border shadow-soft"
+            >
+              <img
+                src="/img/Colaboradora_01.jpeg"
+                alt="Educadora auxiliando crianças em atividade pedagógica em sala de aula do INAV"
+                className="aspect-[4/5] size-full object-cover"
+              />
+              <div className="absolute inset-x-5 bottom-5 rounded-xl bg-brand-orange p-5 shadow-lift">
+                <p className="text-sm font-semibold leading-relaxed text-white sm:text-base">
+                  Cada criança é acolhida em sua individualidade, em um ambiente onde
+                  educação, cuidado e atenção fazem parte da mesma rotina.
+                </p>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Seções internas */}
-      <section className="bg-background py-20 sm:py-28">
+      <section className="relative isolate overflow-hidden bg-background py-20 sm:py-28">
+        <Ilustracao nome="passarinho" className="absolute left-[5%] top-14 -z-10 hidden w-14 xl:block" />
+        <Canteiro itens={["margarida-laranja", "lagarta", "capim"]} className="left-[4%]" />
+        <Ilustracao nome="joaninha" className="absolute right-[6%] top-14 -z-10 hidden w-12 rotate-12 lg:block" />
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeading
             eyebrow="Explore o instituto"
@@ -119,8 +135,10 @@ Educação infantil, alimentação, acolhimento e desenvolvimento fazem parte de
       </section>
 
       {/* PIX */}
-      <section className="bg-surface-tint py-20 sm:py-24">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <section className="relative isolate overflow-hidden bg-surface-tint py-20 sm:py-24">
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          {/* Sol nascendo atrás do canto do card. */}
+          <Ilustracao nome="sol" className="absolute -top-12 right-2 -z-10 hidden w-24 lg:block" />
           <PixDonationCard />
         </div>
       </section>

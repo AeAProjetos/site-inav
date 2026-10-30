@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 104 92" width="208" height="184"><title>Passarinho</title>
+<path d="M20 46 L2 34 L7 50 L0 62 L22 58 Z" fill="#0077C8" stroke="#004580" stroke-width="3" stroke-linejoin="round"/>
+<path d="M44 78 V88 M58 78 V88 M39 88 H48 M54 88 H63" fill="none" stroke="#F36F21" stroke-width="3" stroke-linecap="round"/>
+<ellipse cx="50" cy="50" rx="34" ry="28" fill="#0077C8" stroke="#004580" stroke-width="3"/>
+<ellipse cx="52" cy="62" rx="21" ry="14" fill="#DBEEFA"/>
+<path d="M36 46 C52 34 70 44 64 60 C54 66 40 62 36 46 Z" fill="#004580"/>
+<path d="M44 24 Q42 12 48 8 M54 23 Q56 12 62 10" fill="none" stroke="#004580" stroke-width="2.5" stroke-linecap="round"/>
+<path d="M82 45 L100 52 L82 59 Z" fill="#F36F21" stroke="#004580" stroke-width="2.5" stroke-linejoin="round"/>
+<circle cx="72" cy="42" r="5.5" fill="#FFFFFF"/><circle cx="73.5" cy="42.5" r="2.8" fill="#004580"/>
+<circle cx="74" cy="56" r="4" fill="#FF6442" opacity="0.5"/>
+</svg>
