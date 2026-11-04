@@ -50,10 +50,11 @@ export function PhotoGallery({ items }: { items: GalleryItem[] }) {
                   aria-label={`Ampliar foto: ${item.alt}`}
                   className="group relative block size-full cursor-pointer overflow-hidden rounded-2xl shadow-soft"
                 >
+                  {/* absolute: a foto preenche a célula sem ditar a altura da grade (uma foto em pé abriria vãos). */}
                   <img
                     src={item.src}
                     alt={item.alt}
-                    className="size-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="absolute inset-0 size-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                   <span className="absolute inset-0 flex items-center justify-center bg-brand-blue-deep/30 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                     <span className="inline-flex size-11 items-center justify-center rounded-full bg-white text-brand-blue-deep shadow-lift">

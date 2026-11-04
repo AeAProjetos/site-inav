@@ -7,7 +7,7 @@ import { PageHero } from "@/components/PageHero";
 import { SectionHeading } from "@/components/SectionHeading";
 import { ClosingBanner } from "@/components/ClosingBanner";
 import { PhotoGallery, type GalleryItem } from "@/components/PhotoGallery";
-import { Pending, PendingPhoto } from "@/components/Pending";
+import { Pending } from "@/components/Pending";
 import { Canteiro, Cena, Ilustracao } from "@/components/Ilustracao";
 import { fadeUp, revealOnScroll, stagger } from "@/lib/motion-presets";
 import { cn } from "@/lib/utils";
@@ -124,18 +124,16 @@ const familyTopics: { title: string; text: ReactNode }[] = [
   },
 ];
 
+// Fotos do site antigo do INAV, de 2018 a 2023, escolhidas e confirmadas em 04/11/2026.
 const gallery: GalleryItem[] = [
-  {
-    alt: "Crianças em atividade na sala",
-    placeholder: <PendingPhoto description="Crianças em atividade na sala (foto grande)" />,
-  },
-  { alt: "Brincadeira ao ar livre", placeholder: <PendingPhoto description="Brincadeira ao ar livre" /> },
-  { alt: "Momento de refeição", placeholder: <PendingPhoto description="Momento de refeição" /> },
-  { alt: "Atividade em grupo", placeholder: <PendingPhoto description="Atividade em grupo" /> },
-  {
-    alt: "Momento coletivo",
-    placeholder: <PendingPhoto description="Momento coletivo ou celebração" />,
-  },
+  { src: "/img/ei-galeria-sala.jpg", alt: "Criança pintando um desenho na sala" },
+  { src: "/img/ei-galeria-ao-ar-livre.jpg", alt: "Crianças dançando no gramado do INAV" },
+  { src: "/img/ei-galeria-refeicao.jpg", alt: "Crianças sentadas no tapete durante um lanche" },
+  { src: "/img/ei-galeria-grupo.jpg", alt: "Turma em fila no gramado com trabalhos feitos em sala" },
+  { src: "/img/ei-galeria-arraia.jpg", alt: "Crianças com roupas de festa junina no Arraiá do INAV" },
+  { src: "/img/ei-galeria-tapete.jpg", alt: "Turma reunida no tapete do gramado na Semana da Criança" },
+  { src: "/img/ei-galeria-bolinhas.jpg", alt: "Menino brincando na piscina de bolinhas" },
+  { src: "/img/ei-galeria-lanche.jpg", alt: "Crianças lanchando numa mesa ao ar livre" },
 ];
 
 function EducacaoInfantilPage() {
@@ -147,7 +145,11 @@ function EducacaoInfantilPage() {
         highlight="desenvolve"
         description="Creche gratuita para crianças de 2 a 3 anos, em período integral, com educação, alimentação e cuidado reunidos na mesma rotina."
         aside={
-          <PendingPhoto description="Crianças em atividade ou interação (foto real, com autorização dos responsáveis)" />
+          <img
+            src="/img/ei-topo.jpg"
+            alt="Crianças sorrindo em volta de uma mesa na sala do INAV"
+            className="size-full object-cover"
+          />
         }
       />
 
@@ -339,8 +341,17 @@ function EducacaoInfantilPage() {
             </motion.dl>
           </div>
 
-          <motion.div variants={fadeUp} {...revealOnScroll} className="aspect-[4/3] lg:aspect-[4/5]">
-            <PendingPhoto description="Acolhimento de uma família (foto real, com autorização)" />
+          <motion.div
+            variants={fadeUp}
+            {...revealOnScroll}
+            className="aspect-[4/3] overflow-hidden rounded-2xl shadow-lift"
+          >
+            {/* Foto deitada: no formato 4:3 cabem os pais e a filha, que fica na ponta direita. */}
+            <img
+              src="/img/ei-familia.jpg"
+              alt="Mãe, pai e filha com o rosto pintado na festa Minha Família, Meu Tesouro"
+              className="size-full object-cover object-right"
+            />
           </motion.div>
         </div>
       </section>
@@ -368,9 +379,10 @@ function EducacaoInfantilPage() {
         description="O trabalho do INAV vai além da educação infantil. Conheça os projetos e iniciativas desenvolvidos com crianças, famílias e comunidade."
         ctaLabel="Conhecer projetos"
         ctaTo="/projetos"
-        imagePlaceholder={
-          <PendingPhoto description="Foto para o encerramento, com espaço livre à esquerda para o texto" />
-        }
+        image={{
+          src: "/img/ei-encerramento.jpg",
+          alt: "Três meninos com chapéu de palha e camisa xadrez no Arraiá do INAV",
+        }}
       />
     </>
   );
