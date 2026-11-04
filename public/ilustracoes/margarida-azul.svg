@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 120" width="120" height="240"><title>Margarida azul</title>
+<path d="M30 40 C30 70 28 95 30 120" fill="none" stroke="#3EBD37" stroke-width="4" stroke-linecap="round"/>
+<path d="M30 92 C14 86 8 72 10 64 C24 66 30 78 30 92 Z" fill="#3EBD37"/>
+<g fill="#0077C8">
+<ellipse cx="30" cy="12" rx="7" ry="13"/>
+<ellipse cx="30" cy="12" rx="7" ry="13" transform="rotate(45 30 28)"/>
+<ellipse cx="30" cy="12" rx="7" ry="13" transform="rotate(90 30 28)"/>
+<ellipse cx="30" cy="12" rx="7" ry="13" transform="rotate(135 30 28)"/>
+<ellipse cx="30" cy="12" rx="7" ry="13" transform="rotate(180 30 28)"/>
+<ellipse cx="30" cy="12" rx="7" ry="13" transform="rotate(225 30 28)"/>
+<ellipse cx="30" cy="12" rx="7" ry="13" transform="rotate(270 30 28)"/>
+<ellipse cx="30" cy="12" rx="7" ry="13" transform="rotate(315 30 28)"/>
+</g>
+<circle cx="30" cy="28" r="9" fill="#FFC83D"/>
+</svg>

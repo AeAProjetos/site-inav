@@ -8,6 +8,7 @@ import { SectionHeading } from "@/components/SectionHeading";
 import { ClosingBanner } from "@/components/ClosingBanner";
 import { PhotoGallery, type GalleryItem } from "@/components/PhotoGallery";
 import { Pending, PendingPhoto } from "@/components/Pending";
+import { Canteiro, Cena, Ilustracao } from "@/components/Ilustracao";
 import { fadeUp, revealOnScroll, stagger } from "@/lib/motion-presets";
 import { cn } from "@/lib/utils";
 
@@ -24,13 +25,13 @@ export const Route = createFileRoute("/educacao-infantil")({
       {
         name: "description",
         content:
-          "Creche e pré-escola gratuitas, em período integral, com educação, cinco refeições diárias e acompanhamento das famílias no INAV.",
+          "Creche gratuita para crianças de 2 a 3 anos, em período integral, com educação, cinco refeições diárias e acompanhamento das famílias no INAV.",
       },
       { property: "og:title", content: "Educação Infantil — Instituto Nair Valadares" },
       {
         property: "og:description",
         content:
-          "Educação, alimentação e cuidado na mesma rotina: creche e pré-escola gratuitas em período integral.",
+          "Educação, alimentação e cuidado na mesma rotina: creche gratuita em período integral, das 7h30 às 17h30.",
       },
     ],
   }),
@@ -46,17 +47,17 @@ const accents = {
 const accentCycle = ["orange", "blue", "green"] as const;
 
 const facts: { label: string; value: ReactNode; detail?: ReactNode }[] = [
-  { label: "Faixa etária", value: <Pending>faixa etária (ex.: 0 a 5 anos)</Pending> },
-  { label: "Período", value: "Integral", detail: <Pending>horário de entrada e saída</Pending> },
+  { label: "Faixa etária", value: "2 a 3 anos" },
+  { label: "Período", value: "Integral", detail: "Das 7h30 às 17h30" },
   { label: "Custo", value: "Gratuito", detail: "Sem mensalidade para as famílias" },
-  { label: "Turmas", value: "Creche e pré-escola" },
+  { label: "Turmas", value: "Maternal I e II" },
 ];
 
 const beyondClassroom = [
   {
     icon: BookOpen,
     title: "Educação",
-    text: "Rodas de conversa, histórias, música, movimento e propostas pedagógicas pensadas para cada idade, até as primeiras descobertas da leitura e da escrita.",
+    text: "Rodas de conversa, histórias, música, movimento e propostas pedagógicas pensadas para a idade de cada turma.",
     accent: "orange" as const,
   },
   {
@@ -75,7 +76,7 @@ const beyondClassroom = [
 
 const dayRoutine: { time: ReactNode; title: string; text: string }[] = [
   {
-    time: <Pending>horário</Pending>,
+    time: "7h30",
     title: "Chegada",
     text: "As crianças são recebidas pela equipe na entrada e o dia começa com acolhida.",
   },
@@ -100,8 +101,8 @@ const dayRoutine: { time: ReactNode; title: string; text: string }[] = [
     text: "Brincar livre e atividades em grupo, dentro e fora da sala.",
   },
   {
-    time: <Pending>horário</Pending>,
-    title: "Encerramento",
+    time: "17h30",
+    title: "Saída",
     text: "Últimos momentos do dia e saída acompanhada pelos responsáveis.",
   },
 ];
@@ -144,7 +145,7 @@ function EducacaoInfantilPage() {
       <PageHero
         title="Educação infantil que acolhe, cuida e"
         highlight="desenvolve"
-        description="Creche e pré-escola gratuitas, em período integral, com educação, alimentação e cuidado reunidos na mesma rotina."
+        description="Creche gratuita para crianças de 2 a 3 anos, em período integral, com educação, alimentação e cuidado reunidos na mesma rotina."
         aside={
           <PendingPhoto description="Crianças em atividade ou interação (foto real, com autorização dos responsáveis)" />
         }
@@ -179,7 +180,9 @@ function EducacaoInfantilPage() {
       </section>
 
       {/* 03 — Muito além da sala de aula */}
-      <section className="bg-background py-20 sm:py-24">
+      <section className="relative isolate overflow-hidden bg-background py-20 sm:py-24">
+        <Ilustracao nome="abelha" className="absolute right-[5%] top-10 -z-10 hidden w-12 -rotate-6 xl:block" />
+        <Canteiro itens={["margarida-azul", "capim", "margarida-laranja"]} className="left-[3%]" />
         <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[400px_1fr] lg:gap-16 lg:px-8">
           <SectionHeading
             title="Muito além da sala de"
@@ -210,7 +213,9 @@ function EducacaoInfantilPage() {
       </section>
 
       {/* 04 — Um dia no INAV */}
-      <section className="bg-surface-tint py-20 sm:py-24">
+      <section className="relative isolate overflow-hidden bg-surface-tint py-20 sm:py-24">
+        <Cena nome="sol-e-nuvem" className="right-[6%] top-10 w-20 lg:hidden xl:block" />
+        <Canteiro itens={["capim", "caracol"]} className="right-[4%]" />
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeading
             title="Um dia no"
@@ -253,16 +258,14 @@ function EducacaoInfantilPage() {
               );
             })}
           </motion.ol>
-
-          <p className="mt-10">
-            <Pending>em quais etapas entram as 5 refeições e o nome de cada uma</Pending>
-          </p>
         </div>
       </section>
 
       {/* 05 — Alimentação também é cuidado */}
-      <section className="bg-background py-20 sm:py-24">
-        <div className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:items-center lg:px-8">
+      <section className="relative isolate overflow-hidden bg-background py-20 sm:py-24">
+        <div className="relative mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:items-center lg:px-8">
+          {/* Árvore atrás da foto, com o passarinho na copa. */}
+          <Cena nome="passarinho-na-arvore" className="-top-[4.75rem] left-16 w-28" />
           <motion.div
             variants={fadeUp}
             {...revealOnScroll}
@@ -294,21 +297,22 @@ function EducacaoInfantilPage() {
                 <p className="text-lg font-extrabold uppercase text-brand-blue-deep">
                   refeições por dia
                 </p>
-                <div className="mt-2">
-                  <Pending>nomes e horários das 5 refeições</Pending>
-                </div>
+                <p className="mt-2 leading-relaxed text-muted-foreground">
+                  Café da manhã, colação, almoço, lanche da tarde e jantar.
+                </p>
               </div>
             </motion.div>
 
-            <p className="mt-6">
-              <Pending>confirmar se o cardápio é feito por nutricionista e como é o acompanhamento</Pending>
+            <p className="mt-6 leading-relaxed text-muted-foreground">
+              Todas as refeições têm acompanhamento nutricional.
             </p>
           </div>
         </div>
       </section>
 
       {/* 06 — A família também faz parte */}
-      <section className="bg-surface-tint py-20 sm:py-24">
+      <section className="relative isolate overflow-hidden bg-surface-tint py-20 sm:py-24">
+        <Canteiro itens={["lagarta", "capim", "tulipa"]} className="left-[3%]" />
         <div className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-[1fr_420px] lg:items-center lg:px-8">
           <div>
             <SectionHeading
@@ -342,7 +346,9 @@ function EducacaoInfantilPage() {
       </section>
 
       {/* 07 — O dia a dia em imagens */}
-      <section className="bg-background py-20 sm:py-24">
+      <section className="relative isolate overflow-hidden bg-background py-20 sm:py-24">
+        <Cena nome="duas-nuvens" className="left-[4%] top-12 w-32 lg:hidden xl:block" />
+        <Ilustracao nome="sol" className="absolute right-[7%] top-10 -z-10 hidden w-16 xl:block" />
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeading
             title="O dia a dia em"

@@ -10,13 +10,19 @@ export const site = {
   description:
     "OSC sem fins lucrativos dedicada ao acolhimento, nutrição e educação infantil gratuita para crianças e famílias em situação de vulnerabilidade social.",
   url: "https://inav.org.br",
-  /* PLACEHOLDER — trocar pelos dados oficiais */
-  pixKey: "00.000.000/0001-00",
+  /** Confirmado pelo INAV em 30/10/2026. */
+  cnpj: "04.192.012/0001-16",
+  /** A chave Pix é o próprio CNPJ, conferida no app do banco em 30/10/2026 (recebedor no BRB). */
+  pixKey: "04.192.012/0001-16",
   pixLabel: "CNPJ",
-  phone: "(00) 0000-0000",
-  whatsapp: "5500000000000",
-  whatsappDisplay: "(00) 00000-0000",
+  pixBank: "BRB",
+  /** Por enquanto o mesmo número serve para telefone, WhatsApp e pedidos do bazar (30/10/2026). */
+  phone: "(61) 99394-9017",
+  whatsapp: "5561993949017",
+  whatsappDisplay: "(61) 99394-9017",
+  /* PLACEHOLDER — trocar pelos dados oficiais */
   email: "contato@inav.org.br",
+  instagram: "instituicaoinav",
   address: {
     street: "Rua Exemplo, 000 — Bairro",
     city: "Cidade",
@@ -39,6 +45,8 @@ export const navigation = [
   { label: "Educação Infantil", to: "/educacao-infantil" },
   { label: "Projetos", to: "/projetos" },
   { label: "Transparência", to: "/transparencia" },
+  { label: "Bazar", to: "/bazar" },
+  { label: "Blog", to: "/blog" },
   { label: "Quer Ajudar", to: "/quer-ajudar" },
   { label: "Contato", to: "/contato" },
 ] as const;
@@ -46,6 +54,8 @@ export const navigation = [
 export const whatsappLink = `https://wa.me/${site.whatsapp}?text=${encodeURIComponent(
   "Olá! Gostaria de saber mais sobre o Instituto Nair Valadares.",
 )}`;
+
+export const instagramLink = `https://www.instagram.com/${site.instagram}/`;
 
 /**
  * Integrações externas — preencher quando as contas estiverem criadas.
@@ -58,12 +68,15 @@ export const integrations = {
    */
   formspreeEndpoint: "https://formspree.io/f/xdeozbay",
   /**
-   * PLACEHOLDER — planilha Google com os documentos de transparência.
-   * Colunas esperadas na primeira linha: titulo | nota | link
-   * (link = URL pública do PDF, ex. um link de compartilhamento do Drive).
-   * Publique a planilha em Arquivo → Compartilhar → Publicar na web,
-   * escolhendo o formato CSV, e cole aqui a URL gerada.
+   * CSV com os documentos de transparência: "Planilha de alimentação -
+   * Trasparencia.csv", no Drive do projeto (compartilhado com qualquer pessoa
+   * com o link). Colunas na primeira linha: titulo | nota | link, separadas
+   * por ";" ou "," (o Papa.parse detecta). link = URL pública do PDF no Drive.
+   * Para atualizar sem mudar esta URL, substitua o arquivo no Drive em
+   * Gerenciar versões → Enviar nova versão (manter o mesmo nome e o mesmo ID).
+   * Também aceita a URL CSV de uma planilha Google publicada na web.
    * Enquanto vazio, a página usa a lista estática de fallback.
    */
-  transparencySheetCsvUrl: "https://docs.google.com/spreadsheets/d/e/2PACX-1vRHj6uy8AjqIbQw2yr8THXnIoRJHyxRrFkeBsq1sP5Ad5g5MwBODmztaF22v8ZQ0mAK2A-E44-4Pw5i/pub?output=csv",
+  transparencySheetCsvUrl:
+    "https://drive.google.com/uc?export=download&id=1Rp-RkYZErWu7HFal_7OKhvbexBx4U001",
 } as const;

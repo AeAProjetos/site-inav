@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 156 88" width="312" height="176"><title>Lagarta</title>
+<path d="M22 72 V80 M48 65 V75 M76 63 V73 M104 67 V77" fill="none" stroke="#004580" stroke-width="3" stroke-linecap="round"/>
+<circle cx="22" cy="60" r="14" fill="#3EBD37" stroke="#004580" stroke-width="3"/>
+<circle cx="48" cy="52" r="15" fill="#84D43F" stroke="#004580" stroke-width="3"/>
+<circle cx="76" cy="50" r="15" fill="#3EBD37" stroke="#004580" stroke-width="3"/>
+<circle cx="104" cy="54" r="15" fill="#84D43F" stroke="#004580" stroke-width="3"/>
+<g fill="#FFC83D"><circle cx="22" cy="56" r="3"/><circle cx="48" cy="47" r="3"/><circle cx="76" cy="45" r="3"/><circle cx="104" cy="49" r="3"/></g>
+<path d="M122 29 Q118 17 112 12 M138 29 Q142 17 148 12" fill="none" stroke="#004580" stroke-width="2.5" stroke-linecap="round"/>
+<circle cx="111" cy="11" r="3" fill="#004580"/><circle cx="149" cy="11" r="3" fill="#004580"/>
+<circle cx="130" cy="46" r="20" fill="#84D43F" stroke="#004580" stroke-width="3"/>
+<circle cx="123" cy="42" r="5.5" fill="#FFFFFF"/><circle cx="124" cy="42.5" r="2.8" fill="#004580"/>
+<circle cx="137" cy="42" r="5.5" fill="#FFFFFF"/><circle cx="138" cy="42.5" r="2.8" fill="#004580"/>
+<circle cx="117" cy="53" r="3.5" fill="#FF6442" opacity="0.5"/><circle cx="143" cy="53" r="3.5" fill="#FF6442" opacity="0.5"/>
+<path d="M124 54 Q130 60 136 54" fill="none" stroke="#004580" stroke-width="2.4" stroke-linecap="round"/>
+</svg>

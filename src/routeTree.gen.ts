@@ -12,10 +12,18 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ContatoRouteImport } from './routes/contato'
 import { Route as EducacaoInfantilRouteImport } from './routes/educacao-infantil'
+import { Route as PoliticaDePrivacidadeRouteImport } from './routes/politica-de-privacidade'
 import { Route as ProjetosRouteImport } from './routes/projetos'
 import { Route as QuemSomosRouteImport } from './routes/quem-somos'
 import { Route as QuerAjudarRouteImport } from './routes/quer-ajudar'
 import { Route as TransparenciaRouteImport } from './routes/transparencia'
+import { Route as BazarIndexRouteImport } from './routes/bazar/index'
+import { Route as BazarCodigoRouteImport } from './routes/bazar/$codigo'
+import { Route as BazarSacolaRouteImport } from './routes/bazar/sacola'
+import { Route as BlogIndexRouteImport } from './routes/blog/index'
+import { Route as BlogSlugRouteImport } from './routes/blog/$slug'
+import { Route as NewsletterConfirmadaRouteImport } from './routes/newsletter/confirmada'
+import { Route as ApiNewsletterNovoPostRouteImport } from './routes/api/newsletter/novo-post'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -30,6 +38,11 @@ const ContatoRoute = ContatoRouteImport.update({
 const EducacaoInfantilRoute = EducacaoInfantilRouteImport.update({
   id: '/educacao-infantil',
   path: '/educacao-infantil',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PoliticaDePrivacidadeRoute = PoliticaDePrivacidadeRouteImport.update({
+  id: '/politica-de-privacidade',
+  path: '/politica-de-privacidade',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProjetosRoute = ProjetosRouteImport.update({
@@ -52,34 +65,93 @@ const TransparenciaRoute = TransparenciaRouteImport.update({
   path: '/transparencia',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BazarIndexRoute = BazarIndexRouteImport.update({
+  id: '/bazar/',
+  path: '/bazar/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BazarCodigoRoute = BazarCodigoRouteImport.update({
+  id: '/bazar/$codigo',
+  path: '/bazar/$codigo',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BazarSacolaRoute = BazarSacolaRouteImport.update({
+  id: '/bazar/sacola',
+  path: '/bazar/sacola',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogIndexRoute = BlogIndexRouteImport.update({
+  id: '/blog/',
+  path: '/blog/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogSlugRoute = BlogSlugRouteImport.update({
+  id: '/blog/$slug',
+  path: '/blog/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NewsletterConfirmadaRoute = NewsletterConfirmadaRouteImport.update({
+  id: '/newsletter/confirmada',
+  path: '/newsletter/confirmada',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiNewsletterNovoPostRoute = ApiNewsletterNovoPostRouteImport.update({
+  id: '/api/newsletter/novo-post',
+  path: '/api/newsletter/novo-post',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/contato': typeof ContatoRoute
   '/educacao-infantil': typeof EducacaoInfantilRoute
+  '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
   '/projetos': typeof ProjetosRoute
   '/quem-somos': typeof QuemSomosRoute
   '/quer-ajudar': typeof QuerAjudarRoute
   '/transparencia': typeof TransparenciaRoute
+  '/bazar/$codigo': typeof BazarCodigoRoute
+  '/bazar/sacola': typeof BazarSacolaRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/newsletter/confirmada': typeof NewsletterConfirmadaRoute
+  '/bazar/': typeof BazarIndexRoute
+  '/blog/': typeof BlogIndexRoute
+  '/api/newsletter/novo-post': typeof ApiNewsletterNovoPostRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/contato': typeof ContatoRoute
   '/educacao-infantil': typeof EducacaoInfantilRoute
+  '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
   '/projetos': typeof ProjetosRoute
   '/quem-somos': typeof QuemSomosRoute
   '/quer-ajudar': typeof QuerAjudarRoute
   '/transparencia': typeof TransparenciaRoute
+  '/bazar/$codigo': typeof BazarCodigoRoute
+  '/bazar/sacola': typeof BazarSacolaRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/newsletter/confirmada': typeof NewsletterConfirmadaRoute
+  '/bazar': typeof BazarIndexRoute
+  '/blog': typeof BlogIndexRoute
+  '/api/newsletter/novo-post': typeof ApiNewsletterNovoPostRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/contato': typeof ContatoRoute
   '/educacao-infantil': typeof EducacaoInfantilRoute
+  '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
   '/projetos': typeof ProjetosRoute
   '/quem-somos': typeof QuemSomosRoute
   '/quer-ajudar': typeof QuerAjudarRoute
   '/transparencia': typeof TransparenciaRoute
+  '/bazar/$codigo': typeof BazarCodigoRoute
+  '/bazar/sacola': typeof BazarSacolaRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/newsletter/confirmada': typeof NewsletterConfirmadaRoute
+  '/bazar/': typeof BazarIndexRoute
+  '/blog/': typeof BlogIndexRoute
+  '/api/newsletter/novo-post': typeof ApiNewsletterNovoPostRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -87,38 +159,70 @@ export interface FileRouteTypes {
     | '/'
     | '/contato'
     | '/educacao-infantil'
+    | '/politica-de-privacidade'
     | '/projetos'
     | '/quem-somos'
     | '/quer-ajudar'
     | '/transparencia'
+    | '/bazar/$codigo'
+    | '/bazar/sacola'
+    | '/blog/$slug'
+    | '/newsletter/confirmada'
+    | '/bazar/'
+    | '/blog/'
+    | '/api/newsletter/novo-post'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/contato'
     | '/educacao-infantil'
+    | '/politica-de-privacidade'
     | '/projetos'
     | '/quem-somos'
     | '/quer-ajudar'
     | '/transparencia'
+    | '/bazar/$codigo'
+    | '/bazar/sacola'
+    | '/blog/$slug'
+    | '/newsletter/confirmada'
+    | '/bazar'
+    | '/blog'
+    | '/api/newsletter/novo-post'
   id:
     | '__root__'
     | '/'
     | '/contato'
     | '/educacao-infantil'
+    | '/politica-de-privacidade'
     | '/projetos'
     | '/quem-somos'
     | '/quer-ajudar'
     | '/transparencia'
+    | '/bazar/$codigo'
+    | '/bazar/sacola'
+    | '/blog/$slug'
+    | '/newsletter/confirmada'
+    | '/bazar/'
+    | '/blog/'
+    | '/api/newsletter/novo-post'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ContatoRoute: typeof ContatoRoute
   EducacaoInfantilRoute: typeof EducacaoInfantilRoute
+  PoliticaDePrivacidadeRoute: typeof PoliticaDePrivacidadeRoute
   ProjetosRoute: typeof ProjetosRoute
   QuemSomosRoute: typeof QuemSomosRoute
   QuerAjudarRoute: typeof QuerAjudarRoute
   TransparenciaRoute: typeof TransparenciaRoute
+  BazarCodigoRoute: typeof BazarCodigoRoute
+  BazarSacolaRoute: typeof BazarSacolaRoute
+  BlogSlugRoute: typeof BlogSlugRoute
+  NewsletterConfirmadaRoute: typeof NewsletterConfirmadaRoute
+  BazarIndexRoute: typeof BazarIndexRoute
+  BlogIndexRoute: typeof BlogIndexRoute
+  ApiNewsletterNovoPostRoute: typeof ApiNewsletterNovoPostRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -142,6 +246,13 @@ declare module '@tanstack/react-router' {
       path: '/educacao-infantil'
       fullPath: '/educacao-infantil'
       preLoaderRoute: typeof EducacaoInfantilRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/politica-de-privacidade': {
+      id: '/politica-de-privacidade'
+      path: '/politica-de-privacidade'
+      fullPath: '/politica-de-privacidade'
+      preLoaderRoute: typeof PoliticaDePrivacidadeRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/projetos': {
@@ -172,6 +283,55 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TransparenciaRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/bazar/': {
+      id: '/bazar/'
+      path: '/bazar'
+      fullPath: '/bazar/'
+      preLoaderRoute: typeof BazarIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/bazar/$codigo': {
+      id: '/bazar/$codigo'
+      path: '/bazar/$codigo'
+      fullPath: '/bazar/$codigo'
+      preLoaderRoute: typeof BazarCodigoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/bazar/sacola': {
+      id: '/bazar/sacola'
+      path: '/bazar/sacola'
+      fullPath: '/bazar/sacola'
+      preLoaderRoute: typeof BazarSacolaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/': {
+      id: '/blog/'
+      path: '/blog'
+      fullPath: '/blog/'
+      preLoaderRoute: typeof BlogIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/$slug': {
+      id: '/blog/$slug'
+      path: '/blog/$slug'
+      fullPath: '/blog/$slug'
+      preLoaderRoute: typeof BlogSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/newsletter/confirmada': {
+      id: '/newsletter/confirmada'
+      path: '/newsletter/confirmada'
+      fullPath: '/newsletter/confirmada'
+      preLoaderRoute: typeof NewsletterConfirmadaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/newsletter/novo-post': {
+      id: '/api/newsletter/novo-post'
+      path: '/api/newsletter/novo-post'
+      fullPath: '/api/newsletter/novo-post'
+      preLoaderRoute: typeof ApiNewsletterNovoPostRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -179,10 +339,18 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ContatoRoute: ContatoRoute,
   EducacaoInfantilRoute: EducacaoInfantilRoute,
+  PoliticaDePrivacidadeRoute: PoliticaDePrivacidadeRoute,
   ProjetosRoute: ProjetosRoute,
   QuemSomosRoute: QuemSomosRoute,
   QuerAjudarRoute: QuerAjudarRoute,
   TransparenciaRoute: TransparenciaRoute,
+  BazarCodigoRoute: BazarCodigoRoute,
+  BazarSacolaRoute: BazarSacolaRoute,
+  BlogSlugRoute: BlogSlugRoute,
+  NewsletterConfirmadaRoute: NewsletterConfirmadaRoute,
+  BazarIndexRoute: BazarIndexRoute,
+  BlogIndexRoute: BlogIndexRoute,
+  ApiNewsletterNovoPostRoute: ApiNewsletterNovoPostRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

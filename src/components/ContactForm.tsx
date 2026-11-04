@@ -1,4 +1,5 @@
 import { useState, type FormEvent } from "react";
+import { Link } from "@tanstack/react-router";
 import { motion } from "motion/react";
 import { AlertCircle, CheckCircle2, Loader2, Send } from "lucide-react";
 
@@ -128,6 +129,17 @@ export function ContactForm({ defaultMotivo }: ContactFormProps) {
           </span>
         </p>
       )}
+
+      <p className="text-xs leading-relaxed text-muted-foreground">
+        Usamos seus dados só para responder a esta mensagem. Saiba mais na{" "}
+        <Link
+          to="/politica-de-privacidade"
+          className="font-semibold text-brand-blue underline underline-offset-4 hover:text-brand-blue-deep"
+        >
+          Política de Privacidade
+        </Link>
+        .
+      </p>
 
       {!configured && (
         <p role="status" className="text-sm text-muted-foreground">

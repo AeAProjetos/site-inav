@@ -6,6 +6,7 @@ import { Compass, Eye, HeartHandshake } from "lucide-react";
 import { PageHero } from "@/components/PageHero";
 import { SectionHeading } from "@/components/SectionHeading";
 import { ClosingBanner } from "@/components/ClosingBanner";
+import { Canteiro, Cena, Ilustracao } from "@/components/Ilustracao";
 import { OurStructure } from "@/components/OurStructure";
 import { TestimonialCarousel } from "@/components/TestimonialCarousel";
 import { fadeUp, revealOnScroll, stagger } from "@/lib/motion-presets";
@@ -152,7 +153,8 @@ function QuemSomosPage() {
       />
 
       {/* Linha do tempo */}
-      <section className="bg-background py-20 sm:py-24">
+      <section className="relative isolate overflow-hidden bg-background py-20 sm:py-24">
+        <Cena nome="sol-e-nuvem" className="right-[6%] top-8 w-20 lg:hidden xl:block" />
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeading
             eyebrow="Linha do tempo"
@@ -174,8 +176,12 @@ function QuemSomosPage() {
                 <motion.div
                   key={item.period}
                   variants={fadeUp}
-                  className="w-64 shrink-0 sm:w-72 lg:w-auto"
+                  className="relative w-64 shrink-0 sm:w-72 lg:w-auto"
                 >
+                  {/* Passarinho espiando por trás da última foto. */}
+                  {isLast && (
+                    <Ilustracao nome="passarinho" className="absolute -top-11 right-8 -z-10 hidden w-16 lg:block" />
+                  )}
                   <div className="overflow-hidden rounded-2xl shadow-soft">
                     <img
                       src={item.image}
@@ -223,7 +229,9 @@ function QuemSomosPage() {
       </section>
 
       {/* Missão, visão, valores */}
-      <section className="bg-surface-tint py-20 sm:py-24">
+      <section className="relative isolate overflow-hidden bg-surface-tint py-20 sm:py-24">
+        <Ilustracao nome="borboleta" className="absolute right-[7%] top-16 -z-10 hidden w-12 rotate-6 xl:block" />
+        <Canteiro itens={["margarida-laranja", "capim"]} className="left-[3%]" />
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeading
             eyebrow="Nossos princípios"
@@ -231,23 +239,31 @@ function QuemSomosPage() {
             highlight="dias"
             align="center"
           />
-          <motion.div
-            variants={stagger}
-            {...revealOnScroll}
-            className="mt-14 grid divide-y divide-border overflow-hidden rounded-2xl border border-border bg-card shadow-soft lg:grid-cols-3 lg:divide-x lg:divide-y-0"
-          >
-            {values.map((value, index) => (
-              <PrincipleColumn key={value.title} {...value} index={index + 1} />
-            ))}
-          </motion.div>
+          <div className="relative mt-14">
+            {/* Caracol passeando por trás do card. */}
+            <Ilustracao nome="caracol" className="absolute -top-10 left-12 -z-10 hidden w-16 lg:block" />
+            <motion.div
+              variants={stagger}
+              {...revealOnScroll}
+              className="grid divide-y divide-border overflow-hidden rounded-2xl border border-border bg-card shadow-soft lg:grid-cols-3 lg:divide-x lg:divide-y-0"
+            >
+              {values.map((value, index) => (
+                <PrincipleColumn key={value.title} {...value} index={index + 1} />
+              ))}
+            </motion.div>
+          </div>
         </div>
       </section>
 
       <OurStructure />
 
       {/* Nossa gente */}
-      <section className="bg-background py-20 sm:py-24">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <section className="relative isolate overflow-hidden bg-background py-20 sm:py-24">
+        {/* À esquerda: do lado direito ficaria em cima da foto do encerramento. */}
+        <Canteiro itens={["lagarta", "capim"]} className="left-[4%]" />
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          {/* Arbusto saindo por trás do canto do card. */}
+          <Cena nome="caracol-no-arbusto" className="-bottom-6 right-0 w-28" />
           <div className="grid overflow-hidden rounded-2xl border border-border shadow-soft lg:grid-cols-[3fr_2fr]">
             <motion.div
               variants={fadeUp}

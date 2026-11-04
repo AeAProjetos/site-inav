@@ -1,17 +1,14 @@
 import { Link } from "@tanstack/react-router";
-import { Mail, MapPin, Phone, Clock } from "lucide-react";
+import { Mail, MapPin, Phone, Clock, Instagram } from "lucide-react";
 
-import { navigation, site } from "@/lib/site-config";
-import { WaveDivider } from "@/components/WaveDivider";
+import { instagramLink, navigation, site } from "@/lib/site-config";
+import { InscricaoNewsletter } from "@/components/InscricaoNewsletter";
+import { PaisagemRodape } from "@/components/Paisagem";
 
 export function SiteFooter() {
   return (
     <footer className="relative">
-      {/* A onda é a borda curva do rodapé: fica acima dele, sobre o fim da seção anterior, para o fundo dessa seção aparecer atrás da curva. */}
-      <WaveDivider
-        variant="down"
-        className="absolute inset-x-0 bottom-full -mb-px h-10 text-brand-blue-deep md:h-16"
-      />
+      <PaisagemRodape />
 
       <div className="bg-brand-blue-deep text-white">
         <div className="mx-auto grid max-w-7xl gap-10 px-4 pb-12 pt-6 sm:px-6 md:pt-8 lg:grid-cols-[1.4fr_1fr_1.2fr] lg:px-8">
@@ -29,6 +26,16 @@ export function SiteFooter() {
             <p className="mt-5 text-xs uppercase tracking-widest text-brand-green-light">
               Organização da Sociedade Civil sem fins lucrativos
             </p>
+
+            <div className="mt-8 max-w-sm">
+              <h2 className="text-sm font-bold uppercase tracking-widest text-brand-green-light">
+                Newsletter
+              </h2>
+              <p className="mb-4 mt-2 text-sm leading-relaxed text-white/75">
+                Receba por e-mail cada publicação nova do blog.
+              </p>
+              <InscricaoNewsletter variante="rodape" />
+            </div>
           </div>
 
           <nav aria-label="Rodapé">
@@ -75,6 +82,20 @@ export function SiteFooter() {
                 </a>
               </li>
               <li className="flex gap-3">
+                <Instagram
+                  className="mt-0.5 size-4 shrink-0 text-brand-orange"
+                  aria-hidden="true"
+                />
+                <a
+                  className="transition-colors hover:text-white"
+                  href={instagramLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  @{site.instagram}
+                </a>
+              </li>
+              <li className="flex gap-3">
                 <Clock className="mt-0.5 size-4 shrink-0 text-brand-orange" aria-hidden="true" />
                 <span>{site.hours}</span>
               </li>
@@ -87,6 +108,9 @@ export function SiteFooter() {
             <p>
               © {new Date().getFullYear()} {site.name}. Todos os direitos reservados.
             </p>
+            <Link to="/politica-de-privacidade" className="transition-colors hover:text-white">
+              Política de Privacidade
+            </Link>
             <p>Feito com carinho para transformar vidas.</p>
           </div>
         </div>

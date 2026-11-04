@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="200" height="200"><title>Sol sorridente</title>
+<g stroke="#F36F21" stroke-width="4.5" stroke-linecap="round">
+<path d="M100 60 H114"/><path d="M88.3 88.3 L98.2 98.2"/><path d="M60 100 V114"/><path d="M31.7 88.3 L21.8 98.2"/>
+<path d="M20 60 H6"/><path d="M31.7 31.7 L21.8 21.8"/><path d="M60 20 V6"/><path d="M88.3 31.7 L98.2 21.8"/>
+</g>
+<circle cx="60" cy="60" r="31" fill="#FFC83D" stroke="#004580" stroke-width="3"/>
+<path d="M40 46 Q44 39 51 36" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" opacity="0.7"/>
+<path d="M44 55 Q49 47 54 55 M66 55 Q71 47 76 55" fill="none" stroke="#004580" stroke-width="3" stroke-linecap="round"/>
+<circle cx="42" cy="67" r="5" fill="#FF6442" opacity="0.45"/><circle cx="78" cy="67" r="5" fill="#FF6442" opacity="0.45"/>
+<path d="M50 67 Q60 82 70 67 Z" fill="#004580" stroke="#004580" stroke-width="2" stroke-linejoin="round"/>
+</svg>

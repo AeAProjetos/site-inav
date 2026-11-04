@@ -10,12 +10,14 @@ type PageHeroProps = {
   title: string;
   highlight?: string;
   description: string;
+  /** Título menor, para títulos longos como o de uma publicação do blog. */
+  compact?: boolean;
   /** Foto (ou outro elemento) exibida à direita do texto no desktop e abaixo dele no celular. */
   aside?: ReactNode;
 };
 
 /** Cabeçalho padrão das páginas internas, com a curva orgânica da marca. */
-export function PageHero({ eyebrow, title, highlight, description, aside }: PageHeroProps) {
+export function PageHero({ eyebrow, title, highlight, description, compact, aside }: PageHeroProps) {
   return (
     <section className="relative isolate overflow-hidden bg-brand-blue-deep pt-32 sm:pt-40">
       <div
@@ -48,11 +50,15 @@ export function PageHero({ eyebrow, title, highlight, description, aside }: Page
           )}
           <motion.h1
             variants={fadeUp}
-            // Sem cn() aqui: o tailwind-merge confunde text-balance-pretty com cor e descarta o text-white.
+            // text-balance-pretty fica fora do cn(): o tailwind-merge acha que é cor e apagaria o text-white.
             // Com foto ao lado a coluna de texto é mais estreita; título menor para caber em 2 linhas.
-            className={`max-w-3xl text-4xl font-extrabold uppercase leading-[1] text-white text-balance-pretty sm:text-5xl ${
-              aside ? "lg:text-[2.5rem] xl:text-[2.75rem]" : "lg:text-6xl"
-            }`}
+            className={`${cn(
+              "max-w-3xl font-extrabold uppercase text-white",
+              compact
+                ? "text-3xl leading-[1.08] sm:text-4xl lg:text-5xl"
+                : "text-4xl leading-[1] sm:text-5xl",
+              !compact && (aside ? "lg:text-[2.5rem] xl:text-[2.75rem]" : "lg:text-6xl"),
+            )} text-balance-pretty`}
           >
             {title}
             {highlight && (

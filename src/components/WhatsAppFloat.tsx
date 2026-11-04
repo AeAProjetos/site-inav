@@ -1,8 +1,13 @@
+import { useRouterState } from "@tanstack/react-router";
 import { motion } from "motion/react";
 
 import { site, whatsappLink } from "@/lib/site-config";
 
 export function WhatsAppFloat() {
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  // Na sacola do bazar o botão principal já é o WhatsApp; o flutuante ficaria por cima dele.
+  if (pathname === "/bazar/sacola") return null;
+
   return (
     <motion.a
       href={whatsappLink}

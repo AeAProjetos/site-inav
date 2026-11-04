@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 124 94" width="248" height="188"><title>Caracol</title>
+<path d="M20 74 H92" fill="none" stroke="#004580" stroke-width="26" stroke-linecap="round"/>
+<path d="M92 74 C104 72 104 56 102 42" fill="none" stroke="#004580" stroke-width="26" stroke-linecap="round"/>
+<path d="M20 74 H92" fill="none" stroke="#84D43F" stroke-width="20" stroke-linecap="round"/>
+<path d="M92 74 C104 72 104 56 102 42" fill="none" stroke="#84D43F" stroke-width="20" stroke-linecap="round"/>
+<path d="M98 31 Q94 20 90 14 M106 31 Q110 20 114 16" fill="none" stroke="#004580" stroke-width="2.5" stroke-linecap="round"/>
+<circle cx="90" cy="13" r="5" fill="#FFFFFF" stroke="#004580" stroke-width="2"/><circle cx="90.5" cy="13.5" r="2" fill="#004580"/>
+<circle cx="114" cy="15" r="5" fill="#FFFFFF" stroke="#004580" stroke-width="2"/><circle cx="114.5" cy="15.5" r="2" fill="#004580"/>
+<circle cx="95" cy="46" r="3.5" fill="#FF6442" opacity="0.5"/>
+<path d="M99 44 Q104 49 109 44" fill="none" stroke="#004580" stroke-width="2.4" stroke-linecap="round"/>
+<circle cx="52" cy="48" r="30" fill="#F36F21" stroke="#004580" stroke-width="3"/>
+<path d="M52 48 a5 5 0 0 1 10 0 a10 10 0 0 1 -20 0 a15 15 0 0 1 30 0 a20 20 0 0 1 -40 0" fill="none" stroke="#FFC83D" stroke-width="3.5" stroke-linecap="round"/>
+<circle cx="38" cy="30" r="3" fill="#FFFFFF" opacity="0.5"/>
+</svg>

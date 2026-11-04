@@ -6,6 +6,7 @@ import { PageHero } from "@/components/PageHero";
 import { SectionHeading } from "@/components/SectionHeading";
 import { FeatureCard } from "@/components/FeatureCard";
 import { PixDonationCard } from "@/components/PixDonationCard";
+import { Cena, Ilustracao } from "@/components/Ilustracao";
 import { fadeUp, revealOnScroll, stagger } from "@/lib/motion-presets";
 import { whatsappLink } from "@/lib/site-config";
 import { cn } from "@/lib/utils";
@@ -74,7 +75,9 @@ function QuerAjudarPage() {
       />
 
       {/* Doação direta — ação imediata, sem compromisso continuado */}
-      <section id="doacao" className="bg-background py-20 sm:py-24">
+      <section id="doacao" className="relative isolate overflow-hidden bg-background py-20 sm:py-24">
+        <Ilustracao nome="libelula" className="absolute left-[5%] top-14 -z-10 hidden w-14 xl:block" />
+        <Cena nome="sol-e-nuvem" className="right-[6%] top-8 w-20 lg:hidden xl:block" />
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeading
             eyebrow="Doação direta"
@@ -88,14 +91,55 @@ function QuerAjudarPage() {
             {...revealOnScroll}
             className="mt-14 grid gap-6 lg:grid-cols-[1.4fr_1fr] lg:items-stretch"
           >
-            <PixDonationCard />
+            <PixDonationCard comQrCode />
             <FeatureCard {...itemDonation} className="h-full" />
           </motion.div>
         </div>
       </section>
 
+      {/* Bazar — outra forma de ajudar: comprar itens doados ao instituto */}
+      <section id="bazar" className="bg-brand-blue-soft py-16 sm:py-20">
+        <motion.div
+          variants={stagger}
+          {...revealOnScroll}
+          className="mx-auto flex max-w-7xl flex-col gap-8 px-4 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8"
+        >
+          <div className="max-w-2xl">
+            <motion.h2
+              variants={fadeUp}
+              className="text-3xl font-extrabold uppercase leading-[1.05] text-brand-blue-deep sm:text-4xl"
+            >
+              Compre no bazar <span className="text-brand-green">solidário</span>
+            </motion.h2>
+            <motion.p
+              variants={fadeUp}
+              className="mt-4 text-base leading-relaxed text-muted-foreground sm:text-lg"
+            >
+              Roupas, itens para casa e outros produtos a preços acessíveis. Escolha pelo site,
+              envie o pedido pelo WhatsApp e retire no INAV. Cada compra ajuda a fortalecer as
+              atividades do instituto.
+            </motion.p>
+          </div>
+          <motion.div variants={fadeUp} className="shrink-0">
+            <Link
+              to="/bazar"
+              className="group inline-flex items-center gap-2 rounded-full bg-brand-blue px-8 py-4 text-sm font-bold uppercase tracking-wide text-white shadow-soft transition-colors duration-200 hover:bg-brand-blue-deep"
+            >
+              Conhecer o bazar
+              <ArrowRight
+                className="size-4 transition-transform duration-300 group-hover:translate-x-1"
+                aria-hidden="true"
+              />
+            </Link>
+          </motion.div>
+        </motion.div>
+      </section>
+
       {/* Envolvimento — relação contínua, passa por uma conversa */}
-      <section id="envolvimento" className="bg-surface-tint py-20 sm:py-24">
+      <section id="envolvimento" className="relative isolate overflow-hidden bg-surface-tint py-20 sm:py-24">
+        {/* Última seção antes do rodapé: sem canteiro, para não repetir a paisagem logo abaixo. */}
+        <Ilustracao nome="abelha" className="absolute right-[6%] top-16 -z-10 hidden w-12 -rotate-6 xl:block" />
+        <Cena nome="duas-nuvens" className="left-[4%] top-10 w-32 lg:hidden xl:block" />
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeading
             eyebrow="Quero me envolver"
@@ -156,13 +200,10 @@ function QuerAjudarPage() {
               variants={fadeUp}
               className="mx-auto mt-4 max-w-xl leading-relaxed text-muted-foreground"
             >
-              Fale direto com a equipe pelo WhatsApp. Explicamos como o recurso é aplicado,
-              enviamos os relatórios e combinamos uma visita ao instituto.
+              Fale direto com a equipe pelo WhatsApp. Explicamos como o recurso é aplicado, enviamos
+              os relatórios e combinamos uma visita ao instituto.
             </motion.p>
-            <motion.div
-              variants={fadeUp}
-              className="mt-8 flex flex-wrap justify-center gap-3"
-            >
+            <motion.div variants={fadeUp} className="mt-8 flex flex-wrap justify-center gap-3">
               <a
                 href={whatsappLink}
                 target="_blank"
