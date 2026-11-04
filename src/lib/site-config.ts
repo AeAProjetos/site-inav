@@ -23,13 +23,14 @@ export const site = {
   /* PLACEHOLDER — trocar pelos dados oficiais */
   email: "contato@inav.org.br",
   instagram: "instituicaoinav",
+  /** Endereço e horário confirmados em 04/11/2026. */
   address: {
-    street: "Rua Exemplo, 000 — Bairro",
-    city: "Cidade",
-    state: "UF",
-    zip: "00000-000",
+    street: "QN 08A, Conjunto 04 e 05, Lotes 01 e 02",
+    city: "Riacho Fundo II, Brasília",
+    state: "DF",
+    zip: "71880-110",
   },
-  hours: "Segunda a sexta, das 7h às 17h",
+  hours: "Segunda a sexta, das 7h30 às 17h30",
 } as const;
 
 export const impactStats = [
