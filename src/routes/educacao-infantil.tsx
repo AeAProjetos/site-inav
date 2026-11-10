@@ -73,37 +73,42 @@ const beyondClassroom = [
   },
 ];
 
-// Só chegada e saída têm horário confirmado. Os do meio entram quando o INAV informar.
+// Resumo da "Rotina diária" enviada pelo INAV em 10/11/2026 (15 momentos em 6 passos).
+// As refeições aparecem completas na seção "Alimentação também é cuidado".
 const dayRoutine: { time?: string; title: string; text: string }[] = [
   {
     time: "7h30",
     title: "Chegada",
-    text: "As crianças são recebidas pela equipe na entrada e o dia começa com acolhida.",
+    text: "As professoras recebem as crianças nas salas, com brinquedos para a acolhida. Depois, café da manhã no refeitório.",
   },
   {
+    time: "8h35",
     title: "Atividades",
-    text: "Rodas de conversa, histórias, música e propostas pedagógicas para cada idade.",
+    text: "Rodas de conversa, música, histórias e experiências. No fim da manhã, parque e cama elástica.",
   },
   {
-    title: "Alimentação",
-    text: "Refeição completa, com hábitos de higiene antes e depois.",
+    time: "11h",
+    title: "Almoço",
+    text: "Almoço no refeitório e escovação dos dentes, com acompanhamento da equipe.",
   },
   {
+    time: "12h",
     title: "Descanso",
-    text: "Um tempo de repouso para recuperar a energia da manhã.",
+    text: "Duas horas de soneca, respeitando o ritmo de cada criança.",
   },
   {
+    time: "14h",
     title: "Brincadeiras",
-    text: "Brincar livre e atividades em grupo, dentro e fora da sala.",
+    text: "Lanche, banho e brincadeiras orientadas com brinquedos pedagógicos.",
   },
   {
-    time: "17h30",
+    time: "17h às 17h30",
     title: "Saída",
-    text: "Últimos momentos do dia e saída acompanhada pelos responsáveis.",
+    text: "Depois do jantar, as crianças são entregues aos pais ou responsáveis autorizados.",
   },
 ];
 
-// "Equipe de apoio" (psicologia, serviço social, fonoaudiologia, nutrição) volta quando o INAV confirmar.
+// Saúde: lista "Faculdades parceiras 2026" do INAV; atuação e nomes confirmados em 10/11/2026.
 const familyTopics: { title: string; text: string }[] = [
   {
     title: "Diálogo com os responsáveis",
@@ -112,6 +117,14 @@ const familyTopics: { title: string; text: string }[] = [
   {
     title: "Acompanhamento",
     text: "O desenvolvimento de cada criança é acompanhado e compartilhado com a família.",
+  },
+  {
+    title: "Atendimento de saúde",
+    text: "Estagiários de nutrição, psicologia, medicina, odontologia, terapia ocupacional e enfermagem atendem as crianças e orientam as famílias, em estágio supervisionado.",
+  },
+  {
+    title: "Faculdades parceiras",
+    text: "Anhanguera, ICESP, UDF, UnB e Universidade Católica de Brasília.",
   },
 ];
 
