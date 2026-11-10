@@ -81,6 +81,13 @@ function ProjetosPage() {
         title="O cuidado não para na porta da"
         highlight="sala"
         description="Nossos projetos ampliam a experiência das crianças e alcançam as famílias e a comunidade ao redor. São frentes contínuas, com equipe dedicada e resultados acompanhados."
+        aside={
+          <img
+            src="/img/projetos-topo.jpg"
+            alt="Crianças brincando juntas no tanque de areia do INAV"
+            className="size-full object-cover"
+          />
+        }
       />
 
       <section className="relative isolate overflow-hidden bg-background py-20 sm:py-24">

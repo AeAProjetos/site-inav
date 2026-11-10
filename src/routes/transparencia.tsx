@@ -111,6 +111,13 @@ function TransparenciaPage() {
         title="Contas abertas para quem"
         highlight="confia"
         description="Quem doa tem o direito de saber exatamente para onde o recurso vai. Publicamos relatórios, balanços e documentos institucionais para que qualquer pessoa possa conferir."
+        aside={
+          <img
+            src="/img/transparencia-topo.jpg"
+            alt="Prateleira com bananas, melões e outras frutas na cozinha do INAV"
+            className="size-full object-cover"
+          />
+        }
       />
 
       <section className="relative isolate overflow-hidden bg-background py-20 sm:py-24">

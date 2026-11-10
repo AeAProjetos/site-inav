@@ -271,9 +271,9 @@ function QuemSomosPage() {
               className="relative min-h-[320px] lg:min-h-[460px]"
             >
               <img
-                src="/img/equipe_funcionarios.jpg"
-                alt="Equipe do INAV reunida, em momento de união do time"
-                className="absolute inset-0 size-full object-cover"
+                src="/img/nossa-gente.jpg"
+                alt="Educadoras do INAV contando uma história para as crianças no jardim"
+                className="absolute inset-0 size-full object-cover object-[center_35%]"
               />
             </motion.div>
 
@@ -297,10 +297,9 @@ function QuemSomosPage() {
         description="Conheça os projetos e iniciativas que fazem parte da atuação do INAV e veja como você também pode contribuir."
         ctaLabel="Conheça nossos projetos"
         ctaTo="/projetos"
-        // Foto provisória — trocar pela foto definitiva do encerramento (INAV-011).
         image={{
-          src: "/img/hero_criancas.jpg",
-          alt: "Crianças brincando com blocos coloridos em sala de aula do INAV",
+          src: "/img/quem-somos-encerramento.jpg",
+          alt: "Parquinho coberto de grama do INAV, com escorregadores e brinquedos coloridos",
         }}
         script="Mais infâncias possíveis."
       />

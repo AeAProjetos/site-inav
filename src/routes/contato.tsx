@@ -79,6 +79,13 @@ function ContatoPage() {
         title="A porta está sempre"
         highlight="aberta"
         description="Quer doar, propor uma parceria ou conhecer o instituto de perto? Escolha o canal que preferir — respondemos a todos."
+        aside={
+          <img
+            src="/img/contato-topo.jpg"
+            alt="Entrada do INAV, com a recepção e a rampa de acesso"
+            className="size-full object-cover"
+          />
+        }
       />
 
       <section className="relative isolate overflow-hidden bg-background py-20 sm:py-24">

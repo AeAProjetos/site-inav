@@ -10,8 +10,8 @@ const steps = [
     title: "Escuta e acompanhamento",
     description:
       "Cada criança é recebida com atenção às suas necessidades, em um ambiente seguro, acolhedor e preparado para o seu desenvolvimento.",
-    image: "/img/hero_criancas.jpg",
-    imageAlt: "Crianças brincando com blocos coloridos em sala de aula do INAV",
+    image: "/img/jornada-escuta.jpg",
+    imageAlt: "Educadora agachada ao lado de uma criança no parquinho do INAV",
   },
   {
     icon: Sprout,
@@ -19,8 +19,8 @@ const steps = [
     title: "Alimentação e cuidado",
     description:
       "Cinco refeições diárias e acompanhamento nutricional contribuem para uma rotina saudável e para o desenvolvimento integral das crianças.",
-    image: "/img/refeicao_rotina.jpg",
-    imageAlt: "Educadora acompanhando crianças durante a refeição no instituto",
+    image: "/img/jornada-alimentacao.jpg",
+    imageAlt: "Crianças almoçando no refeitório do INAV, acompanhadas pela equipe",
   },
   {
     icon: GraduationCap,
@@ -28,8 +28,8 @@ const steps = [
     title: "Aprendizagem e desenvolvimento",
     description:
       "A educação infantil em período integral une experiências pedagógicas, convivência e cuidado para favorecer o desenvolvimento nos primeiros anos de vida.",
-    image: "/img/atelie_sabor.jpg",
-    imageAlt: "Mães em oficina do Ateliê do Sabor, preparando pães na padaria comunitária",
+    image: "/img/jornada-aprendizagem.jpg",
+    imageAlt: "Educadora orientando crianças numa atividade em sala do INAV",
   },
 ];
 
