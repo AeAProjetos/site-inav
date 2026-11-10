@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "motion/react";
 import { Sprout, Music, BookMarked, Users2, Dumbbell, Handshake } from "lucide-react";
 
@@ -84,7 +84,10 @@ function ProjetosPage() {
       />
 
       <section className="relative isolate overflow-hidden bg-background py-20 sm:py-24">
-        <Ilustracao nome="borboleta" className="absolute left-[5%] top-14 -z-10 hidden w-12 -rotate-6 xl:block" />
+        <Ilustracao
+          nome="borboleta"
+          className="absolute left-[5%] top-14 -z-10 hidden w-12 -rotate-6 xl:block"
+        />
         <Cena nome="sol-e-nuvem" className="right-[6%] top-8 w-20 lg:hidden xl:block" />
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeading
@@ -107,22 +110,26 @@ function ProjetosPage() {
 
       <section className="relative isolate overflow-hidden bg-surface-tint py-20 sm:py-24">
         {/* Última seção antes do rodapé: sem canteiro, para não repetir a paisagem logo abaixo. */}
-        <Ilustracao nome="libelula" className="absolute right-[6%] top-14 -z-10 hidden w-14 xl:block" />
+        <Ilustracao
+          nome="libelula"
+          className="absolute right-[6%] top-14 -z-10 hidden w-14 xl:block"
+        />
         <Cena nome="duas-nuvens" className="left-[4%] top-10 w-32 lg:hidden xl:block" />
         <div className="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
+          {/* Mesma promessa da página Amigos INAV: o apoio vai para o planejamento anual, não para um projeto só. */}
           <SectionHeading
-            eyebrow="Quer apoiar um projeto?"
-            title="Empresas e pessoas podem adotar uma"
-            highlight="frente"
-            description="Cada projeto tem um custo mensal conhecido e um relatório de resultados. Sua empresa pode apoiar uma frente inteira e acompanhar de perto o que ela gera."
+            eyebrow="Quer apoiar os projetos?"
+            title="Seja um"
+            highlight="Amigo INAV"
+            description="Com uma contribuição mensal, pessoas e empresas ajudam a manter os projetos e o dia a dia das crianças. Os recursos entram no planejamento anual do INAV, com documentação de cada despesa."
             align="center"
           />
-          <a
-            href="/amigos-inav"
+          <Link
+            to="/amigos-inav"
             className="mt-8 inline-flex items-center justify-center rounded-full bg-brand-orange px-8 py-4 text-sm font-bold uppercase tracking-wide text-white shadow-soft transition-opacity duration-200 hover:opacity-90"
           >
-            Quero apoiar um projeto
-          </a>
+            Quero ser Amigo INAV
+          </Link>
         </div>
       </section>
     </>

@@ -7,15 +7,14 @@ import { PageHero } from "@/components/PageHero";
 import { SectionHeading } from "@/components/SectionHeading";
 import { ClosingBanner } from "@/components/ClosingBanner";
 import { PhotoGallery, type GalleryItem } from "@/components/PhotoGallery";
-import { Pending } from "@/components/Pending";
 import { Canteiro, Cena, Ilustracao } from "@/components/Ilustracao";
 import { fadeUp, revealOnScroll, stagger } from "@/lib/motion-presets";
 import { cn } from "@/lib/utils";
 
 /*
- * Estrutura conforme o documento do designer (INAV-026). Textos são rascunho até a
- * aprovação do INAV; o que depende de informação da instituição está marcado com
- * os componentes Pending e PendingPhoto — `bun run pendencias` lista tudo o que falta.
+ * Estrutura conforme o documento do designer (INAV-026), publicada em 10/11/2026. O que
+ * ainda depende de informação da instituição ficou fora da página (ver comentários abaixo);
+ * nunca publicar `Pending`/`PendingPhoto`: `bun run pendencias` precisa sair vazio.
  */
 
 export const Route = createFileRoute("/educacao-infantil")({
@@ -74,29 +73,26 @@ const beyondClassroom = [
   },
 ];
 
-const dayRoutine: { time: ReactNode; title: string; text: string }[] = [
+// Só chegada e saída têm horário confirmado. Os do meio entram quando o INAV informar.
+const dayRoutine: { time?: string; title: string; text: string }[] = [
   {
     time: "7h30",
     title: "Chegada",
     text: "As crianças são recebidas pela equipe na entrada e o dia começa com acolhida.",
   },
   {
-    time: <Pending>horário</Pending>,
     title: "Atividades",
     text: "Rodas de conversa, histórias, música e propostas pedagógicas para cada idade.",
   },
   {
-    time: <Pending>horário</Pending>,
     title: "Alimentação",
     text: "Refeição completa, com hábitos de higiene antes e depois.",
   },
   {
-    time: <Pending>horário</Pending>,
     title: "Descanso",
     text: "Um tempo de repouso para recuperar a energia da manhã.",
   },
   {
-    time: <Pending>horário</Pending>,
     title: "Brincadeiras",
     text: "Brincar livre e atividades em grupo, dentro e fora da sala.",
   },
@@ -107,7 +103,8 @@ const dayRoutine: { time: ReactNode; title: string; text: string }[] = [
   },
 ];
 
-const familyTopics: { title: string; text: ReactNode }[] = [
+// "Equipe de apoio" (psicologia, serviço social, fonoaudiologia, nutrição) volta quando o INAV confirmar.
+const familyTopics: { title: string; text: string }[] = [
   {
     title: "Diálogo com os responsáveis",
     text: "Reuniões, conversas no dia a dia e um canal aberto com a equipe.",
@@ -116,12 +113,6 @@ const familyTopics: { title: string; text: ReactNode }[] = [
     title: "Acompanhamento",
     text: "O desenvolvimento de cada criança é acompanhado e compartilhado com a família.",
   },
-  {
-    title: "Equipe de apoio",
-    text: (
-      <Pending>confirmar se há psicologia, serviço social, fonoaudiologia e nutrição</Pending>
-    ),
-  },
 ];
 
 // Fotos do site antigo do INAV, de 2018 a 2023, escolhidas e confirmadas em 04/11/2026.
@@ -129,9 +120,18 @@ const gallery: GalleryItem[] = [
   { src: "/img/ei-galeria-sala.jpg", alt: "Criança pintando um desenho na sala" },
   { src: "/img/ei-galeria-ao-ar-livre.jpg", alt: "Crianças dançando no gramado do INAV" },
   { src: "/img/ei-galeria-refeicao.jpg", alt: "Crianças sentadas no tapete durante um lanche" },
-  { src: "/img/ei-galeria-grupo.jpg", alt: "Turma em fila no gramado com trabalhos feitos em sala" },
-  { src: "/img/ei-galeria-arraia.jpg", alt: "Crianças com roupas de festa junina no Arraiá do INAV" },
-  { src: "/img/ei-galeria-tapete.jpg", alt: "Turma reunida no tapete do gramado na Semana da Criança" },
+  {
+    src: "/img/ei-galeria-grupo.jpg",
+    alt: "Turma em fila no gramado com trabalhos feitos em sala",
+  },
+  {
+    src: "/img/ei-galeria-arraia.jpg",
+    alt: "Crianças com roupas de festa junina no Arraiá do INAV",
+  },
+  {
+    src: "/img/ei-galeria-tapete.jpg",
+    alt: "Turma reunida no tapete do gramado na Semana da Criança",
+  },
   { src: "/img/ei-galeria-bolinhas.jpg", alt: "Menino brincando na piscina de bolinhas" },
   { src: "/img/ei-galeria-lanche.jpg", alt: "Crianças lanchando numa mesa ao ar livre" },
 ];
@@ -183,7 +183,10 @@ function EducacaoInfantilPage() {
 
       {/* 03 — Muito além da sala de aula */}
       <section className="relative isolate overflow-hidden bg-background py-20 sm:py-24">
-        <Ilustracao nome="abelha" className="absolute right-[5%] top-10 -z-10 hidden w-12 -rotate-6 xl:block" />
+        <Ilustracao
+          nome="abelha"
+          className="absolute right-[5%] top-10 -z-10 hidden w-12 -rotate-6 xl:block"
+        />
         <Canteiro itens={["margarida-azul", "capim", "margarida-laranja"]} className="left-[3%]" />
         <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[400px_1fr] lg:gap-16 lg:px-8">
           <SectionHeading
@@ -235,7 +238,11 @@ function EducacaoInfantilPage() {
               const accent = accents[accentCycle[index % accentCycle.length]!];
               const isLast = index === dayRoutine.length - 1;
               return (
-                <motion.li key={step.title} variants={fadeUp} className="relative pl-10 lg:pl-0 lg:pt-10">
+                <motion.li
+                  key={step.title}
+                  variants={fadeUp}
+                  className="relative pl-10 lg:pl-0 lg:pt-10"
+                >
                   {!isLast && (
                     <span
                       className="absolute -bottom-10 left-[9px] top-5 w-0.5 bg-brand-blue/20 lg:bottom-auto lg:-right-6 lg:left-5 lg:top-[9px] lg:h-0.5 lg:w-auto"
@@ -249,8 +256,15 @@ function EducacaoInfantilPage() {
                     )}
                     aria-hidden="true"
                   />
-                  <div className="text-sm font-bold uppercase tracking-[0.18em] text-muted-foreground">
-                    {step.time}
+                  {/* Sem horário, a linha vazia só existe no desktop, para os títulos ficarem alinhados. */}
+                  <div
+                    className={cn(
+                      "text-sm font-bold uppercase tracking-[0.18em] text-muted-foreground",
+                      !step.time && "hidden lg:block",
+                    )}
+                    aria-hidden={step.time ? undefined : true}
+                  >
+                    {step.time ?? " "}
                   </div>
                   <h3 className={cn("mt-2 text-lg font-extrabold uppercase", accent.text)}>
                     {step.title}
@@ -361,11 +375,7 @@ function EducacaoInfantilPage() {
         <Cena nome="duas-nuvens" className="left-[4%] top-12 w-32 lg:hidden xl:block" />
         <Ilustracao nome="sol" className="absolute right-[7%] top-10 -z-10 hidden w-16 xl:block" />
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <SectionHeading
-            title="O dia a dia em"
-            highlight="imagens"
-            align="center"
-          />
+          <SectionHeading title="O dia a dia em" highlight="imagens" align="center" />
           <div className="mt-12">
             <PhotoGallery items={gallery} />
           </div>
