@@ -7,7 +7,7 @@ import { fadeUp, revealOnScroll, stagger } from "@/lib/motion-presets";
 
 /**
  * Cartão de doação por Pix. `comQrCode` mostra o QR do Pix (BR Code estático, sem valor, gerado a
- * partir da chave em site-config): usado em Quer Ajudar. Se a chave mudar, gerar o SVG de novo.
+ * partir da chave em site-config): usado em Amigos INAV. Se a chave mudar, gerar o SVG de novo.
  */
 export function PixDonationCard({ comQrCode = false }: { comQrCode?: boolean }) {
   const [copied, setCopied] = useState(false);

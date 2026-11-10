@@ -93,8 +93,8 @@ export function SiteHeader() {
             </Link>
           )}
           <Link
-            to="/quer-ajudar"
-            hash="envolvimento"
+            to="/amigos-inav"
+            hash="participe"
             className="warm-gradient hidden shrink-0 items-center whitespace-nowrap gap-2 rounded-full px-5 py-2.5 text-sm font-bold uppercase tracking-wide text-white shadow-cta transition-transform duration-200 hover:scale-[1.04] md:inline-flex"
           >
             <Heart className="size-4" aria-hidden="true" />

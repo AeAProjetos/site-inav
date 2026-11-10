@@ -118,7 +118,7 @@ function ProjetosPage() {
             align="center"
           />
           <a
-            href="/quer-ajudar"
+            href="/amigos-inav"
             className="mt-8 inline-flex items-center justify-center rounded-full bg-brand-orange px-8 py-4 text-sm font-bold uppercase tracking-wide text-white shadow-soft transition-opacity duration-200 hover:opacity-90"
           >
             Quero apoiar um projeto

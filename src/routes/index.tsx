@@ -29,7 +29,7 @@ export const Route = createFileRoute("/")({
       {
         property: "og:description",
         content:
-          "Educação infantil, nutrição e acolhimento gratuitos para centenas de crianças e famílias. Doe ou apadrinhe.",
+          "Educação infantil, nutrição e acolhimento gratuitos para centenas de crianças e famílias. Doe ou apoie todo mês.",
       },
     ],
   }),

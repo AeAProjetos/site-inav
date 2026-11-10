@@ -48,7 +48,7 @@ export const navigation = [
   { label: "Transparência", to: "/transparencia" },
   { label: "Bazar", to: "/bazar" },
   { label: "Blog", to: "/blog" },
-  { label: "Quer Ajudar", to: "/quer-ajudar" },
+  { label: "Amigos INAV", to: "/amigos-inav" },
   { label: "Contato", to: "/contato" },
 ] as const;
 
@@ -68,6 +68,8 @@ export const integrations = {
    * Enquanto vazio, o formulário de contato fica desabilitado com um aviso.
    */
   formspreeEndpoint: "https://formspree.io/f/xdeozbay",
+  /** Formulário próprio do programa Amigos INAV: entrega em financeiro@inav.org.br. */
+  amigosFormspreeEndpoint: "https://formspree.io/f/mdeeqknl",
   /**
    * CSV com os documentos de transparência: "Planilha de alimentação -
    * Trasparencia.csv", no Drive do projeto (compartilhado com qualquer pessoa

@@ -53,7 +53,7 @@ export function HomeHero() {
 
           <motion.div variants={fadeUp} className="mt-9 flex flex-wrap gap-3">
             <Link
-              to="/quer-ajudar"
+              to="/amigos-inav"
               hash="doacao"
               className="warm-gradient inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-sm font-bold uppercase tracking-wide text-white shadow-cta transition-transform duration-200 hover:scale-[1.04]"
             >

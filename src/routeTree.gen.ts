@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AmigosInavRouteImport } from './routes/amigos-inav'
 import { Route as ContatoRouteImport } from './routes/contato'
 import { Route as EducacaoInfantilRouteImport } from './routes/educacao-infantil'
 import { Route as PoliticaDePrivacidadeRouteImport } from './routes/politica-de-privacidade'
@@ -28,6 +29,11 @@ import { Route as ApiNewsletterNovoPostRouteImport } from './routes/api/newslett
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AmigosInavRoute = AmigosInavRouteImport.update({
+  id: '/amigos-inav',
+  path: '/amigos-inav',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContatoRoute = ContatoRouteImport.update({
@@ -103,6 +109,7 @@ const ApiNewsletterNovoPostRoute = ApiNewsletterNovoPostRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/amigos-inav': typeof AmigosInavRoute
   '/contato': typeof ContatoRoute
   '/educacao-infantil': typeof EducacaoInfantilRoute
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
@@ -120,6 +127,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/amigos-inav': typeof AmigosInavRoute
   '/contato': typeof ContatoRoute
   '/educacao-infantil': typeof EducacaoInfantilRoute
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
@@ -138,6 +146,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/amigos-inav': typeof AmigosInavRoute
   '/contato': typeof ContatoRoute
   '/educacao-infantil': typeof EducacaoInfantilRoute
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
@@ -157,6 +166,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/amigos-inav'
     | '/contato'
     | '/educacao-infantil'
     | '/politica-de-privacidade'
@@ -174,6 +184,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/amigos-inav'
     | '/contato'
     | '/educacao-infantil'
     | '/politica-de-privacidade'
@@ -191,6 +202,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/amigos-inav'
     | '/contato'
     | '/educacao-infantil'
     | '/politica-de-privacidade'
@@ -209,6 +221,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AmigosInavRoute: typeof AmigosInavRoute
   ContatoRoute: typeof ContatoRoute
   EducacaoInfantilRoute: typeof EducacaoInfantilRoute
   PoliticaDePrivacidadeRoute: typeof PoliticaDePrivacidadeRoute
@@ -232,6 +245,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/amigos-inav': {
+      id: '/amigos-inav'
+      path: '/amigos-inav'
+      fullPath: '/amigos-inav'
+      preLoaderRoute: typeof AmigosInavRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contato': {
@@ -337,6 +357,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AmigosInavRoute: AmigosInavRoute,
   ContatoRoute: ContatoRoute,
   EducacaoInfantilRoute: EducacaoInfantilRoute,
   PoliticaDePrivacidadeRoute: PoliticaDePrivacidadeRoute,

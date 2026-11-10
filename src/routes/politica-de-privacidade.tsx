@@ -6,12 +6,12 @@ import { site } from "@/lib/site-config";
 
 /**
  * Política de Privacidade (INAV-028). Escrita a partir da política de 2022 do site antigo, mas
- * descrevendo o que o site novo faz de fato: formulário (Formspree), newsletter (Brevo, com dupla
+ * descrevendo o que o site novo faz de fato: formulários (Formspree), newsletter (Brevo, com dupla
  * confirmação), sacola do bazar só no navegador, sem cookies de rastreamento.
  * O texto aguarda a aprovação do INAV (pedido P07 do cronograma). Ao mudar o que o site coleta,
  * atualizar esta página e a data abaixo.
  */
-const ATUALIZADA_EM = { iso: "2026-10-30", texto: "30 de outubro de 2026" };
+const ATUALIZADA_EM = { iso: "2026-11-09", texto: "9 de novembro de 2026" };
 
 export const Route = createFileRoute("/politica-de-privacidade")({
   head: () => ({
@@ -110,8 +110,8 @@ function PoliticaDePrivacidade() {
               O site não usa cookies de publicidade nem ferramentas que acompanham as suas visitas.
             </li>
             <li>
-              Só recebemos os dados que você mesmo envia: pelo formulário de contato e pela
-              inscrição na newsletter.
+              Só recebemos os dados que você mesmo envia: pelo formulário de contato, pelo
+              formulário do Amigos INAV e pela inscrição na newsletter.
             </li>
             <li>Não vendemos seus dados nem os usamos para outros fins.</li>
             <li>Você pode pedir para ver, corrigir ou apagar seus dados quando quiser.</li>
@@ -125,6 +125,19 @@ function PoliticaDePrivacidade() {
             só para responder e acompanhar o seu pedido, seja uma doação, uma parceria, uma visita
             ou uma dúvida. A base legal é o legítimo interesse do INAV em atender quem o procura
             (art. 7º, IX, da LGPD).
+          </P>
+
+          <Subtitulo>Programa Amigos INAV</Subtitulo>
+          <P>
+            Recebemos o seu nome ou o da sua empresa, o seu e-mail, o seu telefone ou WhatsApp, se
+            você é pessoa ou empresa e a mensagem, se escrever uma. Usamos esses dados só para falar
+            com você sobre a sua participação no programa. A base legal é o seu consentimento (art.
+            7º, I, da LGPD): você marca a caixa de autorização ao enviar o formulário.
+          </P>
+          <P>
+            O seu nome ou a sua marca só aparecem no mural de apoiadores se você marcar a
+            autorização própria para isso. Essa autorização é opcional e pode ser retirada a
+            qualquer momento.
           </P>
 
           <Subtitulo>Newsletter</Subtitulo>
@@ -180,7 +193,7 @@ function PoliticaDePrivacidade() {
           </P>
           <Lista>
             <li>
-              <strong>Formspree</strong>: entrega as mensagens do formulário de contato por e-mail à
+              <strong>Formspree</strong>: entrega as mensagens dos formulários do site por e-mail à
               equipe do INAV.
             </li>
             <li>
@@ -214,6 +227,10 @@ function PoliticaDePrivacidade() {
             <li>
               Mensagens do formulário: pelo tempo necessário para responder e acompanhar o seu
               pedido.
+            </li>
+            <li>
+              Dados do Amigos INAV: enquanto durar o seu apoio ou até você pedir para apagar,
+              ressalvado o que a lei obrigar a guardar.
             </li>
             <li>E-mail da newsletter: até você cancelar a inscrição.</li>
           </Lista>

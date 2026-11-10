@@ -1,11 +1,10 @@
 /**
  * Fonte única dos "motivos de contato" — usada pelo select do ContactForm
- * e pelos links de /quer-ajudar que pré-selecionam um motivo via
- * /contato?motivo=<slug>.
+ * e por links que pré-selecionam um motivo via /contato?motivo=<slug>.
  */
 export const motivoOptions = [
   { slug: "doacao", label: "Quero doar" },
-  { slug: "apadrinhamento", label: "Quero ser padrinho/madrinha (apadrinhamento mensal)" },
+  { slug: "apoio-mensal", label: "Quero apoiar todo mês (Amigos INAV)" },
   { slug: "parceria", label: "Quero ser parceiro(a) empresarial" },
   { slug: "outro", label: "Outro assunto" },
 ] as const;
