@@ -20,6 +20,15 @@ type PageHeroProps = {
   titleClassName?: string;
   /** Botões e links logo abaixo da descrição. */
   actions?: ReactNode;
+  /** Foto de fundo em tela cheia, com o véu azul por cima. Não combina com `aside`. */
+  background?: {
+    src: string;
+    alt: string;
+    /** Enquadramento da foto, ex.: "object-[center_35%]". */
+    className?: string;
+    /** Crédito da foto, no canto de baixo à direita. */
+    credit?: string;
+  };
 };
 
 /** Cabeçalho padrão das páginas internas, com a curva orgânica da marca. */
@@ -33,17 +42,36 @@ export function PageHero({
   asideClassName,
   titleClassName,
   actions,
+  background,
 }: PageHeroProps) {
   return (
     <section className="relative isolate overflow-hidden bg-brand-blue-deep pt-32 sm:pt-40">
-      <div
-        className="absolute -right-24 -top-24 size-96 rounded-full bg-brand-blue/40 blur-3xl"
-        aria-hidden="true"
-      />
-      <div
-        className="absolute -bottom-16 left-1/4 size-80 rounded-full bg-brand-green/15 blur-3xl"
-        aria-hidden="true"
-      />
+      {background ? (
+        <>
+          <img
+            src={background.src}
+            alt={background.alt}
+            className={cn("absolute inset-0 size-full object-cover", background.className)}
+          />
+          {/* No celular o texto ocupa a largura toda: o véu fecha de baixo para cima. */}
+          <div
+            className="absolute inset-0 bg-gradient-to-t from-brand-blue-deep via-brand-blue-deep/85 to-brand-blue-deep/70 lg:hidden"
+            aria-hidden="true"
+          />
+          <div className="hero-veil absolute inset-0 hidden lg:block" aria-hidden="true" />
+        </>
+      ) : (
+        <>
+          <div
+            className="absolute -right-24 -top-24 size-96 rounded-full bg-brand-blue/40 blur-3xl"
+            aria-hidden="true"
+          />
+          <div
+            className="absolute -bottom-16 left-1/4 size-80 rounded-full bg-brand-green/15 blur-3xl"
+            aria-hidden="true"
+          />
+        </>
+      )}
 
       <motion.div
         variants={stagger}
@@ -51,6 +79,7 @@ export function PageHero({
         animate="show"
         className={cn(
           "relative mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8",
+          background && "pb-20 lg:pb-28",
           aside &&
             "grid gap-10 lg:grid-cols-[1fr_minmax(0,380px)] lg:items-center xl:grid-cols-[1fr_minmax(0,460px)]",
         )}
@@ -88,7 +117,10 @@ export function PageHero({
           <motion.p
             variants={fadeUp}
             transition={{ ease: EASE_SOFT }}
-            className="mt-6 max-w-2xl text-lg leading-relaxed text-white/80"
+            className={cn(
+              "mt-6 max-w-2xl text-lg leading-relaxed",
+              background ? "text-white/90" : "text-white/80",
+            )}
           >
             {description}
           </motion.p>
@@ -111,6 +143,12 @@ export function PageHero({
           </motion.div>
         )}
       </motion.div>
+
+      {background?.credit && (
+        <p className="absolute bottom-20 right-4 text-xs text-white/70 sm:right-6 md:bottom-28 lg:right-8">
+          {background.credit}
+        </p>
+      )}
 
       {/* relative: a onda fica por cima dos brilhos decorativos e termina rente ao fim do topo. */}
       <WaveDivider variant="down" className="relative -mb-px text-background" height="md" />
