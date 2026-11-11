@@ -10,6 +10,7 @@ import { GaleriaAnos, type FotoDaGaleria } from "@/components/projetos/GaleriaAn
 import { LinhaDoTempo, type Epoca } from "@/components/projetos/LinhaDoTempo";
 import { SeloStatus, type Status } from "@/components/projetos/SeloStatus";
 import { fadeUp, revealOnScroll, stagger } from "@/lib/motion-presets";
+import { rolarAte } from "@/lib/rolagem";
 
 /*
  * Página conforme a v5 do designer e do redator (KIM, 10/11/2026), aprovada pelo Renan sem os
@@ -602,6 +603,12 @@ function ProjetosPage() {
         actions={
           <a
             href="#trajetoria"
+            onClick={(event) => {
+              // Com Ctrl, Shift ou Cmd o navegador abre o link como sempre (nova aba, janela).
+              if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+              event.preventDefault();
+              rolarAte("trajetoria");
+            }}
             className="group inline-flex items-center gap-2 rounded-full border-2 border-white/45 px-7 py-3.5 text-sm font-bold uppercase tracking-wide text-white transition-colors duration-200 hover:bg-white/15"
           >
             Conheça a trajetória
@@ -616,7 +623,9 @@ function ProjetosPage() {
       {/* 02 — Momentos da trajetória */}
       <section
         id="trajetoria"
-        className="relative isolate scroll-mt-20 overflow-hidden bg-background pb-20 pt-14 sm:pb-24 sm:pt-16"
+        // tabIndex -1: recebe o foco no fim da rolagem, para o Tab seguir a partir daqui.
+        tabIndex={-1}
+        className="relative isolate scroll-mt-20 overflow-hidden bg-background pb-20 pt-14 focus:outline-none sm:pb-24 sm:pt-16"
       >
         <Cena nome="sol-e-nuvem" className="right-[6%] top-6 w-20 lg:hidden xl:block" />
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
