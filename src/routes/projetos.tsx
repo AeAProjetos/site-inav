@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "motion/react";
 import { ArrowDown } from "lucide-react";
 
+import { FaixaDeNumeros } from "@/components/FaixaDeNumeros";
 import { PageHero } from "@/components/PageHero";
 import { SectionHeading } from "@/components/SectionHeading";
 import { Canteiro, Cena, Ilustracao } from "@/components/Ilustracao";
@@ -696,63 +697,17 @@ function ProjetosPage() {
       </section>
 
       {/* 05 — Números sobre foto */}
-      <section className="relative isolate overflow-hidden bg-brand-blue-deep py-20 text-white sm:py-28">
-        <img
-          src={`${FOTOS}/g15_roda.jpg`}
-          alt=""
-          aria-hidden="true"
-          loading="lazy"
-          decoding="async"
-          className="absolute inset-0 -z-10 size-full object-cover object-[center_40%]"
-        />
-        <div
-          className="absolute inset-0 -z-10 bg-gradient-to-r from-brand-blue-deep/95 to-brand-blue-deep/85"
-          aria-hidden="true"
-        />
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <motion.div variants={stagger} {...revealOnScroll}>
-            <motion.p
-              variants={fadeUp}
-              className="text-sm font-bold uppercase tracking-[0.18em] text-brand-orange"
-            >
-              2002–2026
-            </motion.p>
-            <motion.h2
-              variants={fadeUp}
-              className="mt-3 text-3xl font-extrabold uppercase leading-[1.05] text-balance-pretty sm:text-4xl lg:text-5xl"
-            >
-              Mais de <span className="text-brand-green-light">12 mil</span> atendimentos
-              registrados
-            </motion.h2>
-          </motion.div>
-
-          <motion.dl
-            variants={stagger}
-            {...revealOnScroll}
-            className="mt-12 grid grid-cols-2 gap-x-6 gap-y-10 lg:grid-cols-4 lg:gap-x-8"
-          >
-            {numeros.map((numero) => (
-              // Na tela o número vem primeiro; para o leitor de tela, o rótulo (dt) vem antes.
-              <motion.div
-                key={numero.rotulo}
-                variants={fadeUp}
-                className="flex flex-col-reverse justify-end border-t border-white/25 pt-5"
-              >
-                <dt className="mt-3 text-sm leading-snug text-white/85 sm:text-base">
-                  {numero.rotulo}
-                </dt>
-                <dd className="font-display text-4xl font-extrabold leading-none tracking-tight text-brand-green-light sm:text-5xl">
-                  {numero.valor}
-                </dd>
-              </motion.div>
-            ))}
-          </motion.dl>
-
-          <p className="mt-10 text-sm text-white/65">
-            Atendimentos somados ano a ano. A mesma pessoa pode ter sido atendida em mais de um ano.
-          </p>
-        </div>
-      </section>
+      <FaixaDeNumeros
+        rotulo="2002–2026"
+        titulo={
+          <>
+            Mais de <span>12 mil</span> atendimentos registrados
+          </>
+        }
+        numeros={numeros}
+        foto={{ src: `${FOTOS}/g15_roda.jpg`, className: "object-[center_40%]" }}
+        nota="Atendimentos somados ano a ano. A mesma pessoa pode ter sido atendida em mais de um ano."
+      />
 
       {/* 06 — Acervo institucional. Última seção antes do rodapé: sem canteiro, por causa da paisagem. */}
       <section

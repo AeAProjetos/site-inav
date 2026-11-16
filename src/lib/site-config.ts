@@ -72,14 +72,17 @@ export const integrations = {
   amigosFormspreeEndpoint: "https://formspree.io/f/mdeeqknl",
   /**
    * CSV com os documentos de transparência: "Planilha de alimentação -
-   * Trasparencia.csv", no Drive do projeto (compartilhado com qualquer pessoa
-   * com o link). Colunas na primeira linha: titulo | nota | link, separadas
-   * por ";" ou "," (o Papa.parse detecta). link = URL pública do PDF no Drive.
+   * Trasparencia (v5, 72 documentos).csv", no Drive do projeto (compartilhado
+   * com qualquer pessoa com o link), desde 16/11/2026. Colunas na primeira
+   * linha: titulo | nota | link | categoria | ano | destaque, separadas por
+   * ";" ou "," (o Papa.parse detecta). link = URL pública do PDF no Drive;
+   * destaque = ordem dos documentos de referência (1 primeiro).
    * Para atualizar sem mudar esta URL, substitua o arquivo no Drive em
    * Gerenciar versões → Enviar nova versão (manter o mesmo nome e o mesmo ID).
    * Também aceita a URL CSV de uma planilha Google publicada na web.
-   * Enquanto vazio, a página usa a lista estática de fallback.
+   * Sem a coluna categoria, ou se o arquivo não abrir, a página usa a lista de
+   * src/lib/transparencia-documentos.ts.
    */
   transparencySheetCsvUrl:
-    "https://drive.google.com/uc?export=download&id=1Rp-RkYZErWu7HFal_7OKhvbexBx4U001",
+    "https://drive.google.com/uc?export=download&id=1En5pahSWJ0x09i5aICNDb9k9diL3BCeh",
 } as const;
