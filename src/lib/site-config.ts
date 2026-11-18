@@ -3,6 +3,9 @@
  * Substitua os valores marcados como PLACEHOLDER pelos dados oficiais do INAV.
  */
 
+/** Horário confirmado em 04/11/2026. Em duas partes para o topo do Contato. */
+const horario = { dias: "Segunda a sexta", horas: "das 7h30 às 17h30" } as const;
+
 export const site = {
   name: "Instituto Nair Valadares",
   shortName: "INAV",
@@ -16,12 +19,16 @@ export const site = {
   pixKey: "04.192.012/0001-16",
   pixLabel: "CNPJ",
   pixBank: "BRB",
-  /** Por enquanto o mesmo número serve para telefone, WhatsApp e pedidos do bazar (30/10/2026). */
-  phone: "(61) 99394-9017",
+  /** Celular do INAV para WhatsApp e pedidos do bazar (30/10/2026). */
   whatsapp: "5561993949017",
   whatsappDisplay: "(61) 99394-9017",
+  /** Telefone fixo do cartão do CNPJ, confirmado em 18/11/2026. No Contato e no rodapé. */
+  landline: "(61) 3333-1552",
+  landlineTel: "+556133331552",
   /* PLACEHOLDER — trocar pelos dados oficiais */
   email: "contato@inav.org.br",
+  /** Canal de Ética, como no site antigo. Mantido na Transparência em 12/11/2026. */
+  ethicsEmail: "denuncia@inav.org.br",
   instagram: "instituicaoinav",
   /** Endereço e horário confirmados em 04/11/2026. */
   address: {
@@ -30,7 +37,8 @@ export const site = {
     state: "DF",
     zip: "71880-110",
   },
-  hours: "Segunda a sexta, das 7h30 às 17h30",
+  hours: `${horario.dias}, ${horario.horas}`,
+  horario,
 } as const;
 
 /**
@@ -63,11 +71,33 @@ export const navigation = [
   { label: "Contato", to: "/contato" },
 ] as const;
 
-export const whatsappLink = `https://wa.me/${site.whatsapp}?text=${encodeURIComponent(
+/** Conversa no WhatsApp do INAV com a primeira mensagem já escrita. */
+export const whatsappLinkWith = (message: string) =>
+  `https://wa.me/${site.whatsapp}?text=${encodeURIComponent(message)}`;
+
+export const whatsappLink = whatsappLinkWith(
   "Olá! Gostaria de saber mais sobre o Instituto Nair Valadares.",
-)}`;
+);
+
+/** As visitas são combinadas pelo WhatsApp, que envia as regras (INAV, 18/11/2026). */
+export const visitWhatsappLink = whatsappLinkWith(
+  "Olá! Gostaria de combinar uma visita ao Instituto Nair Valadares.",
+);
 
 export const instagramLink = `https://www.instagram.com/${site.instagram}/`;
+
+export const landlineLink = `tel:${site.landlineTel}`;
+
+/** O e-mail já abre com o assunto preenchido. */
+export const ethicsMailto = `mailto:${site.ethicsEmail}?subject=${encodeURIComponent("Canal de Ética")}`;
+
+/** Endereço em uma linha, para copiar. */
+export const fullAddress = `${site.address.street}, ${site.address.city} - ${site.address.state}, CEP ${site.address.zip}`;
+
+/** Busca no Google Maps pelo nome e pelo endereço, como pede a copy do Contato. Sem mapa incorporado. */
+export const mapsLink = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+  `${site.name}, ${site.address.street}, ${site.address.city} - ${site.address.state}, ${site.address.zip}`,
+)}`;
 
 /**
  * Integrações externas — preencher quando as contas estiverem criadas.

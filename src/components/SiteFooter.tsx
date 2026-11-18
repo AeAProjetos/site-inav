@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
-import { Mail, MapPin, Phone, Clock, Instagram } from "lucide-react";
+import { Mail, MapPin, MessageCircle, Phone, Clock, Instagram } from "lucide-react";
 
-import { instagramLink, navigation, site } from "@/lib/site-config";
+import { instagramLink, landlineLink, navigation, site, whatsappLink } from "@/lib/site-config";
 import { InscricaoNewsletter } from "@/components/InscricaoNewsletter";
 import { PaisagemRodape } from "@/components/Paisagem";
 
@@ -71,8 +71,22 @@ export function SiteFooter() {
               </li>
               <li className="flex gap-3">
                 <Phone className="mt-0.5 size-4 shrink-0 text-brand-orange" aria-hidden="true" />
-                <a className="transition-colors hover:text-white" href={`tel:${site.phone}`}>
-                  {site.phone}
+                <a className="transition-colors hover:text-white" href={landlineLink}>
+                  {site.landline}
+                </a>
+              </li>
+              <li className="flex gap-3">
+                <MessageCircle
+                  className="mt-0.5 size-4 shrink-0 text-brand-orange"
+                  aria-hidden="true"
+                />
+                <a
+                  className="transition-colors hover:text-white"
+                  href={whatsappLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {site.whatsappDisplay} (WhatsApp)
                 </a>
               </li>
               <li className="flex gap-3">

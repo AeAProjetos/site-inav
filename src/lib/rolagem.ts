@@ -1,4 +1,15 @@
+import type { MouseEvent } from "react";
 import { animate } from "motion/react";
+
+/**
+ * Para o onClick de um link de âncora: o clique simples faz a `acao` (em geral, `rolarAte`); com
+ * Ctrl, Shift, Alt ou Cmd o navegador faz o de sempre (nova aba, nova janela).
+ */
+export const aoClicar = (acao: () => void) => (event: MouseEvent<HTMLAnchorElement>) => {
+  if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+  event.preventDefault();
+  acao();
+};
 
 // Começa e termina devagar: a página desliza até a seção, sem tranco na saída nem na chegada.
 const CURVA = [0.65, 0, 0.35, 1] as const;

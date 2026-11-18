@@ -11,7 +11,7 @@ import { site } from "@/lib/site-config";
  * rastreamento. Versão oficial desde 10/11/2026; os artigos citados foram conferidos no texto das
  * leis no Planalto. Ao mudar o que o site coleta, atualizar esta página e a data abaixo.
  */
-const ATUALIZADA_EM = { iso: "2026-11-10", texto: "10 de novembro de 2026" };
+const ATUALIZADA_EM = { iso: "2026-11-18", texto: "18 de novembro de 2026" };
 
 const LEIS = {
   constituicao: "https://www.planalto.gov.br/ccivil_03/constituicao/constituicao.htm",
@@ -212,10 +212,10 @@ function PoliticaDePrivacidade() {
 
           <Subtitulo>Formulário de contato</Subtitulo>
           <P>
-            Recebemos o seu nome, o seu e-mail, o motivo do contato e a mensagem. Usamos esses dados
-            só para responder e acompanhar o seu pedido, seja uma doação, uma parceria, uma visita
-            ou uma dúvida. A base legal é o legítimo interesse do INAV em atender quem o procura
-            (art. 7º, IX, da LGPD).
+            Recebemos o seu nome, o seu e-mail, o seu telefone, se você informar, o assunto e a
+            mensagem. Usamos esses dados só para responder e acompanhar o seu pedido, seja uma
+            doação, uma parceria, uma visita ou uma dúvida. A base legal é o seu consentimento (art.
+            7º, I, da LGPD): você marca a caixa de autorização ao enviar o formulário.
           </P>
 
           <Subtitulo>Programa Amigos INAV</Subtitulo>
@@ -430,9 +430,9 @@ function PoliticaDePrivacidade() {
             </li>
           </Lista>
           <P>
-            Você também pode se opor a um tratamento feito sem o seu consentimento, como o do
-            formulário de contato, se ele não estiver de acordo com a LGPD (art. 18, § 2º). O site
-            não toma decisões automáticas sobre você.
+            Você também pode se opor a um tratamento feito sem o seu consentimento, como o dos
+            registros de acesso ao site, se ele não estiver de acordo com a LGPD (art. 18, § 2º). O
+            site não toma decisões automáticas sobre você.
           </P>
 
           <Subtitulo>Como fazer um pedido</Subtitulo>

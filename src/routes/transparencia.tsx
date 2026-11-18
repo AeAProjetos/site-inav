@@ -1,4 +1,4 @@
-import { useState, type MouseEvent } from "react";
+import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { createServerFn } from "@tanstack/react-start";
 import { motion } from "motion/react";
@@ -31,7 +31,7 @@ import {
   type Documento,
 } from "@/lib/transparencia";
 import { fadeUp, revealOnScroll } from "@/lib/motion-presets";
-import { rolarAte } from "@/lib/rolagem";
+import { aoClicar, rolarAte } from "@/lib/rolagem";
 import { integrations, site } from "@/lib/site-config";
 import { cn } from "@/lib/utils";
 
@@ -214,13 +214,6 @@ const certidoes = [
     link: "https://ww1.receita.fazenda.df.gov.br/cidadao/certidoes/Certidao",
   },
 ];
-
-/** Clique simples rola com suavidade; com Ctrl, Shift ou Cmd o navegador faz o de sempre. */
-const aoClicar = (acao: () => void) => (event: MouseEvent<HTMLAnchorElement>) => {
-  if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
-  event.preventDefault();
-  acao();
-};
 
 const botaoDeAtalho =
   "inline-flex items-center rounded-full border-[1.5px] border-white/40 px-4 py-2 text-xs font-bold uppercase tracking-wide text-white transition-colors duration-200 hover:bg-white/10";
@@ -765,10 +758,10 @@ function TransparenciaPage() {
               Para relatar, com sigilo, condutas contrárias ao Código de Ética do INAV.
             </p>
             <a
-              href="mailto:denuncia@inav.org.br"
+              href={`mailto:${site.ethicsEmail}`}
               className="mt-5 inline-flex max-w-full items-center gap-2 break-all rounded-full bg-brand-blue px-6 py-3.5 text-sm font-bold text-white transition-colors duration-200 hover:bg-brand-blue-deep"
             >
-              denuncia@inav.org.br
+              {site.ethicsEmail}
             </a>
           </motion.div>
         </div>
