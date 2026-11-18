@@ -4,11 +4,14 @@ import { motion } from "motion/react";
 import {
   ArrowDown,
   ArrowRight,
+  Baby,
   Check,
   ChevronRight,
   CircleCheck,
   Clock,
   Copy,
+  FileText,
+  Heart,
   Instagram,
   Mail,
   MapPin,
@@ -16,6 +19,7 @@ import {
   Minus,
   Phone,
   Plus,
+  ShieldAlert,
   ShieldCheck,
   type LucideIcon,
 } from "lucide-react";
@@ -42,7 +46,8 @@ import { cn } from "@/lib/utils";
 
 /*
  * Página conforme a v2 da copy e do layout da KIM (11/11/2026), em Refinamento/Contato.
- * Adaptado: botões do topo brancos e sem laranja, canais e assuntos em painéis com divisórias,
+ * Adaptado: botões do topo brancos e sem laranja, canais num painel com divisórias, assuntos em
+ * cards verticais com ícone solto e links azuis (18/11),
  * envio real pelo Formspree, sem prazo de resposta, mapa sem incorporação e Canal de Ética por
  * e-mail (sem rota /etica e sem a promessa de anonimato, que só um formulário próprio daria).
  * Os pontos que dependem do INAV estão marcados com o componente Pending.
@@ -285,13 +290,14 @@ function ContatoPage() {
             align="center"
             className="max-w-4xl"
           />
-          {/* Linhas de um mesmo painel: assunto, explicação e destino lidos da esquerda para a direita. */}
+          {/* Cards verticais, como no layout (decisão de 18/11): ícone solto, sem caixinha, e links azuis. */}
           <motion.ul
-            variants={fadeUp}
+            variants={stagger}
             {...revealOnScroll}
-            className="mt-12 divide-y divide-border overflow-hidden rounded-3xl border border-border bg-card shadow-soft"
+            className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4"
           >
             <Caminho
+              icone={Baby}
               titulo="Vaga na educação infantil"
               acao={
                 <Link to="/educacao-infantil" className={linkDeTexto}>
@@ -304,7 +310,7 @@ function ContatoPage() {
                 A inscrição é feita pela mãe ou responsável legal na Central 156, da Secretaria de
                 Educação do DF.
               </p>
-              <details className="group mt-3">
+              <details className="group mt-4 border-t border-border pt-3">
                 <summary className="inline-flex cursor-pointer list-none items-center gap-1.5 rounded text-sm font-bold text-brand-blue [&::-webkit-details-marker]:hidden">
                   Ver detalhes
                   <Plus className="size-4 group-open:hidden" aria-hidden="true" />
@@ -319,6 +325,7 @@ function ContatoPage() {
             </Caminho>
 
             <Caminho
+              icone={FileText}
               titulo="Documentos e prestação de contas"
               acao={
                 <Link to="/transparencia" className={linkDeTexto}>
@@ -334,6 +341,7 @@ function ContatoPage() {
             </Caminho>
 
             <Caminho
+              icone={Heart}
               titulo="Doações, parcerias e visitas"
               acao={
                 <a
@@ -362,6 +370,7 @@ function ContatoPage() {
             </Caminho>
 
             <Caminho
+              icone={ShieldAlert}
               titulo="Denúncias"
               escuro
               acao={
@@ -560,34 +569,47 @@ function ContatoPage() {
 }
 
 type CaminhoProps = {
+  icone: LucideIcon;
   titulo: string;
   acao: ReactNode;
-  /** A linha das denúncias fica escura, como o Canal de Ética no fim da página. */
+  /** O card das denúncias fica escuro, como o Canal de Ética no fim da página. */
   escuro?: boolean;
   children: ReactNode;
 };
 
-function Caminho({ titulo, acao, escuro, children }: CaminhoProps) {
+/** Card vertical de "Por assunto": o link fica sempre no pé, alinhado entre os cards. */
+function Caminho({ icone: Icone, titulo, acao, escuro, children }: CaminhoProps) {
   return (
-    <li
+    <motion.li
+      variants={fadeUp}
       className={cn(
-        "grid gap-x-10 gap-y-3 px-6 py-6 sm:px-8 lg:grid-cols-[minmax(0,15rem)_minmax(0,1fr)_minmax(0,14rem)] lg:items-start lg:py-7",
-        escuro && "bg-brand-blue-deep",
+        "flex h-full flex-col rounded-3xl border p-7 shadow-soft",
+        escuro ? "border-brand-blue-deep bg-brand-blue-deep" : "border-border bg-card",
       )}
     >
+      <Icone
+        className={cn("size-7", escuro ? "text-brand-green-light" : "text-brand-blue")}
+        strokeWidth={1.8}
+        aria-hidden="true"
+      />
       <h3
         className={cn(
-          "font-display text-lg font-extrabold uppercase leading-tight",
+          "mt-5 font-display text-lg font-extrabold uppercase leading-tight",
           escuro ? "text-white" : "text-brand-blue-deep",
         )}
       >
         {titulo}
       </h3>
-      <div className={cn("leading-relaxed", escuro ? "text-white/80" : "text-muted-foreground")}>
+      <div
+        className={cn(
+          "mt-2 text-[0.95rem] leading-relaxed",
+          escuro ? "text-white/80" : "text-muted-foreground",
+        )}
+      >
         {children}
       </div>
-      <div className="lg:pt-0.5 lg:text-right">{acao}</div>
-    </li>
+      <div className="mt-auto pt-6">{acao}</div>
+    </motion.li>
   );
 }
 
