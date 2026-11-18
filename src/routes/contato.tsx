@@ -26,7 +26,6 @@ import {
 
 import { ContactForm } from "@/components/ContactForm";
 import { PageHero } from "@/components/PageHero";
-import { Pending } from "@/components/Pending";
 import { SectionHeading } from "@/components/SectionHeading";
 import { Cena, Ilustracao } from "@/components/Ilustracao";
 import { ehSlugDeAssunto, type SlugDoAssunto } from "@/lib/contact-motivos";
@@ -50,7 +49,8 @@ import { cn } from "@/lib/utils";
  * cards verticais com ícone solto e links azuis (18/11),
  * envio real pelo Formspree, sem prazo de resposta, mapa sem incorporação e Canal de Ética por
  * e-mail (sem rota /etica e sem a promessa de anonimato, que só um formulário próprio daria).
- * Os pontos que dependem do INAV estão marcados com o componente Pending.
+ * Sem pendências desde 18/11/2026. O denuncia@ foi publicado como na Transparência, e a pergunta
+ * ao INAV (se é lido, e por quem) continua aberta no handoff.
  */
 
 const FOTOS = "/img/contato";
@@ -557,10 +557,6 @@ function ContatoPage() {
               <Mail className="size-4" aria-hidden="true" />
               Escrever para o Canal de Ética
             </a>
-            <Pending className="mt-4 block">
-              testar se {site.ethicsEmail} recebe e saber quem lê (copy, pendência 7; pergunta 8 ao
-              INAV, de 12/11)
-            </Pending>
           </motion.div>
         </div>
       </section>
