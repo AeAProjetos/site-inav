@@ -4,7 +4,7 @@ export type RepasseDoAno = {
   ano: string;
   /** Em milhões de reais. */
   valor: number;
-  /** Valor sem data de corte: coluna listrada e asterisco no ano. */
+  /** Valor previsto, ainda não fechado: coluna listrada e asterisco no ano. */
   parcial?: boolean;
 };
 
@@ -48,7 +48,7 @@ export function GraficoRepasses({
                 {milhoes.format(d.valor)}
               </span>
               <span
-                // Ano sem data de corte: mesma cor, em listras, para não parecer valor menor.
+                // Ano com valor previsto: mesma cor, em listras, para não parecer valor menor.
                 className={`block w-full max-w-6 rounded-t-[4px] ${d.parcial ? "bg-[repeating-linear-gradient(135deg,var(--brand-blue)_0_4px,color-mix(in_oklab,var(--brand-blue)_55%,white)_4px_8px)]" : "bg-brand-blue"}`}
                 style={{ height: `${(d.valor / maior) * 82}%` }}
               />
@@ -84,7 +84,7 @@ export function GraficoRepasses({
               <th scope="row">{d.ano}</th>
               <td>
                 {milhoes.format(d.valor)}
-                {d.parcial && " (valor sem data de corte)"}
+                {d.parcial && " (valor previsto)"}
               </td>
             </tr>
           ))}

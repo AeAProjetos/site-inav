@@ -41,6 +41,9 @@ import { cn } from "@/lib/utils";
  * havia: total da SEEDF só com anos fechados (2021 a 2025), auditorias sem "publicadas",
  * diretoria de 2018 e políticas mantidas, lista da v5 publicada, denuncia@ mantido. O resto foi
  * perguntado ao INAV (subvenção de 2025, links dos demonstrativos, composição atual e outros).
+ * Respostas de 18/11/2026: 2026 como valor previsto; balanço e DMPL de 2025 fora da lista até
+ * virem com tarja; credenciamento de 2018 e CEBAS no arquivo histórico mantidos; as auditorias de
+ * 2021 a 2023 entram pela planilha quando forem para o Drive. O resto entra pela planilha ou aqui.
  */
 
 /**
@@ -132,7 +135,7 @@ const repassesDaSeedf = [
 ];
 
 const numeros = [
-  // Só anos fechados: o valor de 2026 da planilha não tem data de corte e pode ser o previsto.
+  // Só anos fechados: o valor de 2026 é o previsto (INAV, 18/11/2026), quase igual ao valor anual do 3º aditivo.
   { valor: "R$ 13,48 mi", rotulo: "recebidos da Secretaria de Educação do DF de 2021 a 2025" },
   { valor: "4", rotulo: "auditorias independentes, a mais recente de 2025, sem ressalvas" },
   { valor: "9", rotulo: "prestações de contas aprovadas pela SEEDF, de 2009 a 2024" },
@@ -462,7 +465,8 @@ function TransparenciaPage() {
               <p>
                 Total de 2021 a 2025: R$ 13.478.712,22. Fonte: planilha “Valores totais recebidos
                 por convênio e por período” (INAV).
-                <br />* 2026: R$ 3.091.841,16 informados na planilha, sem data de corte.
+                <br />* 2026: valor previsto, de R$ 3.091.841,16, praticamente igual ao valor anual
+                do 3º aditivo.
               </p>
               <p className="border-t border-border pt-3">
                 <strong className="text-foreground">2025:</strong> R$ 2,98 milhões recebidos da

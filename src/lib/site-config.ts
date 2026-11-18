@@ -33,8 +33,19 @@ export const site = {
   hours: "Segunda a sexta, das 7h30 às 17h30",
 } as const;
 
+/**
+ * Meta de crianças do 3º aditivo do Termo de Colaboração com a SEEDF (2026), em uso desde
+ * 18/11/2026. Antes era 240. O INAV vai confirmar o número atual de matrículas.
+ * Usado na Home e no Amigos INAV. O 240 de Projetos descreve o projeto VEPEMA como foi aprovado.
+ */
+export const criancasAtendidas = 234;
+
 export const impactStats = [
-  { value: "240+", label: "Crianças atendidas", detail: "todos os dias, gratuitamente" },
+  {
+    value: String(criancasAtendidas),
+    label: "Crianças atendidas",
+    detail: "todos os dias, gratuitamente",
+  },
   { value: "25+", label: "Anos de história", detail: "de dedicação à comunidade" },
   { value: "5", label: "Refeições diárias", detail: "nutrição balanceada e acompanhada" },
   { value: "+10.000", label: "Crianças, adolescentes e famílias", detail: "beneficiadas" },

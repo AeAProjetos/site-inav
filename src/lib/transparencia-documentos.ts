@@ -1,8 +1,9 @@
 import type { Documento } from "@/lib/transparencia";
 
 /*
- * Lista da v5 do designer (KIM, 11/11/2026): 72 documentos em 7 categorias. É a lista usada
- * quando a planilha do Drive ainda não tem as colunas novas (categoria, ano, destaque) ou não abre.
+ * Lista da v5 do designer (KIM, 11/11/2026), igual à planilha v6 do Drive: 70 documentos em 7
+ * categorias. Em 18/11/2026 saíram o balanço e a DMPL de 2025. É a lista usada quando a planilha
+ * do Drive ainda não tem as colunas novas (categoria, ano, destaque) ou não abre.
  * Links do Drive testados sem login em 12/11/2026: os 52 abrem.
  */
 export const documentosPadrao: Documento[] = [
@@ -124,12 +125,7 @@ export const documentosPadrao: Documento[] = [
     categoria: "Contas e auditorias",
     destaque: 2,
   },
-  {
-    titulo: "Balanço patrimonial 2025",
-    nota: "Em 31/12/2025, comparado a 2024",
-    ano: "2025",
-    categoria: "Contas e auditorias",
-  },
+  // O balanço e a DMPL de 2025 mostram CPFs: só entram em versão com tarja (INAV, 18/11/2026).
   {
     titulo: "Demonstração do resultado 2025",
     nota: "Receitas e despesas, comparadas a 2024",
@@ -139,12 +135,6 @@ export const documentosPadrao: Documento[] = [
   {
     titulo: "Demonstração dos fluxos de caixa 2025",
     nota: "Método direto",
-    ano: "2025",
-    categoria: "Contas e auditorias",
-  },
-  {
-    titulo: "Demonstração das mutações do patrimônio 2025",
-    nota: "Saldos de 2024 e 2025",
     ano: "2025",
     categoria: "Contas e auditorias",
   },

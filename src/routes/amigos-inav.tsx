@@ -16,7 +16,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { fadeUp, revealOnScroll, stagger } from "@/lib/motion-presets";
-import { whatsappLink } from "@/lib/site-config";
+import { criancasAtendidas, whatsappLink } from "@/lib/site-config";
 
 export const Route = createFileRoute("/amigos-inav")({
   head: () => ({
@@ -41,7 +41,7 @@ export const Route = createFileRoute("/amigos-inav")({
 const SELO = "/img/amigos-inav/selo-amigos-inav.svg";
 
 const numeros = [
-  { valor: "240", rotulo: "crianças atendidas por ano" },
+  { valor: String(criancasAtendidas), rotulo: "crianças atendidas por ano" },
   { valor: "5", rotulo: "refeições diárias" },
   { valor: "2000", rotulo: "ano de fundação" },
 ];
