@@ -27,7 +27,13 @@ dist-ssr
 .vscode/*
 !.vscode/extensions.json
 .idea
-.claude
+# Claude Code: o processo de refinamento vai para o Git; configurações locais e skills ligadas a .agents/ não.
+.claude/*
+!.claude/agents/
+!.claude/scripts/
+!.claude/skills/
+.claude/skills/*
+!.claude/skills/refinar-pagina/
 .DS_Store
 *.suo
 *.ntvs*
