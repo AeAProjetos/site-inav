@@ -1,6 +1,7 @@
 import "./lib/error-capture";
 
 import { consumeLastCapturedError } from "./lib/error-capture";
+import { destinoDoEnderecoAntigo } from "./lib/enderecos-antigos";
 import { renderErrorPage } from "./lib/error-page";
 
 type ServerEntry = {
@@ -46,6 +47,17 @@ function isH3SwallowedErrorBody(body: string): boolean {
 
 export default {
   async fetch(request: Request, env: unknown, ctx: unknown) {
+    // Notícias do site anterior: 301 para o arquivo do blog (vale quando o domínio vier para cá).
+    if (request.method === "GET" || request.method === "HEAD") {
+      const destino = destinoDoEnderecoAntigo(new URL(request.url).pathname);
+      if (destino) {
+        return new Response(null, {
+          status: 301,
+          // Endereço relativo (RFC 9110): não depende do host repassado pela Vercel.
+          headers: { location: destino },
+        });
+      }
+    }
     try {
       const handler = await getServerEntry();
       const response = await handler.fetch(request, env, ctx);

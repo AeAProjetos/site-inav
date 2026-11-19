@@ -29,7 +29,7 @@ const tipoPorCategoria = {
   institucional: "marco",
   comunicados: "aviso",
   parcerias: "parceiro",
-  educacao: "instagram",
+  educacao: "educacao",
   projetos: "historia",
 };
 const tipoPorSlug = {

@@ -7,11 +7,14 @@ import { CartaoNewsletter } from "@/components/InscricaoNewsletter";
 import { Cena, Ilustracao } from "@/components/Ilustracao";
 import { PageHero } from "@/components/PageHero";
 import { SectionHeading } from "@/components/SectionHeading";
+import { ArquivoDoBlog } from "@/components/blog/ArquivoDoBlog";
 import { CardapioDaSemana } from "@/components/blog/CardapioDaSemana";
+import { NoInstagram } from "@/components/blog/NoInstagram";
 import { CarrosselDeFotos } from "@/components/blog/CarrosselDeFotos";
 import { CapaDoPost, PostCard } from "@/components/blog/PostCard";
 import { TipoSelo } from "@/components/blog/TipoSelo";
 import { SeloStatus } from "@/components/projetos/SeloStatus";
+import { arquivoDoBlog } from "@/lib/arquivo-do-blog";
 import { carregarBlog, formatarData, tipos, type PostResumo } from "@/lib/blog";
 import { fadeUp, revealOnScroll, stagger } from "@/lib/motion-presets";
 import { aoClicar, rolarAte } from "@/lib/rolagem";
@@ -20,8 +23,9 @@ import { cn } from "@/lib/utils";
 /*
  * Página conforme a v3.2 da copy, do layout e da especificação da KIM (18/11/2026), em
  * Refinamento/Blog. Notícias, cardápios e projetos vêm do Sanity. Adaptado: os 6 tipos de
- * publicação do site no lugar das 5 categorias do pacote (decisão do usuário, 19/11), sem laranja
- * fora das doações, e o arquivo 2017–2023 fica para depois.
+ * publicação do site no lugar das 5 categorias do pacote (decisão do usuário, 19/11) e sem laranja
+ * fora das doações. O arquivo do site anterior (por enquanto, 2020 a 2023) fica no repositório (src/lib/arquivo-do-blog.ts), com o
+ * texto aberto aqui mesmo, e os endereços antigos redirecionam para #arquivo.
  * Pendências da copy decididas pelo usuário em 19/11: as datas das notícias são as do redator; o
  * Vozes Protegidas fica com "3 de 5 palestras"; as notícias sem foto ficam com a capa gráfica; a
  * equipe do projeto atualiza o cardápio no painel; o carrossel fica com as cinco fotos do acervo.
@@ -59,7 +63,7 @@ function anosDasPublicacoes(posts: PostResumo[]) {
 }
 
 function BlogPage() {
-  const { posts, erro, cardapios, projetos, ano, hoje } = Route.useLoaderData();
+  const { posts, erro, cardapios, projetos, instagram, ano, hoje } = Route.useLoaderData();
   const [tipo, setTipo] = useState<string | null>(null);
   const [mostrando, setMostrando] = useState(POR_VEZ);
 
@@ -389,12 +393,38 @@ function BlogPage() {
               </p>
             </div>
           )}
+        </div>
+      </section>
 
-          {/* 07 — Newsletter (o arquivo 2017–2023, seção 06 da copy, fica para depois) */}
-          <div className="relative mt-20">
-            <Ilustracao nome="borboleta" className="absolute -top-12 left-2 hidden w-12 xl:block" />
-            <CartaoNewsletter />
+      {/* No Instagram: posts cadastrados no painel; some quando não há nenhum */}
+      {instagram.length > 0 && (
+        <section className="relative isolate bg-surface-tint pb-20 sm:pb-24">
+          <div className="mx-auto max-w-7xl border-t border-border px-4 pt-16 sm:px-6 lg:px-8">
+            <NoInstagram posts={instagram} />
           </div>
+        </section>
+      )}
+
+      {/* 06 — Arquivo (por enquanto, de 2020 a 2023) */}
+      <section
+        id="arquivo"
+        tabIndex={-1}
+        className="relative isolate scroll-mt-20 overflow-hidden bg-background py-20 focus:outline-none sm:py-24"
+      >
+        <Ilustracao
+          nome="caracol"
+          className="absolute right-[5%] top-10 -z-10 hidden w-12 xl:block"
+        />
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <ArquivoDoBlog itens={arquivoDoBlog} />
+        </div>
+      </section>
+
+      {/* 07 — Newsletter */}
+      <section className="relative isolate bg-surface-tint py-16 sm:py-20">
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <Ilustracao nome="borboleta" className="absolute -top-10 left-6 hidden w-12 xl:block" />
+          <CartaoNewsletter />
         </div>
       </section>
     </>

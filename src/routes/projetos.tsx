@@ -29,7 +29,7 @@ export const Route = createFileRoute("/projetos")({
       {
         name: "description",
         content:
-          "Da primeira creche, em 2001, aos projetos de 2026: educação, convivência, esporte, saúde e proteção no Riacho Fundo II. Conheça a trajetória do INAV.",
+          "Da primeira creche, em 2002, aos projetos de 2026: educação, convivência, esporte, saúde e proteção no Riacho Fundo II. Conheça a trajetória do INAV.",
       },
       { property: "og:title", content: "Projetos — Instituto Nair Valadares" },
       {
@@ -49,8 +49,9 @@ const momentos: Momento[] = [
     periodo: "2000–2002",
     titulo: "O sonho de Dona Nair vira creche",
     status: "documentado",
+    // Início das atividades em 2002, como no Blog e no Amigos INAV (decisão do usuário, 19/11/2026).
     texto:
-      "A creche abriu em 2001 no Riacho Fundo II. Começou com 30 crianças e terminou 2002 com 100.",
+      "A creche abriu em 2002 no Riacho Fundo II. Começou com 30 crianças e terminou o primeiro ano com 100.",
     fonte: "Livro “INAV 5 anos”, p. 4 e 5",
     foto: {
       src: `${FOTOS}/c01_sede_2001_5anos_p4.jpg`,
@@ -594,7 +595,7 @@ function ProjetosPage() {
         eyebrow="Projetos"
         title="26 anos de projetos"
         highlight="com a comunidade"
-        description="Da primeira creche, em 2001, aos projetos de 2026: educação, convivência, esporte, saúde e proteção no Riacho Fundo II."
+        description="Da primeira creche, em 2002, aos projetos de 2026: educação, convivência, esporte, saúde e proteção no Riacho Fundo II."
         background={{
           src: `${FOTOS}/g15_bolas.jpg`,
           alt: "Crianças do INAV jogam bolas coloridas para o alto, em 2015",

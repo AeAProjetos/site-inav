@@ -2,7 +2,7 @@ import { aparenciaDoTipo } from "@/components/blog/aparencia";
 import { infoDoTipo } from "@/lib/blog";
 import { cn } from "@/lib/utils";
 
-/** Selo colorido com o tipo da publicação (Aviso, Instagram, Marco institucional...). */
+/** Selo colorido com o tipo da publicação (Aviso, Educação infantil, Marco institucional...). */
 export function TipoSelo({ tipo, className }: { tipo: string; className?: string }) {
   return (
     <span

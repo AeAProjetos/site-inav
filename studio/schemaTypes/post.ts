@@ -5,7 +5,9 @@ import {defineArrayMember, defineField, defineType} from 'sanity'
 export const tiposDePost = [
   {title: 'Aviso', value: 'aviso'},
   {title: 'Campanha', value: 'campanha'},
-  {title: 'Instagram', value: 'instagram'},
+  // "Instagram" saiu em 19/11/2026: virou o tipo de documento "Post do Instagram". As notícias que
+  // estavam nele passaram para "Educação infantil" (studio/migracoes/instagram-para-educacao.mjs).
+  {title: 'Educação infantil', value: 'educacao'},
   {title: 'Marco institucional', value: 'marco'},
   {title: 'História de transformação', value: 'historia'},
   {title: 'Parceiro em destaque', value: 'parceiro'},

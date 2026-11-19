@@ -1,5 +1,5 @@
 import {
-  Camera,
+  BookOpen,
   Handshake,
   Heart,
   Landmark,
@@ -18,7 +18,7 @@ import type { TipoDePost } from "@/lib/blog";
 export const aparencia: Record<TipoDePost, { cor: string; icone: LucideIcon }> = {
   aviso: { cor: "bg-[#FFF1D6] text-[#8A4B00]", icone: Megaphone },
   campanha: { cor: "bg-brand-blue text-white", icone: Heart },
-  instagram: { cor: "bg-[#E3F5DC] text-[#1F6B1F]", icone: Camera },
+  educacao: { cor: "bg-[#E3F5DC] text-[#1F6B1F]", icone: BookOpen },
   marco: { cor: "bg-brand-blue-soft text-brand-blue-deep", icone: Landmark },
   historia: { cor: "bg-brand-blue-deep text-brand-green-light", icone: Sprout },
   parceiro: { cor: "bg-[#267A27] text-white", icone: Handshake },

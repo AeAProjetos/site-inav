@@ -10,7 +10,7 @@ import { consultar, imagemDoSanity, type FotoSanity } from "@/lib/sanity";
 export const tipos = [
   { value: "aviso", title: "Aviso" },
   { value: "campanha", title: "Campanha" },
-  { value: "instagram", title: "Instagram" },
+  { value: "educacao", title: "Educação infantil" },
   { value: "marco", title: "Marco institucional" },
   { value: "historia", title: "História de transformação" },
   { value: "parceiro", title: "Parceiro em destaque" },
@@ -203,13 +203,39 @@ function paraCardapio(c: CardapioSanity): Cardapio {
 const CARDAPIO = `_id, inicio, fim, fonteUrl, dias[]{data, feriado, motivo, cafe, colacao, almoco, lanche, jantar},
   "fotos": fotos[autorizada == true && defined(asset)]{asset, crop, hotspot, alt, legenda}`;
 
+/** Seção "No Instagram": foto, legenda e link do post. Não tem página no site. */
+export type PostDoInstagram = {
+  link: string;
+  /** AAAA-MM-DD. */
+  data: string;
+  legenda?: string | undefined;
+  src: string;
+  alt: string;
+};
+
+type InstagramSanity = {
+  link: string;
+  publicadoEm: string;
+  legenda?: string;
+  foto: FotoSanity & { alt?: string };
+};
+
+const paraInstagram = (p: InstagramSanity): PostDoInstagram => ({
+  link: p.link,
+  data: p.publicadoEm,
+  legenda: p.legenda?.trim() || undefined,
+  src: imagemDoSanity(p.foto).width(600).height(600).fit("crop").url(),
+  alt: p.foto.alt?.trim() || p.legenda?.trim() || "Post do INAV no Instagram",
+});
+
 /**
- * Página do blog: publicações, as duas semanas de cardápio mais recentes (a atual e a anterior)
- * e os projetos do ano. Cada parte falha sozinha: sem resposta do Sanity, a seção some ou avisa.
+ * Página do blog: publicações, as duas semanas de cardápio mais recentes (a atual e a anterior),
+ * os projetos do ano e os 6 posts do Instagram mais recentes. Cada parte falha sozinha: sem
+ * resposta do Sanity, a seção some ou avisa.
  */
 export const carregarBlog = createServerFn({ method: "GET" }).handler(async () => {
   const hoje = hojeEmBrasilia();
-  const [posts, cardapios, projetos] = await Promise.allSettled([
+  const [posts, cardapios, projetos, instagram] = await Promise.allSettled([
     consultar<ResumoSanity[]>(`*[${VISIVEL}] | order(publicadoEm desc) [0...90] {${RESUMO}}`),
     consultar<CardapioSanity[]>(
       `*[_type == "cardapio" && defined(inicio) && inicio <= $hoje] | order(inicio desc) [0...2] {${CARDAPIO}}`,
@@ -220,14 +246,22 @@ export const carregarBlog = createServerFn({ method: "GET" }).handler(async () =
         {nome, parceiro, situacao, destaque, texto}`,
       { ano: Number(hoje.slice(0, 4)) },
     ),
+    // A foto só chega ao navegador com a autorização de uso de imagem marcada no painel.
+    consultar<InstagramSanity[]>(
+      `*[_type == "postInstagram" && defined(link) && defined(foto.asset) && foto.autorizada == true
+        && defined(publicadoEm) && publicadoEm <= $hoje] | order(publicadoEm desc) [0...6]
+        {link, publicadoEm, legenda, "foto": foto{asset, crop, hotspot, alt}}`,
+      { hoje },
+    ),
   ]);
-  for (const r of [posts, cardapios, projetos])
+  for (const r of [posts, cardapios, projetos, instagram])
     if (r.status === "rejected") console.error(r.reason);
   return {
     posts: posts.status === "fulfilled" ? posts.value.map(paraResumo) : [],
     erro: posts.status === "rejected",
     cardapios: cardapios.status === "fulfilled" ? cardapios.value.map(paraCardapio) : [],
     projetos: projetos.status === "fulfilled" ? projetos.value : [],
+    instagram: instagram.status === "fulfilled" ? instagram.value.map(paraInstagram) : [],
     ano: Number(hoje.slice(0, 4)),
     hoje,
   };

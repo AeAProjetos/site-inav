@@ -1,5 +1,6 @@
-import { useId, useState, type KeyboardEvent } from "react";
+import { useId, useState } from "react";
 
+import { navegarComSetas } from "@/lib/abas";
 import { refeicoes, type Cardapio } from "@/lib/blog";
 import { cn } from "@/lib/utils";
 
@@ -33,28 +34,6 @@ const rotuloDoDia = (iso: string) => {
 /** Abre no dia de hoje, se ele estiver na semana; senão, na segunda. */
 const diaInicial = (c: Cardapio | undefined, hoje: string) =>
   Math.max(0, c?.dias.findIndex((d) => d.data === hoje) ?? 0);
-
-/** Setas do teclado entre as abas, como pede o padrão de abas (WAI-ARIA). */
-function navegarComSetas(
-  e: KeyboardEvent<HTMLDivElement>,
-  total: number,
-  atual: number,
-  ir: (i: number) => void,
-) {
-  const passo = { ArrowRight: 1, ArrowLeft: -1 }[e.key];
-  const destino =
-    passo !== undefined
-      ? (atual + passo + total) % total
-      : e.key === "Home"
-        ? 0
-        : e.key === "End"
-          ? total - 1
-          : null;
-  if (destino === null) return;
-  e.preventDefault();
-  ir(destino);
-  e.currentTarget.querySelectorAll<HTMLButtonElement>('[role="tab"]')[destino]?.focus();
-}
 
 export function CardapioDaSemana({ cardapios, hoje }: { cardapios: Cardapio[]; hoje: string }) {
   const id = useId();

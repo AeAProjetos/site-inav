@@ -11,10 +11,31 @@ const refeicoes = [
 
 const dataCurta = (iso?: string) => (iso ? iso.split('-').reverse().slice(0, 2).join('/') : '?')
 
+// Data local do painel no formato AAAA-MM-DD.
+const comoIso = (d: Date) =>
+  `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`
+
+/**
+ * Um cardápio novo já vem com a próxima semana (segunda a sexta) e os 5 dias, para a equipe só
+ * digitar os itens. Criado numa segunda-feira, vale a própria semana (aprovado pelo usuário, 19/11/2026).
+ */
+function proximaSemana() {
+  const segunda = new Date()
+  const diaDaSemana = segunda.getDay() // 0 é domingo, 1 é segunda
+  segunda.setDate(segunda.getDate() + (diaDaSemana === 1 ? 0 : (8 - diaDaSemana) % 7))
+  const dias = Array.from({length: 5}, (_, i) => {
+    const dia = new Date(segunda)
+    dia.setDate(segunda.getDate() + i)
+    return {_type: 'dia', _key: Math.random().toString(36).slice(2, 10), data: comoIso(dia), feriado: false}
+  })
+  return {inicio: dias[0].data, fim: dias[4].data, dias}
+}
+
 export const cardapio = defineType({
   name: 'cardapio',
   title: 'Cardápio da semana',
   type: 'document',
+  initialValue: proximaSemana,
   fields: [
     defineField({
       name: 'inicio',
@@ -34,7 +55,8 @@ export const cardapio = defineType({
     defineField({
       name: 'dias',
       title: 'Dias',
-      description: 'Um por dia, de segunda a sexta.',
+      description:
+        'Um por dia, de segunda a sexta. Um cardápio novo já vem com as datas da próxima semana: é só digitar os itens. Para aproveitar a semana anterior, abra-a e use "Duplicar" no menu ⋯, depois ajuste as datas.',
       type: 'array',
       of: [
         defineArrayMember({

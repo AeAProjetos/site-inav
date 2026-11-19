@@ -71,6 +71,7 @@ export const structure: StructureResolver = (S) =>
               S.divider(),
               S.documentTypeListItem('cardapio').title('Cardápios da semana'),
               S.documentTypeListItem('projeto').title('Projetos do ano'),
+              S.documentTypeListItem('postInstagram').title('Posts do Instagram'),
             ]),
         ),
     ])
