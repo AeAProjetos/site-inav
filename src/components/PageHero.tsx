@@ -20,6 +20,8 @@ type PageHeroProps = {
   titleClassName?: string;
   /** Botões e links logo abaixo da descrição. */
   actions?: ReactNode;
+  /** Acima do rótulo, como a trilha "Blog › Tipo" da página de uma notícia. */
+  topo?: ReactNode;
   /** Foto de fundo em tela cheia, com o véu azul por cima. Não combina com `aside`. */
   background?: {
     src: string;
@@ -42,6 +44,7 @@ export function PageHero({
   asideClassName,
   titleClassName,
   actions,
+  topo,
   background,
 }: PageHeroProps) {
   return (
@@ -85,6 +88,11 @@ export function PageHero({
         )}
       >
         <div>
+          {topo && (
+            <motion.div variants={fadeUp} className="mb-5">
+              {topo}
+            </motion.div>
+          )}
           {eyebrow && (
             <motion.p
               variants={fadeUp}

@@ -11,6 +11,16 @@ export const tiposDePost = [
   {title: 'Parceiro em destaque', value: 'parceiro'},
 ]
 
+// Páginas que uma publicação pode indicar no fim do texto. A mesma lista está em src/lib/blog.ts.
+export const paginasDoSite = [
+  {title: 'Quem Somos', value: '/quem-somos'},
+  {title: 'Educação Infantil', value: '/educacao-infantil'},
+  {title: 'Projetos', value: '/projetos'},
+  {title: 'Transparência', value: '/transparencia'},
+  {title: 'Bazar', value: '/bazar'},
+  {title: 'Contato', value: '/contato'},
+]
+
 // "Reunião de pais: 12/11!" vira "reuniao-de-pais-12-11".
 const gerarEndereco = (titulo: string) =>
   titulo
@@ -58,6 +68,22 @@ export const post = defineType({
       type: 'string',
       options: {list: tiposDePost, layout: 'radio'},
       validation: (rule) => rule.required().error('Escolha o tipo da publicação.'),
+    }),
+    defineField({
+      name: 'destaque',
+      title: 'Em destaque no blog',
+      description:
+        'Marcada, aparece grande no alto da página do blog e sai da grade. Deixe só uma marcada: se houver mais, vale a mais recente.',
+      type: 'boolean',
+      initialValue: false,
+    }),
+    defineField({
+      name: 'temaCapa',
+      title: 'Tema da capa sem foto',
+      description:
+        'Até 3 palavras (ex.: Vozes Protegidas). Sem foto de capa, o card mostra este tema sobre a cor do tipo.',
+      type: 'string',
+      validation: (rule) => rule.max(30).warning('Use até 30 letras para caber na capa.'),
     }),
     defineField({
       name: 'resumo',
@@ -162,7 +188,66 @@ export const post = defineType({
             ],
           },
         }),
+        defineArrayMember({
+          name: 'dados',
+          title: 'Bloco de números',
+          type: 'object',
+          fields: [
+            defineField({
+              name: 'itens',
+              title: 'Números',
+              description: 'De 2 a 4. Ex.: valor "2014", rótulo "Início da regularização".',
+              type: 'array',
+              of: [
+                defineArrayMember({
+                  type: 'object',
+                  name: 'numero',
+                  fields: [
+                    defineField({name: 'valor', title: 'Valor', type: 'string'}),
+                    defineField({name: 'rotulo', title: 'Rótulo', type: 'string'}),
+                  ],
+                  preview: {select: {title: 'valor', subtitle: 'rotulo'}},
+                }),
+              ],
+              validation: (rule) => rule.min(2).max(4).error('Use de 2 a 4 números.'),
+            }),
+          ],
+          preview: {
+            select: {itens: 'itens'},
+            prepare: ({itens}: {itens?: {valor?: string}[]}) => ({
+              title: 'Bloco de números',
+              subtitle: (itens ?? []).map((i) => i.valor).join(' · '),
+            }),
+          },
+        }),
       ],
+    }),
+    defineField({
+      name: 'paginaRelacionada',
+      title: 'Página do site relacionada',
+      description: 'Opcional. Aparece no fim do texto como um atalho para a página.',
+      type: 'object',
+      fields: [
+        defineField({
+          name: 'rota',
+          title: 'Página',
+          type: 'string',
+          options: {list: paginasDoSite},
+        }),
+        defineField({
+          name: 'descricao',
+          title: 'Frase sobre a página',
+          description: 'Ex.: Documentos, contas e parcerias do INAV.',
+          type: 'string',
+        }),
+      ],
+    }),
+    defineField({
+      name: 'fonteTexto',
+      title: 'Fonte da informação',
+      description:
+        'Opcional. Ex.: publicação do INAV no Instagram. Se houver "Link da publicação original", a fonte vira link.',
+      type: 'string',
     }),
     defineField({
       name: 'video',
@@ -188,11 +273,12 @@ export const post = defineType({
     },
   ],
   preview: {
-    select: {titulo: 'titulo', tipo: 'tipo', data: 'publicadoEm', media: 'capa'},
-    prepare({titulo, tipo, data, media}) {
+    select: {titulo: 'titulo', tipo: 'tipo', data: 'publicadoEm', media: 'capa', destaque: 'destaque'},
+    prepare({titulo, tipo, data, media, destaque}) {
       const nomeDoTipo = tiposDePost.find((t) => t.value === tipo)?.title ?? 'Sem tipo'
       const dia = data ? new Date(data).toLocaleDateString('pt-BR') : 'sem data'
-      return {title: titulo ?? 'Sem título', subtitle: `${nomeDoTipo} · ${dia}`, media}
+      const marca = destaque ? '★ Em destaque · ' : ''
+      return {title: titulo ?? 'Sem título', subtitle: `${marca}${nomeDoTipo} · ${dia}`, media}
     },
   },
 })

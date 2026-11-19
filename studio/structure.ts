@@ -68,6 +68,9 @@ export const structure: StructureResolver = (S) =>
               listaDoBlog(S, 'Agendadas', `defined(publicadoEm) && !(${jaPublicado})`),
               S.divider(),
               S.documentTypeListItem('post').title('Todas as publicações'),
+              S.divider(),
+              S.documentTypeListItem('cardapio').title('Cardápios da semana'),
+              S.documentTypeListItem('projeto').title('Projetos do ano'),
             ]),
         ),
     ])

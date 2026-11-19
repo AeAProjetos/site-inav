@@ -11,7 +11,7 @@ export function Compartilhar({ titulo }: { titulo: string }) {
   const endereco = () => window.location.href;
 
   const botao =
-    "inline-flex items-center gap-2 rounded-full border border-border bg-background px-4 py-2.5 text-sm font-semibold text-brand-blue-deep transition-colors hover:border-brand-blue/40 hover:bg-secondary";
+    "inline-flex min-h-11 items-center gap-2 rounded-full border border-border bg-background px-4 py-2.5 text-sm font-semibold text-brand-blue-deep transition-colors hover:border-brand-blue/40 hover:bg-secondary";
 
   const copiar = async () => {
     try {
